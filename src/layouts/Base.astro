@@ -223,7 +223,32 @@ const org = {
 
       // ---- Before / after slider ----
       document.querySelectorAll('.ba input').forEach(function (r) {
-        r.addEventListener('input', function () { r.parentElement.style.setProperty('--pos', r.value + '%'); });
+        var box = r.parentElement, used = false;
+        function set(v) { r.value = v; box.style.setProperty('--pos', v + '%'); }
+        function stop() { used = true; box.classList.add('used'); }
+        r.addEventListener('input', function () { stop(); set(r.value); });
+        r.addEventListener('pointerdown', stop);
+        // Auto-demo: when the slider scrolls into view, sweep it once so visitors see it moves.
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (es) {
+            es.forEach(function (e) {
+              if (!e.isIntersecting) return;
+              io.disconnect();
+              var t0 = null, seq = [50, 15, 85, 50];
+              function step(ts) {
+                if (used) return;
+                if (t0 === null) t0 = ts;
+                var k = (ts - t0) / 900, i = Math.floor(k);
+                if (i >= seq.length - 1) { set(50); return; }
+                var f = k - i; f = f * f * (3 - 2 * f);
+                set(seq[i] + (seq[i + 1] - seq[i]) * f);
+                requestAnimationFrame(step);
+              }
+              setTimeout(function () { if (!used) requestAnimationFrame(step); }, 500);
+            });
+          }, { threshold: 0.6 });
+          io.observe(box);
+        }
       });
 
       // ---- Close open menus when clicking elsewhere ----

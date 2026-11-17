@@ -24,7 +24,8 @@ const vars = Object.entries(p.v ?? {});
     <div class="ba">
       <img src={p.sample.before} alt={`${p.t} – original photo`} loading="lazy" />
       <img class="after" src={after} alt={`${p.t} – result from ${afterTool}`} loading="lazy" />
-      <span class="bar"></span>
+      <span class="bar"><i class="knob" aria-hidden="true">◀ ▶</i></span>
+      <span class="hint" aria-hidden="true">👆 Drag to compare</span>
       <span class="lab l">{t.before}</span>
       <span class="lab r">{t.after} · {afterTool}</span>
       <input type="range" min="0" max="100" value="50" aria-label={t.sample} />

@@ -8,7 +8,7 @@ const { lang = 'en' } = Astro.props;
 const t = T[lang];
 const FIRST = 12;
 const withImg = ALL.filter((p) => p.sample.chatgpt);
-const ordered = [...withImg, ...ALL.filter((p) => !p.sample.chatgpt)];
+const ordered = withImg; // homepage grid shows only prompts that have a real result image; the rest live on collection pages
 // showcase: one before/after per collection, up to 8
 const seen = new Set<string>();
 const showcase = withImg.filter((p) => p.sample.before && !seen.has(p.c) && seen.add(p.c)).slice(0, 8);
