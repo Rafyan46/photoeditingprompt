@@ -1,11 +1,15 @@
 ---
 import { T, type Lang } from '../data/site';
 import { cName, type Prompt } from '../lib/prompts';
+import cast from '../data/cast.json';
 interface Props { p: Prompt; lang?: Lang; extra?: boolean }
 const { p, lang = 'en', extra = false } = Astro.props;
 const t = T[lang];
 const img = p.sample.chatgpt ?? p.sample.gemini;
-const aud = [p.a === 'any' ? 'girl boy' : p.a, p.lock === 'car' || p.c === 'supercars' ? 'car' : ''].join(' ').trim();
+// The photo on the card decides who it is for: the sample was made with the man, woman, couple, family or car cast.
+const g = (cast as Record<string, string>)[p.s];
+const byCast: Record<string, string> = { man: 'boy', woman: 'girl', couple: 'couple', family: 'family', car: 'car' };
+const aud = (img && byCast[g] ? byCast[g] : p.a === 'any' ? 'girl boy' : p.a) + (p.lock === 'car' || p.c === 'supercars' ? ' car' : '');
 const keywords = `${p.t} ${p.collection.name} ${p.a} ${p.p}`.toLowerCase();
 ---
 <article class:list={['card', extra && 'hidden']} data-card={keywords} data-extra={extra ? '1' : '0'} data-aud={aud} data-slug={p.s}>
