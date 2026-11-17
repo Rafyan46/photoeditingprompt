@@ -221,6 +221,32 @@ const org = {
         });
       });
 
+      // ---- Open in ChatGPT / Gemini: copy the prompt, then open the app (or site) ----
+      var toastEl = null;
+      function toast(msg) {
+        if (!toastEl) { toastEl = document.createElement('div'); toastEl.className = 'toast'; document.body.appendChild(toastEl); }
+        toastEl.textContent = msg; toastEl.classList.add('show');
+        setTimeout(function () { toastEl.classList.remove('show'); }, 3500);
+      }
+      document.querySelectorAll('[data-open]').forEach(function (a) {
+        a.addEventListener('click', function (ev) {
+          var block = a.closest('[data-template]');
+          var text = block ? block.dataset.current : '';
+          if (!text) return;
+          ev.preventDefault();
+          var which = a.dataset.open;
+          // ChatGPT can take the prompt in the link; Gemini cannot, so the copied prompt is pasted by the user.
+          var url = which === 'chatgpt'
+            ? 'https://chatgpt.com/?prompt=' + encodeURIComponent(text) + '&q=' + encodeURIComponent(text)
+            : 'https://gemini.google.com/app';
+          function go() { window.location.href = url; }
+          copyText(text).then(function () {
+            toast(which === 'chatgpt' ? 'Prompt copied. Upload your photo in ChatGPT.' : 'Prompt copied. Paste it in Gemini and upload your photo.');
+            setTimeout(go, which === 'chatgpt' ? 350 : 900);
+          }).catch(go);
+        });
+      });
+
       // ---- Before / after slider ----
       document.querySelectorAll('.ba input').forEach(function (r) {
         var box = r.parentElement, used = false;
