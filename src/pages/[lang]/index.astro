@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import HomeBody from '../../components/HomeBody.astro';
+import { OTHER_LANGS, T, type Lang } from '../../data/site';
+import { metaDesc } from '../../lib/prompts';
+export function getStaticPaths() {
+  return OTHER_LANGS.map((l) => ({ params: { lang: l.code } }));
+}
+const lang = Astro.params.lang as Lang;
+const t = T[lang];
+---
+<Base lang={lang} title={t.heroTitle.replace(/[.।]$/, '')} desc={metaDesc(t.heroLead)} i18n="">
+  <HomeBody lang={lang} />
+</Base>

@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import CollectionBody from '../components/CollectionBody.astro';
+import { PAGES, inCollection } from '../lib/prompts';
+import { breadcrumbs, itemList, faqPage } from '../lib/schema';
+export function getStaticPaths() {
+  return PAGES.map((c) => ({ params: { path: c.path }, props: { c } }));
+}
+const { c } = Astro.props;
+const crumbs = [{ name: 'Home', url: '/' }];
+if (c.festival) crumbs.push({ name: 'Festivals', url: '/festivals/' });
+crumbs.push({ name: c.name, url: `/${c.path}/` });
+---
+<Base
+  title={c.title ?? c.h1}
+  desc={c.desc ?? c.intro}
+  i18n={`${c.path}/`}
+  schema={[breadcrumbs(crumbs), itemList(c.h1, inCollection(c.id)), faqPage(c)]}
+>
+  <CollectionBody c={c} lang="en" />
+</Base>

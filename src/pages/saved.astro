@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import PromptCard from '../components/PromptCard.astro';
+import { ALL } from '../lib/prompts';
+---
+<Base title="My Saved Prompts" desc="The photo editing prompts you saved on this device." noindex>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Saved</nav>
+    <header style="padding:28px 0 28px">
+      <h1 class="page-title" style="font-size:clamp(32px,5vw,48px)">My saved prompts</h1>
+      <p class="lead" style="margin-left:0">Tap the ♡ on any prompt to keep it here. Saved prompts stay in this browser only; nothing is sent anywhere.</p>
+    </header>
+    <div class="grid" data-saved-list>
+      {ALL.map((p) => <PromptCard p={p} extra />)}
+    </div>
+    <p class="muted" data-saved-empty style="text-align:center;padding:40px 0">Nothing saved yet. <a class="link" href="/trending/">Browse all prompts ›</a></p>
+  </div>
+</Base>

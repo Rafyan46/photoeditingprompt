@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import CollectionBody from '../../components/CollectionBody.astro';
+import { OTHER_LANGS, type Lang } from '../../data/site';
+import { PAGES, cH1, cIntro, metaDesc } from '../../lib/prompts';
+export function getStaticPaths() {
+  return OTHER_LANGS.flatMap((l) => PAGES.map((c) => ({ params: { lang: l.code, path: c.path }, props: { c } })));
+}
+const { c } = Astro.props;
+const lang = Astro.params.lang as Lang;
+---
+<Base lang={lang} title={`${cH1(c, lang)} | ChatGPT, Gemini`} desc={metaDesc(cIntro(c, lang))} i18n={`${c.path}/`}>
+  <CollectionBody c={c} lang={lang} />
+</Base>

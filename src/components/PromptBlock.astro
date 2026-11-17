@@ -1,0 +1,59 @@
+---
+import { T, type Lang } from '../data/site';
+import { label, type Prompt } from '../lib/prompts';
+interface Props { p: Prompt; lang?: Lang; n?: number; linkTitle?: boolean; heading?: 'h2' | 'h3' }
+const { p, lang = 'en', n, linkTitle = true, heading: H = 'h2' } = Astro.props;
+const t = T[lang];
+const after = p.sample.chatgpt ?? p.sample.gemini;
+const afterTool = p.sample.chatgpt ? 'ChatGPT' : 'Gemini';
+const vars = Object.entries(p.v ?? {});
+---
+<section class="prompt-block" id={p.s} data-template={p.template}>
+  <div class="head">
+    <H class="pt">
+      {n && <span class="muted">{n}. </span>}
+      {linkTitle ? <a href={p.url}>{p.t}</a> : p.t}
+    </H>
+    <div class="badges">
+      <span class="badge">{t.worksWith}</span>
+      {p.tested && <span class="badge ok">✓ {t.tested}</span>}
+    </div>
+  </div>
+
+  {p.sample.before && after && (
+    <div class="ba">
+      <img src={p.sample.before} alt={`${p.t} – original photo`} loading="lazy" />
+      <img class="after" src={after} alt={`${p.t} – result from ${afterTool}`} loading="lazy" />
+      <span class="bar"></span>
+      <span class="lab l">{t.before}</span>
+      <span class="lab r">{t.after} · {afterTool}</span>
+      <input type="range" min="0" max="100" value="50" aria-label={t.sample} />
+    </div>
+  )}
+  {!p.sample.before && after && (
+    <div class="ba"><img src={after} alt={`${p.t} – result from ${afterTool}`} loading="lazy" /></div>
+  )}
+
+  {vars.length > 0 && (
+    <div class="customiser">
+      {vars.map(([key, options]) => (
+        <label>
+          {label(key)}
+          <select data-key={key}>
+            {options.map((o) => <option value={o}>{o}</option>)}
+          </select>
+        </label>
+      ))}
+    </div>
+  )}
+
+  <p class="prompt-text" data-prompt-text>{p.text}</p>
+  {p.tip && <p class="tip">💡 {p.tip}</p>}
+
+  <div class="foot">
+    <button class="btn" type="button" data-copy-btn>{t.copy}</button>
+    <button class="btn ghost favbtn" type="button" data-fav={p.s} aria-pressed="false" aria-label="Save this prompt">♡</button>
+    <a class="btn ghost" href="https://chatgpt.com/" target="_blank" rel="noopener nofollow">ChatGPT ↗</a>
+    <a class="btn ghost" href="https://gemini.google.com/" target="_blank" rel="noopener nofollow">Gemini ↗</a>
+  </div>
+</section>

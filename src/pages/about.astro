@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site';
+---
+<Base title="About PhotoEditingPrompt" desc="Who runs PhotoEditingPrompt, how the prompts are written, and what the Tested badge means.">
+  <div class="narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › About</nav>
+    <h1 class="page-title" style="font-size:clamp(30px,5vw,44px);margin:28px 0 20px">About</h1>
+    <div class="prose">
+      <p>{SITE.name} is a free library of photo editing prompts for ChatGPT and Google Gemini, made in India. You upload your own photo to one of those tools, paste a prompt from this site, and get an edited picture back.</p>
+      <h2>How the prompts are written</h2>
+      <p>Every prompt on this site is original. Each one opens with a face-lock line that tells the AI to keep your face, skin tone and features unchanged, and then describes the new scene. Prompts never describe a specific person, so they work on your photo as it is.</p>
+      <h2>What the "Tested" badge means</h2>
+      <p>A prompt gets the green Tested badge only after we have run it ourselves in both ChatGPT and Gemini and added the before and after pictures to its page. Prompts without the badge are new and have not been through that check yet.</p>
+      <h2>The people in our example pictures</h2>
+      <p>The faces in our before and after examples are AI-generated models, not real people. We made them so we can show what a prompt does without using anyone's real photo.</p>
+      <h2>Your photos stay with you</h2>
+      <p>This site never sees your photos. You upload them directly to ChatGPT or Gemini, which have their own privacy policies.</p>
+      <p>Questions or corrections: <a class="link" href="/contact/">contact us</a>.</p>
+    </div>
+  </div>
+</Base>

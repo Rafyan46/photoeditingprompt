@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro';
+import PromptBlock from '../../components/PromptBlock.astro';
+import PromptCard from '../../components/PromptCard.astro';
+import Steps from '../../components/Steps.astro';
+import { ALL, inCollection, colUrl } from '../../lib/prompts';
+import { breadcrumbs, article } from '../../lib/schema';
+import { GUIDE } from '../../lib/guide';
+export function getStaticPaths() {
+  return ALL.map((p) => ({ params: { slug: p.s }, props: { p } }));
+}
+const { p } = Astro.props;
+const c = p.collection;
+const related = inCollection(c.id).filter((o) => o.s !== p.s).slice(0, 3);
+const title = `${p.t} – AI Photo Prompt`;
+const desc = `Free ${p.t} prompt for ChatGPT and Gemini. Keeps your real face; change the details before you copy.`;
+const options = Object.keys(p.v ?? {});
+const g = GUIDE[p.lock];
+---
+<Base
+  title={title}
+  desc={desc}
+  ogType="article"
+  schema={[breadcrumbs([{ name: 'Home', url: '/' }, { name: c.name, url: colUrl(c) }, { name: p.t, url: p.url }]), article(p, desc)]}
+>
+  <div class="narrow">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a> › <a href={colUrl(c)}>{c.h1}</a> › {p.t}
+    </nav>
+    <header style="padding:28px 0 20px">
+      <p class="eyebrow">{c.name} prompt</p>
+      <h1 class="page-title" style="font-size:clamp(28px,4.4vw,42px);margin-top:8px">{p.t}</h1>
+      <p class="lead" style="margin-left:0;max-width:none">
+        Upload your photo to ChatGPT or Gemini and paste this prompt.
+        {options.length > 0 && ` You can change the ${options.join(' and ')} below before you copy.`}
+      </p>
+    </header>
+
+    <PromptBlock p={p} linkTitle={false} />
+
+    <div class="prose">
+      <h2>What this prompt changes, and what it keeps</h2>
+      <p>The first block is the identity lock: it tells the AI to treat your uploaded photo as the only reference for who is in the picture. The next block describes the new scene, clothing and light.</p>
+      <h2>Which photo to upload</h2>
+      <ul>{g.upload.map((u) => <li>{u}</li>)}</ul>
+      <h2>If the result goes wrong</h2>
+      <div class="fixes">
+        {g.fixes.map((f) => (<div class="fix"><strong>{f.problem}</strong><p>{f.fix}</p></div>))}
+      </div>
+    </div>
+
+    <Steps />
+
+    {related.length > 0 && (
+      <section>
+        <h2 class="section-title">More {c.name.toLowerCase()} prompts</h2>
+        <div class="grid">
+          {related.map((r) => <PromptCard p={r} />)}
+        </div>
+        <p style="margin-top:20px"><a class="link" href={colUrl(c)}>See all {c.h1.toLowerCase()} ›</a></p>
+      </section>
+    )}
+  </div>
+</Base>

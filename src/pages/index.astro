@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import HomeBody from '../components/HomeBody.astro';
+import { ALL } from '../lib/prompts';
+import { itemList } from '../lib/schema';
+---
+<Base
+  title="ChatGPT Photo Editing Prompts (Copy & Paste) | Gemini too"
+  desc="Free photo editing prompts for ChatGPT and Gemini that keep your real face. Couple, 80s look, boys, girls and festival edits. Customise, copy, paste."
+  i18n=""
+  schema={[itemList('Newest photo editing prompts', ALL.slice(0, 12))]}
+>
+  <HomeBody lang="en" />
+</Base>

@@ -1,0 +1,324 @@
+// Site-wide settings, collections and translations.
+// To add a collection: add an entry to COLLECTIONS, then add prompts that use its `id`.
+// A collection only appears on the site once it has at least one prompt.
+
+export const SITE = {
+  name: 'PhotoEditingPrompt',
+  domain: 'photoeditingprompt.com',
+  url: 'https://photoeditingprompt.com',
+  // TODO: replace with your real contact address before launch.
+  email: 'hello@photoeditingprompt.com',
+  tagline: 'Copy-paste photo editing prompts for ChatGPT and Gemini',
+};
+
+export { T, LANGS, OTHER_LANGS, NAMES, PATTERN, type Lang } from './i18n';
+
+export interface Collection {
+  id: string;
+  path: string; // URL path without leading/trailing slash
+  festival?: boolean;
+  /** hub: true = no page of its own yet; shown as a section of /festivals/ */
+  hub?: boolean;
+  when?: string;
+  emoji: string;
+  tint: string; // card background gradient
+  name: string;
+  nameTa?: string;
+  h1: string;
+  h1Ta?: string;
+  title?: string; // <title>, keep under 60 characters
+  desc?: string; // meta description, keep under 155 characters
+  intro: string;
+  introTa?: string;
+  faqs?: { q: string; a: string }[];
+}
+
+const FACE_FAQ = {
+  q: 'Will the edited photo still look like me?',
+  a: 'Every prompt here starts with a face-lock line that tells the AI to keep your face, skin tone and features unchanged. If the face still drifts, upload a clearer, front-facing photo and run the prompt again.',
+};
+const TOOL_FAQ = {
+  q: 'Do these prompts work in both ChatGPT and Gemini?',
+  a: 'Yes. They are written in plain language that both ChatGPT and Google Gemini understand. Upload your photo first, then paste the prompt.',
+};
+const FREE_FAQ = {
+  q: 'Are these prompts free?',
+  a: 'Yes. Every prompt on this site is free to copy and use. You only need a ChatGPT or Gemini account, and both have free plans that can edit photos.',
+};
+
+export const COLLECTIONS: Collection[] = [
+  {
+    id: 'viral', path: 'viral-photo-prompts', emoji: '🔥',
+    tint: 'linear-gradient(135deg,#ffcfb8,#ffd1e0)',
+    name: 'Viral now', nameTa: 'இப்போது வைரல்',
+    h1: 'Viral AI Photo Prompts Right Now',
+    title: 'Viral AI Photo Prompts Trending Now (ChatGPT & Gemini)',
+    desc: 'The AI photo trends going viral right now, as free copy-paste prompts: petrol pump bike, glow portrait, 3-panel collage, action figure and more.',
+    intro: 'These are the edits filling Instagram and WhatsApp status right now: the midnight petrol pump bike shot, the backlit glow portrait, the harsh-sunlight three-panel collage, the action figure in a box, and more. Each trend is rewritten here as an original, detailed prompt that keeps your real face. This list was last checked on 16 November 2026 and is refreshed as trends change.',
+    faqs: [
+      { q: 'How do you pick the trends?', a: 'We check what Indian creators and news sites are sharing each week, then write our own prompt for each look and test it. We do not copy other sites\' prompts.' },
+      { q: 'Why is there no cartoon-studio or film-character style here?', a: 'Styles that copy a named studio, film or character are left out. The toy, chibi and poster prompts here are original looks that do not use anyone else\'s characters.' },
+      FACE_FAQ, TOOL_FAQ,
+    ],
+  },
+  {
+    id: 'game-art', path: 'open-world-game-art-prompts', emoji: '🎮',
+    tint: 'linear-gradient(135deg,#ffd6a5,#ff9ecb)',
+    name: 'Open-world game art', 
+    h1: 'Open-World Game Art Photo Prompts',
+    title: 'Open-World Game Art Prompts: Turn Your Photo Into Game Art',
+    desc: 'Free ChatGPT and Gemini prompts that turn your photo into an original open-world, neon-city game poster style. Keeps your face. Not affiliated with any game studio.',
+    intro: 'Turn yourself into the hero of an original open-world crime-city game poster: sunset beaches, neon streets, loading-screen art and character cards. These prompts are our own style and are not affiliated with, or endorsed by, Rockstar Games or any game studio; they use no logos, names or artwork from any game. Pick the outfit and setting, copy, and paste with your photo.',
+    faqs: [
+      { q: 'Is this affiliated with GTA or Rockstar Games?', a: 'No. These prompts describe a general stylised open-world game-art look in our own words. They contain no studio logos, titles or copied artwork and are not affiliated with or endorsed by any game company.' },
+      FACE_FAQ, TOOL_FAQ, FREE_FAQ,
+    ],
+  },
+  {
+    id: 'couple', path: 'couple-photo-prompts', emoji: '💑',
+    tint: 'linear-gradient(135deg,#ffd6e0,#ffe9c9)',
+    name: 'Couple', nameTa: 'ஜோடி',
+    h1: 'Couple Photo Prompts', h1Ta: 'ஜோடி புகைப்பட ப்ராம்ப்ட்கள்',
+    title: 'Couple Photo Prompts for ChatGPT & Gemini (Copy & Paste)',
+    desc: 'Free couple photo prompts for ChatGPT and Gemini. Pre-wedding, cinematic, travel and festive couple edits that keep both faces. Copy, paste, done.',
+    intro: 'Couple edits are the hardest for AI, because it has to keep two faces right at once. Each prompt below opens with a line that locks both faces, skin tones and your height difference before it describes the scene. Upload one photo of you together, or one photo each, pick your outfit and setting from the dropdowns, and copy.',
+    introTa: 'ஜோடி எடிட்கள் AI-க்கு கடினமானவை, ஏனெனில் இரண்டு முகங்களையும் ஒரே நேரத்தில் சரியாக வைத்திருக்க வேண்டும். கீழே உள்ள ஒவ்வொரு ப்ராம்ப்டும் முதலில் இருவரின் முகம், நிறம், உயர வித்தியாசத்தை மாற்றாமல் வைக்கச் சொல்கிறது. உங்கள் புகைப்படத்தைப் பதிவேற்றி, உடை மற்றும் இடத்தைத் தேர்ந்தெடுத்து, நகலெடுக்கவும்.',
+    faqs: [
+      { q: 'Should I upload one photo or two?', a: 'Either works. One clear photo of both of you gives the most natural result. If you use two separate photos, add a line saying who is on the left and who is on the right.' },
+      FACE_FAQ, TOOL_FAQ,
+    ],
+  },
+  {
+    id: 'eighties', path: '1980s-photo-prompts', emoji: '📼',
+    tint: 'linear-gradient(135deg,#ffe2b8,#f7c59f)',
+    name: '1980s look', nameTa: '1980கள் லுக்',
+    h1: '1980s Photo Prompts', h1Ta: '1980கள் புகைப்பட ப்ராம்ப்ட்கள்',
+    title: '80s Look Prompt for ChatGPT & Gemini (Copy & Paste)',
+    desc: 'Free 80s look prompts for ChatGPT and Gemini. Retro Indian cinema, studio portraits and faded film prints that keep your real face. Copy and paste.',
+    intro: 'A good 80s edit is about the film, not only the clothes. These prompts ask for faded colour, soft grain and the slightly warm print look of a 1980s photo lab, and then change your outfit and hair to match the decade. Your face stays yours; only the era changes.',
+    introTa: 'நல்ல 80கள் எடிட் என்பது உடை மட்டுமல்ல, அந்தக் கால ஃபிலிம் தோற்றமும் தான். இந்த ப்ராம்ப்ட்கள் மங்கிய நிறம், மென்மையான கிரெயின், பழைய புகைப்பட அச்சின் தோற்றத்தைக் கேட்கின்றன. உங்கள் முகம் மாறாது; காலம் மட்டும் மாறும்.',
+    faqs: [
+      { q: 'Why does my 80s photo look like a modern photo in costume?', a: 'The prompt is missing the film look. Make sure it asks for faded colour, visible grain and a printed-photo texture, as the prompts on this page do.' },
+      FACE_FAQ, TOOL_FAQ,
+    ],
+  },
+  {
+    id: 'boys', path: 'photo-prompts-for-boys', emoji: '🧑',
+    tint: 'linear-gradient(135deg,#cfe4ff,#d9d6ff)',
+    name: 'Boys', nameTa: 'ஆண்கள்',
+    h1: 'Photo Prompts for Boys', h1Ta: 'ஆண்களுக்கான புகைப்பட ப்ராம்ப்ட்கள்',
+    title: 'AI Photo Prompts for Boys — ChatGPT & Gemini (Copy & Paste)',
+    desc: 'Free AI photo prompts for boys. Bike, street style, formal and cinematic portraits for ChatGPT and Gemini that keep your real face. Copy and paste.',
+    intro: 'Portrait prompts for boys and men: bikes, street style, formal looks and cinematic lighting. None of them describe a particular face, beard or hairstyle, so they work on your photo as it is. Change the outfit and location from the dropdowns before you copy.',
+    introTa: 'ஆண்களுக்கான போர்ட்ரெய்ட் ப்ராம்ப்ட்கள்: பைக், ஸ்ட்ரீட் ஸ்டைல், ஃபார்மல் மற்றும் சினிமாட்டிக் லுக். இவை எந்த குறிப்பிட்ட முகத்தையும் தாடியையும் விவரிக்காது, எனவே உங்கள் புகைப்படத்தில் அப்படியே வேலை செய்யும்.',
+    faqs: [FACE_FAQ, TOOL_FAQ, FREE_FAQ],
+  },
+  {
+    id: 'girls', path: 'photo-prompts-for-girls', emoji: '👩',
+    tint: 'linear-gradient(135deg,#ffd9ec,#e6d6ff)',
+    name: 'Girls', nameTa: 'பெண்கள்',
+    h1: 'Photo Prompts for Girls', h1Ta: 'பெண்களுக்கான புகைப்பட ப்ராம்ப்ட்கள்',
+    title: 'AI Photo Prompts for Girls — ChatGPT & Gemini (Copy & Paste)',
+    desc: 'Free AI photo prompts for girls. Saree, aesthetic, cafe and cinematic portraits for ChatGPT and Gemini that keep your real face. Copy and paste.',
+    intro: 'Portrait prompts for girls and women: saree looks, soft aesthetic frames, cafe and golden-hour portraits. Each one keeps your own face and skin tone and avoids the over-smoothed "AI skin" look. Pick the outfit colour and setting, then copy.',
+    introTa: 'பெண்களுக்கான போர்ட்ரெய்ட் ப்ராம்ப்ட்கள்: புடவை லுக், அழகியல் ஃப்ரேம்கள், கஃபே மற்றும் கோல்டன் ஹவர் படங்கள். ஒவ்வொன்றும் உங்கள் முகத்தையும் நிறத்தையும் மாற்றாமல் வைத்திருக்கும்.',
+    faqs: [FACE_FAQ, TOOL_FAQ, FREE_FAQ],
+  },
+  {
+    id: 'aesthetic', path: 'aesthetic-photo-prompts', emoji: '🌅',
+    tint: 'linear-gradient(135deg,#ffe3c2,#ffd6e8)',
+    name: 'Aesthetic', nameTa: 'அழகியல்',
+    h1: 'Aesthetic Photo Prompts',
+    title: 'Aesthetic Photo Prompts for ChatGPT & Gemini (Copy & Paste)',
+    desc: 'Free aesthetic photo prompts for ChatGPT and Gemini: golden hour, window shadows, neon glow, rainy window and cosy cafe looks that keep your real face.',
+    intro: 'Aesthetic edits live or die on light. Each prompt here names the light source, where it falls on your face, the lens and the colour grade, so the result looks like a planned photograph and not a filter. Pick the outfit and details from the dropdowns, copy, and paste with a clear photo of yourself.',
+    faqs: [
+      { q: 'Which photo should I upload for aesthetic edits?', a: 'A sharp, front-facing photo in soft daylight works best. Avoid heavy filters and sunglasses, because the AI needs to see your real skin tone and eyes.' },
+      FACE_FAQ, TOOL_FAQ, FREE_FAQ,
+    ],
+  },
+  {
+    id: 'collage', path: 'photo-collage-prompts', emoji: '🖼️',
+    tint: 'linear-gradient(135deg,#d6e8ff,#e9dcff)',
+    name: 'Collage', nameTa: 'கொலாஜ்',
+    h1: 'Photo Collage Prompts',
+    title: 'Photo Collage Prompts for ChatGPT & Gemini (Copy & Paste)',
+    desc: 'Free photo collage prompts for ChatGPT and Gemini: mood grids, film contact sheets, polaroid walls, photobooth strips and lookbooks from one photo.',
+    intro: 'One photo in, a whole collage out. These prompts ask for a single image laid out as a grid, film strip, polaroid wall or magazine spread, with you in every frame. Each one says exactly how many frames, what happens in each, and to keep your face the same person throughout.',
+    faqs: [
+      { q: 'My face looks different in some frames. How do I fix it?', a: 'Collages are harder for AI because your face is drawn several times. Run the prompt again, or lower the number of frames in the text. Fewer, larger frames keep the face more accurate.' },
+      { q: 'Can I add text or dates to the collage?', a: 'The prompts ask for no text because AI often misspells it. Add names and dates afterwards in any photo editor.' },
+      FACE_FAQ, TOOL_FAQ,
+    ],
+  },
+  {
+    id: 'family', path: 'family-group-photo-prompts', emoji: '👨‍👩‍👧‍👦',
+    tint: 'linear-gradient(135deg,#ffe9c9,#d6f5e3)',
+    name: 'Family & group', nameTa: 'குடும்பம் & குழு',
+    h1: 'Family and Group Photo Prompts', 
+    title: 'Family & Group Photo Prompts for ChatGPT & Gemini',
+    desc: 'Free family and group photo prompts for ChatGPT and Gemini. Three-generation, festival, wedding, friends and college group edits that keep every face.',
+    intro: 'Group photos are the hardest edit, because the AI must keep every face, age and height right at once. Each prompt here starts with a line that locks every person and tells the AI not to add, remove or merge anyone. Upload one clear group photo where all faces are visible, pick the outfits from the dropdown, then copy.',
+    faqs: [
+      { q: 'How many people can be in the photo?', a: 'Up to five or six people works best. With larger groups the AI may blur or change faces at the edges, so crop the photo closer or edit the group in two smaller batches.' },
+      { q: 'One face keeps changing. What should I do?', a: 'Use a higher-resolution photo where that person is clearly visible and facing the camera, then run the prompt again. Adding "keep the person on the far left exactly as in the photo" can help.' },
+      FACE_FAQ, TOOL_FAQ,
+    ],
+  },
+  {
+    id: 'supercars', path: 'supercar-photo-prompts', emoji: '🏎️',
+    tint: 'linear-gradient(135deg,#ffd1d1,#ffe9b8)',
+    name: 'Supercars', nameTa: 'சூப்பர்கார்கள்',
+    h1: 'Supercar Photo Prompts With Characters',
+    title: 'Supercar Photo Prompts for ChatGPT & Gemini (Copy & Paste)',
+    desc: 'Free supercar photo prompts for ChatGPT and Gemini. Pick a character like The Boss or The Drifter and a Lamborghini or Ferrari. Keeps your face.',
+    intro: 'Put yourself next to a supercar, as a named character. Every prompt here is a small story: The Midnight Racer, The Billionaire, The Drifter, The Boss and more. Choose the car and your outfit from the dropdowns, copy, and upload your photo. Your face and body stay exactly as they are; only the scene changes.',
+    faqs: [
+      { q: 'Can I change the car?', a: 'Yes. Every prompt has a car dropdown with several supercars. You can also edit the copied text and type any car you like.' },
+      { q: 'Why is the number plate blurred or blank?', a: 'The prompts ask for an unreadable plate so the image does not show a real registration. Keep that line if you plan to share the picture.' },
+      FACE_FAQ, TOOL_FAQ,
+    ],
+  },
+  {
+    id: 'car-mods', path: 'car-modification-prompts', emoji: '🔧',
+    tint: 'linear-gradient(135deg,#d9d9e8,#cfe4ff)',
+    name: 'Car mods', nameTa: 'கார் மாடிஃபிகேஷன்',
+    h1: 'Car Modification Prompts',
+    title: 'Car Modification Prompts for ChatGPT & Gemini (Copy & Paste)',
+    desc: 'Free car modification prompts for ChatGPT and Gemini. Preview wheels, wraps, stance, body kits and underglow on a photo of your own car before you spend.',
+    intro: 'Preview a modification before you pay for it. Upload a photo of your own car, pick a wheel style, wrap colour, stance or body kit from the dropdowns, and copy the prompt. Each one tells the AI to keep your car\'s model, shape and background and to change only the part you chose.',
+    faqs: [
+      { q: 'Which photo works best?', a: 'A clear side or three-quarter photo in daylight, with the whole car in the frame and nothing blocking the wheels. Avoid close-ups that cut off the bumpers.' },
+      { q: 'Will the AI result match real parts?', a: 'It is a visual preview only. Real wheels, offsets and body kits depend on your exact car, so check fitment with a workshop before buying.' },
+      TOOL_FAQ, FREE_FAQ,
+    ],
+  },
+  {
+    id: 'genz', path: 'gen-z-photo-prompts', emoji: '✨',
+    tint: 'linear-gradient(135deg,#e6d6ff,#c9f2ff)',
+    name: 'Gen Z style', nameTa: 'ஜென் Z ஸ்டைல்',
+    h1: 'Gen Z Style Photo Prompts',
+    title: 'Gen Z Photo Prompts: Flash, Y2K, Coquette (ChatGPT & Gemini)',
+    desc: 'Free Gen Z photo prompts for ChatGPT and Gemini: flash digicam, Y2K mirror selfie, coquette, streetwear, old money and dark academia. Keeps your face.',
+    intro: 'The looks that fill your feed, as prompts: harsh-flash digicam, Y2K chrome mirror selfies, coquette bows, streetwear, quiet luxury and dark academia. Each one keeps your own face and skin texture and only changes the style, outfit and setting. Pick the outfit from the dropdown, copy, and paste with your photo.',
+    faqs: [
+      { q: 'How do I get the grainy flash look?', a: 'Keep the flash, grain and "slightly blown highlights" lines in the prompt. If the image looks too clean, run it again and add the words "more noise and harsher flash".' },
+      FACE_FAQ, TOOL_FAQ, FREE_FAQ,
+    ],
+  },
+  {
+    id: 'fix', path: 'fix-photo-prompts', emoji: '🛠️',
+    tint: 'linear-gradient(135deg,#d6f5e3,#cfeeff)',
+    name: 'Fix my photo', nameTa: 'புகைப்படத்தைச் சரிசெய்',
+    h1: 'Prompts to Fix and Improve a Photo', h1Ta: 'புகைப்படத்தைச் சரிசெய்யும் ப்ராம்ப்ட்கள்',
+    title: 'Photo Fix Prompts: Restore, Enhance, Change Background',
+    desc: 'Free prompts to restore old photos, sharpen blurry ones, change the background and make passport or LinkedIn photos with ChatGPT and Gemini.',
+    intro: 'Practical edits you need all year: restore an old family photo, sharpen a blurry one, swap the background, or turn a selfie into a passport or LinkedIn photo. These prompts tell the AI to repair the photo and leave the people alone.',
+    introTa: 'ஆண்டு முழுவதும் தேவைப்படும் எடிட்கள்: பழைய குடும்பப் புகைப்படத்தை மீட்டெடுப்பது, மங்கலான படத்தைத் தெளிவாக்குவது, பின்னணியை மாற்றுவது, பாஸ்போர்ட் அல்லது LinkedIn புகைப்படம் உருவாக்குவது.',
+    faqs: [
+      { q: 'Can AI restore a very damaged old photo?', a: 'It can remove scratches, fix fading and add colour. Where a face is badly damaged the AI has to guess, so compare the result with the original and with family members who knew the person.' },
+      { q: 'Can I use an AI-made passport photo for an official application?', a: 'Rules differ by country and office, and many do not accept edited faces. Use these prompts for the background and lighting only, and check the official photo rules before you submit.' },
+      TOOL_FAQ,
+    ],
+  },
+  {
+    id: 'christmas', path: 'festivals/christmas', festival: true, emoji: '🎄',
+    tint: 'linear-gradient(135deg,#d7f0dc,#ffd9d6)',
+    name: 'Christmas', nameTa: 'கிறிஸ்துமஸ்',
+    h1: 'Christmas Photo Prompts', h1Ta: 'கிறிஸ்துமஸ் புகைப்பட ப்ராம்ப்ட்கள்',
+    title: 'Christmas AI Photo Prompts for ChatGPT & Gemini',
+    desc: 'Free Christmas AI photo prompts for ChatGPT and Gemini. Tree, lights, church and family frames for boys, girls and couples. Copy and paste.',
+    intro: 'Christmas frames for your own photo: fairy lights, a decorated tree, midnight mass and cosy family portraits. The prompts suit Indian homes and churches as well as snowy scenes, and each one keeps your face unchanged.',
+    introTa: 'உங்கள் புகைப்படத்திற்கான கிறிஸ்துமஸ் ஃப்ரேம்கள்: விளக்குகள், அலங்கரிக்கப்பட்ட மரம், நள்ளிரவு ஆராதனை மற்றும் குடும்பப் படங்கள். ஒவ்வொரு ப்ராம்ப்டும் உங்கள் முகத்தை மாற்றாமல் வைத்திருக்கும்.',
+    faqs: [FACE_FAQ, TOOL_FAQ, FREE_FAQ],
+  },
+  {
+    id: 'new-year', path: 'festivals/new-year', festival: true, emoji: '🎆',
+    tint: 'linear-gradient(135deg,#d9dcff,#ffe7b8)',
+    name: 'New Year', nameTa: 'புத்தாண்டு',
+    h1: 'New Year 2027 Photo Prompts', h1Ta: 'புத்தாண்டு 2027 புகைப்பட ப்ராம்ப்ட்கள்',
+    title: 'New Year 2027 AI Photo Prompts for ChatGPT & Gemini',
+    desc: 'Free New Year 2027 AI photo prompts for ChatGPT and Gemini. Fireworks, rooftop, party and "Happy New Year" frames. Copy and paste.',
+    intro: 'Welcome 2027 with a photo that looks like it was taken at the best party in town. Rooftop fireworks, sparklers, balloons and clean "Happy New Year 2027" frames for status and stories.',
+    introTa: '2027-ஐ வரவேற்க சிறந்த புகைப்படங்கள்: மாடியில் வாணவேடிக்கை, மத்தாப்பு, பலூன்கள் மற்றும் ஸ்டேட்டஸுக்கான "Happy New Year 2027" ஃப்ரேம்கள்.',
+    faqs: [
+      { q: 'How do I get the text "2027" to appear correctly?', a: 'Put the exact text in quotation marks in the prompt, as the prompts here do, and ask for it once. If the numbers come out wrong, run the prompt again; text is the part AI most often gets wrong.' },
+      FACE_FAQ, TOOL_FAQ,
+    ],
+  },
+  {
+    id: 'pongal', path: 'festivals/pongal', festival: true, emoji: '🌾',
+    tint: 'linear-gradient(135deg,#fff0b8,#ffd9b0)',
+    name: 'Pongal & Sankranti', nameTa: 'பொங்கல்',
+    h1: 'Pongal and Sankranti Photo Prompts', h1Ta: 'பொங்கல் புகைப்பட ப்ராம்ப்ட்கள்',
+    title: 'Pongal & Sankranti AI Photo Prompts (ChatGPT, Gemini)',
+    desc: 'Free Pongal, Makar Sankranti and Lohri AI photo prompts for ChatGPT and Gemini. Kolam, pongal pot, kites and bonfire frames. Copy and paste.',
+    intro: 'Harvest festival frames for January: the pongal pot boiling over, kolam at the doorstep, sugarcane, kites for Sankranti and the Lohri bonfire. Traditional dress is set in the dropdowns, so choose veshti, saree, half-saree or kurta before you copy.',
+    introTa: 'தை மாத அறுவடைத் திருநாளுக்கான ஃப்ரேம்கள்: பொங்கும் பொங்கல் பானை, வாசலில் கோலம், கரும்பு, சங்கராந்தி பட்டம், லோஹ்ரி நெருப்பு. வேட்டி, புடவை, தாவணி அல்லது குர்தாவைத் தேர்ந்தெடுத்து நகலெடுக்கவும்.',
+    faqs: [FACE_FAQ, TOOL_FAQ, FREE_FAQ],
+  },
+  {
+    id: 'wedding', path: 'wedding-photo-prompts', emoji: '💍',
+    tint: 'linear-gradient(135deg,#ffe3c2,#ffd0d0)',
+    name: 'Wedding', nameTa: 'திருமணம்',
+    h1: 'Wedding and Pre-Wedding Photo Prompts', h1Ta: 'திருமண புகைப்பட ப்ராம்ப்ட்கள்',
+    title: 'Wedding & Pre-Wedding AI Photo Prompts (Copy & Paste)',
+    desc: 'Free wedding and pre-wedding AI photo prompts for ChatGPT and Gemini. Haldi, mehndi, bride, groom and couple frames. Copy and paste.',
+    intro: 'Haldi, mehndi, the wedding day and the pre-wedding shoot, as frames for your own photos. Bride, groom and couple prompts all lock your faces first, then change the outfits, jewellery and setting. Choose the outfit and location, then copy.',
+    introTa: 'ஹல்தி, மெஹந்தி, திருமண நாள் மற்றும் ப்ரீ-வெட்டிங் படங்களுக்கான ப்ராம்ப்ட்கள். ஒவ்வொன்றும் முதலில் உங்கள் முகங்களை மாற்றாமல் வைத்து, பின்னர் உடை, நகை, இடத்தை மாற்றும்.',
+    faqs: [FACE_FAQ, TOOL_FAQ, FREE_FAQ],
+  },
+  {
+    id: 'valentines', path: 'festivals/valentines-day', festival: true, emoji: '❤️',
+    tint: 'linear-gradient(135deg,#ffd0d8,#ffe1ee)',
+    name: "Valentine's Day", nameTa: 'காதலர் தினம்',
+    h1: "Valentine's Day Photo Prompts", h1Ta: 'காதலர் தின புகைப்பட ப்ராம்ப்ட்கள்',
+    title: "Valentine's Day AI Photo Prompts for Couples",
+    desc: "Free Valentine's Day AI photo prompts for ChatGPT and Gemini. Romantic couple frames that keep both faces. Copy and paste.",
+    intro: "Romantic frames for 14 February: roses, candlelight, a proposal and a quiet walk together. Every prompt keeps both faces and your height difference, so the picture still looks like the two of you.",
+    introTa: 'பிப்ரவரி 14-க்கான காதல் ஃப்ரேம்கள்: ரோஜாக்கள், மெழுகுவர்த்தி வெளிச்சம், ப்ரொபோசல். ஒவ்வொரு ப்ராம்ப்டும் இருவரின் முகத்தையும் மாற்றாமல் வைத்திருக்கும்.',
+    faqs: [FACE_FAQ, TOOL_FAQ, FREE_FAQ],
+  },
+  {
+    id: 'republic-day', path: 'festivals/republic-day', festival: true, emoji: '🇮🇳',
+    tint: 'linear-gradient(135deg,#ffe0c2,#d8f2d8)',
+    name: 'Republic Day', nameTa: 'குடியரசு தினம்',
+    h1: 'Republic Day Photo Prompts', h1Ta: 'குடியரசு தின புகைப்பட ப்ராம்ப்ட்கள்',
+    title: 'Republic Day AI Photo Prompts for ChatGPT & Gemini',
+    desc: 'Free Republic Day AI photo prompts for ChatGPT and Gemini. Tricolour portraits for boys, girls and families. Copy and paste.',
+    intro: 'Portraits for 26 January: the tricolour, a flag hoisting, and saffron, white and green styling for status pictures. The prompts keep the flag respectful and correctly drawn, and your face unchanged.',
+    introTa: 'ஜனவரி 26-க்கான படங்கள்: மூவர்ணக் கொடி, கொடியேற்றம் மற்றும் ஸ்டேட்டஸுக்கான காவி, வெள்ளை, பச்சை ஸ்டைல். உங்கள் முகம் மாறாது.',
+    faqs: [FACE_FAQ, TOOL_FAQ, FREE_FAQ],
+  },
+
+  // ---- Festival hub: these share the /festivals/ page until they have 8+ prompts.
+  // To give one its own page, remove `hub: true`, set `path: 'festivals/<name>'`
+  // and add title, desc and faqs like the collections above.
+  { id: 'shivratri', path: 'festivals', festival: true, hub: true, when: 'About March 2027', emoji: '🔱',
+    tint: 'linear-gradient(135deg,#dfe3ff,#e9ddff)', name: 'Maha Shivratri', h1: 'Maha Shivratri Photo Prompts', intro: 'Night-long prayer, temple lamps and bilva leaves.' },
+  { id: 'eid', path: 'festivals', festival: true, hub: true, when: 'About March 2027', emoji: '🌙',
+    tint: 'linear-gradient(135deg,#d9f2e6,#fff3c9)', name: 'Eid al-Fitr', h1: 'Eid al-Fitr Photo Prompts', intro: 'Crescent-moon nights, new clothes and Eid greetings.' },
+  { id: 'holi', path: 'festivals', festival: true, hub: true, when: 'March 2027', emoji: '🎨',
+    tint: 'linear-gradient(135deg,#ffd6ec,#d6f0ff)', name: 'Holi', h1: 'Holi Photo Prompts', intro: 'Clouds of gulal, white kurtas and colour-splashed smiles.' },
+  { id: 'ugadi', path: 'festivals', festival: true, hub: true, when: 'April 2027', emoji: '🌿',
+    tint: 'linear-gradient(135deg,#e2f5cf,#fff0b8)', name: 'Ugadi, Tamil New Year, Vishu and Baisakhi', h1: 'Ugadi, Tamil New Year, Vishu and Baisakhi Photo Prompts', intro: 'The regional new years of April, from mango-leaf doorways to wheat fields.' },
+  { id: 'bakrid', path: 'festivals', festival: true, hub: true, when: 'About May 2027', emoji: '🕌',
+    tint: 'linear-gradient(135deg,#e0f0e8,#f6ead0)', name: 'Eid al-Adha (Bakrid)', h1: 'Eid al-Adha (Bakrid) Photo Prompts', intro: 'Morning prayers, family gatherings and festive dress.' },
+  { id: 'independence-day', path: 'festivals', festival: true, hub: true, when: '15 August 2027', emoji: '🇮🇳',
+    tint: 'linear-gradient(135deg,#ffe0c2,#d8f2d8)', name: 'Independence Day', h1: 'Independence Day Photo Prompts', intro: 'Tricolour portraits for 15 August.' },
+  { id: 'raksha-bandhan', path: 'festivals', festival: true, hub: true, when: 'August 2027', emoji: '🧵',
+    tint: 'linear-gradient(135deg,#ffe1d0,#ffd6e6)', name: 'Raksha Bandhan', h1: 'Raksha Bandhan Photo Prompts', intro: 'Brother and sister frames with rakhi, thali and sweets.' },
+  { id: 'janmashtami', path: 'festivals', festival: true, hub: true, when: 'About August 2027', emoji: '🪈',
+    tint: 'linear-gradient(135deg,#d8e6ff,#fff1c2)', name: 'Janmashtami', h1: 'Janmashtami Photo Prompts', intro: 'Peacock feathers, flutes and dahi handi.' },
+  { id: 'ganesh-chaturthi', path: 'festivals', festival: true, hub: true, when: 'About September 2027', emoji: '🐘',
+    tint: 'linear-gradient(135deg,#ffe3c2,#ffd0d0)', name: 'Ganesh Chaturthi', h1: 'Ganesh Chaturthi Photo Prompts', intro: 'Welcoming Ganpati at home and the visarjan procession.' },
+  { id: 'onam', path: 'festivals', festival: true, hub: true, when: 'About September 2027', emoji: '🌼',
+    tint: 'linear-gradient(135deg,#fff3c2,#dff3d0)', name: 'Onam', h1: 'Onam Photo Prompts', intro: 'Pookalam, kasavu sarees and the sadya feast.' },
+  { id: 'navratri', path: 'festivals', festival: true, hub: true, when: 'About October 2027', emoji: '💃',
+    tint: 'linear-gradient(135deg,#ffd9e0,#ffe9c2)', name: 'Navratri, Durga Puja and Dussehra', h1: 'Navratri, Durga Puja and Dussehra Photo Prompts', intro: 'Garba nights, pandal visits and Vijayadashami.' },
+  { id: 'karwa-chauth', path: 'festivals', festival: true, hub: true, when: 'About October 2027', emoji: '🌕',
+    tint: 'linear-gradient(135deg,#ffd9d9,#ffe8c9)', name: 'Karwa Chauth', h1: 'Karwa Chauth Photo Prompts', intro: 'Moonrise, the sieve and the thali.' },
+  { id: 'diwali', path: 'festivals', festival: true, hub: true, when: 'About October–November 2027', emoji: '🪔',
+    tint: 'linear-gradient(135deg,#ffe6b8,#ffd3c2)', name: 'Diwali and Chhath', h1: 'Diwali and Chhath Photo Prompts', intro: 'Diyas, rangoli, sparklers and the Chhath ghat at sunrise.' },
+];
+

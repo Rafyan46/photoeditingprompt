@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import PromptBlock from '../../components/PromptBlock.astro';
+import { PAGES, HUB, colUrl, inCollection } from '../../lib/prompts';
+import { breadcrumbs, itemList } from '../../lib/schema';
+const own = PAGES.filter((c) => c.festival);
+const hubPrompts = HUB.flatMap((c) => inCollection(c.id));
+---
+<Base
+  title="Festival AI Photo Prompts for ChatGPT & Gemini"
+  desc="Free festival photo editing prompts for ChatGPT and Gemini: Christmas, Pongal, Holi, Eid, Onam, Navratri, Diwali and every major Indian festival."
+  schema={[breadcrumbs([{ name: 'Home', url: '/' }, { name: 'Festivals', url: '/festivals/' }]), itemList('Festival photo prompts', hubPrompts)]}
+>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a>{' › '}Festivals</nav>
+    <header style="padding:28px 0 8px">
+      <p class="eyebrow">Festival prompts</p>
+      <h1 class="page-title" style="font-size:clamp(32px,5vw,48px);margin-top:8px">Festival Photo Prompts</h1>
+      <p class="lead" style="margin-left:0">Photo editing prompts for every major Indian festival. The nearest festivals have their own pages; the rest are below, and each grows into a full page a few weeks before its date.</p>
+    </header>
+
+    <h2 class="section-title">Coming up next</h2>
+    <div class="tiles">
+      {own.map((c) => (
+        <a class="tile" href={colUrl(c)} style={`background:${c.tint};color:#1d1d1f`}>
+          <span class="emoji" aria-hidden="true">{c.emoji}</span>
+          <span>
+            <span class="name" style="display:block">{c.name}</span>
+            <span class="count" style="color:#48484a">{inCollection(c.id).length} prompts</span>
+          </span>
+        </a>
+      ))}
+    </div>
+
+    <h2 class="section-title">All year</h2>
+    <div class="tiles">
+      {HUB.map((c) => (
+        <a class="tile" href={`#${c.id}`} style={`background:${c.tint};color:#1d1d1f;min-height:96px`}>
+          <span class="emoji" aria-hidden="true">{c.emoji}</span>
+          <span class="name">{c.name}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <div class="narrow">
+    {HUB.map((c) => (
+      <section class="hub-section" id={c.id}>
+        <h2 class="section-title" style="margin-bottom:4px">{c.emoji} {c.name}</h2>
+        <p class="when">{c.when}</p>
+        <p class="muted" style="margin:8px 0 20px">{c.intro}</p>
+        {inCollection(c.id).map((p) => <PromptBlock p={p} heading="h3" />)}
+      </section>
+    ))}
+  </div>
+</Base>

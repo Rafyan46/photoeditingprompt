@@ -1,0 +1,78 @@
+---
+import { T, type Collection, type Lang } from '../data/site';
+import { inCollection, PAGES, colUrl, homeUrl, cName, cH1, cIntro } from '../lib/prompts';
+import PromptBlock from './PromptBlock.astro';
+import Steps from './Steps.astro';
+import { GUIDE } from '../lib/guide';
+interface Props { c: Collection; lang?: Lang }
+const { c, lang = 'en' } = Astro.props;
+const t = T[lang];
+const list = inCollection(c.id);
+const others = PAGES.filter((o) => o.id !== c.id);
+const home = homeUrl(lang);
+// The guide for the kind of photo most prompts in this collection need.
+const counts = new Map<string, number>();
+for (const p of list) counts.set(p.lock, (counts.get(p.lock) ?? 0) + 1);
+const mainLock = [...counts.entries()].sort((a, b) => b[1] - a[1])[0][0] as keyof typeof GUIDE;
+const g = GUIDE[mainLock];
+---
+<div class="narrow">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href={home}>{t.home}</a>{' › '}
+    {c.festival && <><a href="/festivals/">{t.festivals}</a>{' › '}</>}
+    {cName(c, lang)}
+  </nav>
+  <header style="padding:28px 0 8px">
+    <p class="eyebrow">{list.length} {t.prompts} · ChatGPT · Gemini</p>
+    <h1 class="page-title" style="font-size:clamp(32px,5vw,48px);margin-top:8px">{cH1(c, lang)}</h1>
+    <p class="lead" style="margin-left:0;max-width:none">{cIntro(c, lang)}</p>
+    {t.promptsEnglish && <p class="muted" style="margin-top:14px;font-size:15px">{t.promptsEnglish}</p>}
+  </header>
+
+  <nav class="toc" aria-label="Prompts on this page">
+    <ol>
+      {list.map((p) => <li><a href={`#${p.s}`}>{p.t}</a></li>)}
+    </ol>
+  </nav>
+
+  <div style="margin-top:28px">
+    {list.map((p, i) => <PromptBlock p={p} lang={lang} n={i + 1} />)}
+  </div>
+
+  <Steps lang={lang} />
+
+  {lang === 'en' && (
+    <section class="prose guide">
+      <h2 class="section-title">Which photo to upload</h2>
+      <ul>{g.upload.map((u) => <li>{u}</li>)}</ul>
+      <h2 class="section-title">If the result goes wrong</h2>
+      <div class="fixes">
+        {g.fixes.map((f) => (<div class="fix"><strong>{f.problem}</strong><p>{f.fix}</p></div>))}
+      </div>
+    </section>
+  )}
+
+  {lang === 'en' && c.faqs && (
+    <section class="faq">
+      <h2 class="section-title">{t.faq}</h2>
+      {c.faqs.map((f) => (
+        <details>
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </section>
+  )}
+
+  <section>
+    <h2 class="section-title">{t.browse}</h2>
+    <div class="tiles" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+      {others.map((o) => (
+        <a class="tile" href={colUrl(o, lang)} style={`background:${o.tint};color:#1d1d1f;min-height:96px`}>
+          <span class="emoji" aria-hidden="true">{o.emoji}</span>
+          <span class="name">{cName(o, lang)}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</div>

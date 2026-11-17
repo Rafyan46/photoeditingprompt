@@ -1,0 +1,75 @@
+---
+import { T, type Lang } from '../data/site';
+import { ALL, PAGES, colUrl, inCollection, cName } from '../lib/prompts';
+import PromptCard from './PromptCard.astro';
+import Steps from './Steps.astro';
+interface Props { lang?: Lang }
+const { lang = 'en' } = Astro.props;
+const t = T[lang];
+const FIRST = 12;
+const withImg = ALL.filter((p) => p.sample.chatgpt);
+const ordered = [...withImg, ...ALL.filter((p) => !p.sample.chatgpt)];
+// showcase: one before/after per collection, up to 8
+const seen = new Set<string>();
+const showcase = withImg.filter((p) => p.sample.before && !seen.has(p.c) && seen.add(p.c)).slice(0, 8);
+const FALLBACK: Record<string, string> = { couple: '/samples/col-couple.webp', family: '/samples/col-family.webp', 'car-mods': '/samples/col-car-mods.webp' };
+const colImg = (id: string) => FALLBACK[id] ?? (inCollection(id).find((p) => p.sample.chatgpt && !/collage|panel|bike|pump|motorbike|scooter|car|highway|poster/.test(p.s)) ?? inCollection(id).find((p) => p.sample.chatgpt))?.sample.chatgpt;
+---
+<section class="hero wrap">
+  <p class="eyebrow">{ALL.length}+ {t.prompts} · ChatGPT · Gemini</p>
+  <h1>{t.heroTitle}</h1>
+  <p class="lead">{t.heroLead}</p>
+  <input class="search" type="search" placeholder={t.search} aria-label={t.search} data-search />
+  <div class="chips" role="group" aria-label="Filter">
+    {[['', t.all], ['girl', '👩'], ['boy', '🧑'], ['couple', '💑'], ['family', '👨‍👩‍👧‍👦'], ['car', '🏎️']].map(([k, l], i) => (
+      <button type="button" class="chip" data-chip={k} aria-pressed={i === 0 ? 'true' : 'false'}>{l}{k && lang === 'en' ? ' ' + ({ girl: 'Girls', boy: 'Boys', couple: 'Couple', family: 'Family & group', car: 'Cars' } as Record<string, string>)[k] : ''}</button>
+    ))}
+  </div>
+</section>
+
+<section class="wrap">
+  <h2 class="section-title">Real before and after results</h2>
+  <div class="showcase">
+    {showcase.map((p) => (
+      <a class="sc" href={p.url}>
+        <span class="pair">
+          <span><img src={p.sample.before} alt={`Before: ${p.t}`} loading="lazy" /><i>Before</i></span>
+          <span><img src={p.sample.chatgpt} alt={`After: ${p.t}`} loading="lazy" /><i>After</i></span>
+        </span>
+        <b>{p.t}</b>
+      </a>
+    ))}
+  </div>
+</section>
+
+<section class="wrap">
+  <h2 class="section-title">{t.browse}</h2>
+  <div class="tiles">
+    {PAGES.map((c) => (
+      <a class="tile" href={colUrl(c, lang)} style={`background:${c.tint};color:#1d1d1f`}>
+        {colImg(c.id) ? <img class="thumb" src={colImg(c.id)} alt="" loading="lazy" /> : <span class="emoji" aria-hidden="true">{c.emoji}</span>}
+        <span>
+          <span class="name" style="display:block">{cName(c, lang)}</span>
+          <span class="count" style="color:#48484a">{inCollection(c.id).length} {t.prompts}</span>
+        </span>
+      </a>
+    ))}
+  </div>
+</section>
+
+<section class="wrap">
+  <h2 class="section-title">{t.newest}</h2>
+  {t.promptsEnglish && <p class="muted" style="margin:-8px 0 20px">{t.promptsEnglish}</p>}
+  <div class="grid">
+    {ordered.map((p, i) => <PromptCard p={p} lang={lang} extra={i >= FIRST} />)}
+  </div>
+  <p class="muted hidden" data-empty style="text-align:center;padding:40px 0">{t.noResults}</p>
+  <p style="text-align:center;margin-top:28px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+    <a class="btn ghost" href="/trending/">{t.all} ›</a>
+    <a class="btn ghost" href="/festivals/">{t.festivals} ›</a>
+  </p>
+</section>
+
+<section class="wrap">
+  <Steps lang={lang} />
+</section>

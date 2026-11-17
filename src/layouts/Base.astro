@@ -1,0 +1,297 @@
+---
+import '../styles/global.css';
+import { SITE, T, LANGS, type Lang } from '../data/site';
+import { PAGES, colUrl, homeUrl, cName, cH1 } from '../lib/prompts';
+
+interface Props {
+  title: string;
+  desc: string;
+  lang?: Lang;
+  /** For pages that exist in every language: the path after the language part.
+      '' for the homepage, 'couple-photo-prompts/' for a collection. Leave out for English-only pages. */
+  i18n?: string;
+  schema?: object[];
+  ogType?: string;
+  noindex?: boolean;
+}
+const { title, desc, lang = 'en', i18n, schema = [], ogType = 'website', noindex = false } = Astro.props;
+const t = T[lang];
+const here = new URL(Astro.url.pathname, SITE.url).href;
+const abs = (p: string) => new URL(p, SITE.url).href;
+const home = homeUrl(lang);
+// Where the language switcher sends you: the same page if it is translated, else that language's homepage.
+const langUrl = (code: Lang) => (i18n === undefined ? homeUrl(code) : code === 'en' ? `/${i18n}` : `/${code}/${i18n}`);
+const evergreen = PAGES.filter((c) => !c.festival);
+const festivals = PAGES.filter((c) => c.festival);
+const org = {
+  '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url,
+  inLanguage: `${lang}-IN`,
+};
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={here} />
+    {noindex && <meta name="robots" content="noindex" />}
+    {i18n !== undefined && (
+      <>
+        {LANGS.map((l) => <link rel="alternate" hreflang={l.code} href={abs(langUrl(l.code))} />)}
+        <link rel="alternate" hreflang="x-default" href={abs(langUrl('en'))} />
+      </>
+    )}
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={here} />
+    <meta property="og:image" content={abs('/og.png')} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#000000" />
+    <script is:inline>
+      // Apply the saved theme before the page paints, so there is no flash.
+      try {
+        var th = localStorage.getItem('theme');
+        if (th !== 'light') document.documentElement.setAttribute('data-theme', 'dark');
+      } catch (e) {}
+    </script>
+    {[org, ...schema].map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap bar">
+        <a class="brand" href={home}>PhotoEditing<span>Prompt</span></a>
+        <nav class="nav" aria-label="Main">
+          <a href="/trending/">{t.trending}</a>
+          <details class="dd">
+            <summary>{t.collections} ▾</summary>
+            <div class="mnav-panel dd-panel">
+              {evergreen.map((c) => <a href={colUrl(c, lang)}>{c.emoji} {cName(c, lang)}</a>)}
+            </div>
+          </details>
+          <a href="/festivals/">{t.festivals}</a>
+          <a href="/saved/">♡ Saved</a>
+        </nav>
+        <details class="mnav">
+          <summary aria-label="Menu">☰</summary>
+          <div class="mnav-panel">
+            <a href="/trending/">{t.trending}</a>
+            {evergreen.map((c) => <a href={colUrl(c, lang)}>{cName(c, lang)}</a>)}
+            <a href="/festivals/">{t.festivals}</a>
+            <a href="/saved/">♡ Saved</a>
+          </div>
+        </details>
+        <div class="toggles">
+          <label class="lang-select">
+            <span class="sr-only">{t.language}</span>
+            <select data-lang-switch aria-label={t.language}>
+              {LANGS.map((l) => <option value={langUrl(l.code)} selected={l.code === lang} lang={l.code}>{l.native}</option>)}
+            </select>
+          </label>
+          <div class="pill-toggle" role="group" aria-label="Theme">
+            <button type="button" data-theme-set="light" aria-pressed="true" aria-label="Light theme">☀</button>
+            <button type="button" data-theme-set="dark" aria-pressed="false" aria-label="Dark theme">☾</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main><slot /></main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="cols">
+          <div>
+            <h4>{t.collections}</h4>
+            {evergreen.map((c) => <a href={colUrl(c, lang)}>{cH1(c, lang)}</a>)}
+          </div>
+          <div>
+            <h4>{t.festivals}</h4>
+            {festivals.map((c) => <a href={colUrl(c, lang)}>{cH1(c, lang)}</a>)}
+            <a href="/festivals/">{t.all}</a>
+          </div>
+          <div>
+            <h4>{SITE.name}</h4>
+            <a href={home}>{t.home}</a>
+            <a href="/trending/">{t.trending}</a>
+            <a href="/about/">{t.about}</a>
+            <a href="/contact/">{t.contact}</a>
+          </div>
+          <div>
+            <h4>Legal</h4>
+            <a href="/privacy-policy/">{t.privacy}</a>
+            <a href="/terms/">{t.terms}</a>
+          </div>
+        </div>
+        <nav class="langs" aria-label={t.language}>
+          {LANGS.map((l) => <a href={langUrl(l.code)} lang={l.code} hreflang={l.code}>{l.native}</a>)}
+        </nav>
+        <p class="legal">© {new Date().getFullYear()} {SITE.name}. {t.footNote}</p>
+      </div>
+    </footer>
+
+    <script is:inline define:vars={{ copyLabel: t.copy, copiedLabel: t.copied }}>
+      // ---- Theme toggle ----
+      (function () {
+        var root = document.documentElement;
+        function sync() {
+          var dark = root.getAttribute('data-theme') === 'dark';
+          document.querySelectorAll('[data-theme-set]').forEach(function (b) {
+            b.setAttribute('aria-pressed', String((b.dataset.themeSet === 'dark') === dark));
+          });
+        }
+        document.querySelectorAll('[data-theme-set]').forEach(function (b) {
+          b.addEventListener('click', function () {
+            if (b.dataset.themeSet === 'dark') root.setAttribute('data-theme', 'dark');
+            else root.removeAttribute('data-theme');
+            try { localStorage.setItem('theme', b.dataset.themeSet); } catch (e) {}
+            sync();
+          });
+        });
+        sync();
+      })();
+
+      // ---- Language switcher ----
+      (function () {
+        var sel = document.querySelector('[data-lang-switch]');
+        if (sel) sel.addEventListener('change', function () { window.location.href = sel.value; });
+      })();
+
+      // ---- Prompt customiser: rebuild the text when a dropdown changes ----
+      function buildPrompt(block) {
+        var tpl = block.dataset.template;
+        var out = block.querySelector('[data-prompt-text]');
+        var plain = '';
+        out.textContent = '';
+        tpl.split(/(\{\w+\})/).forEach(function (part) {
+          var m = part.match(/^\{(\w+)\}$/);
+          if (m) {
+            var sel = block.querySelector('select[data-key="' + m[1] + '"]');
+            var val = sel ? sel.value : part;
+            var mark = document.createElement('mark');
+            mark.textContent = val;
+            out.appendChild(mark);
+            plain += val;
+          } else {
+            // Block labels (IDENTITY LOCK:, AVOID: ...) are shown in bold.
+            part.split(/((?:^|\n)[A-Z][A-Z ,]+:)/).forEach(function (seg) {
+              if (/^\n?[A-Z][A-Z ,]+:$/.test(seg)) {
+                var st = document.createElement('strong');
+                st.className = 'blk';
+                st.textContent = seg;
+                out.appendChild(st);
+              } else if (seg) out.appendChild(document.createTextNode(seg));
+            });
+            plain += part;
+          }
+        });
+        block.dataset.current = plain;
+      }
+      document.querySelectorAll('[data-template]').forEach(function (block) {
+        block.querySelectorAll('select[data-key]').forEach(function (s) {
+          s.addEventListener('change', function () { buildPrompt(block); });
+        });
+        buildPrompt(block);
+      });
+
+      // ---- Copy buttons ----
+      function copyText(text) {
+        if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+        return new Promise(function (resolve, reject) {
+          var ta = document.createElement('textarea');
+          ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta); ta.select();
+          try { document.execCommand('copy') ? resolve() : reject(); } catch (e) { reject(e); }
+          document.body.removeChild(ta);
+        });
+      }
+      document.querySelectorAll('[data-copy-btn]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var block = btn.closest('[data-template]');
+          var text = block ? block.dataset.current : btn.dataset.copy;
+          copyText(text).then(function () {
+            btn.textContent = '✓ ' + copiedLabel; btn.classList.add('done');
+            setTimeout(function () { btn.textContent = copyLabel; btn.classList.remove('done'); }, 1800);
+          }).catch(function () {});
+        });
+      });
+
+      // ---- Before / after slider ----
+      document.querySelectorAll('.ba input').forEach(function (r) {
+        r.addEventListener('input', function () { r.parentElement.style.setProperty('--pos', r.value + '%'); });
+      });
+
+      // ---- Close open menus when clicking elsewhere ----
+      document.addEventListener('click', function (ev) {
+        document.querySelectorAll('details.dd[open], details.mnav[open]').forEach(function (d) {
+          if (!d.contains(ev.target)) d.removeAttribute('open');
+        });
+      });
+
+      // ---- Saved prompts (kept in this browser only) ----
+      var favs = [];
+      try { favs = JSON.parse(localStorage.getItem('favs') || '[]'); } catch (e) {}
+      function syncFavs() {
+        document.querySelectorAll('[data-fav]').forEach(function (b) {
+          var on = favs.indexOf(b.dataset.fav) !== -1;
+          b.setAttribute('aria-pressed', String(on));
+          b.textContent = on ? '♥' : '♡';
+        });
+        var list = document.querySelector('[data-saved-list]');
+        if (list) {
+          var n = 0;
+          list.querySelectorAll('[data-slug]').forEach(function (c) {
+            var on = favs.indexOf(c.dataset.slug) !== -1;
+            c.classList.toggle('hidden', !on); if (on) n++;
+          });
+          var em = document.querySelector('[data-saved-empty]');
+          if (em) em.classList.toggle('hidden', n > 0);
+        }
+      }
+      document.querySelectorAll('[data-fav]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var i = favs.indexOf(b.dataset.fav);
+          if (i === -1) favs.push(b.dataset.fav); else favs.splice(i, 1);
+          try { localStorage.setItem('favs', JSON.stringify(favs)); } catch (e) {}
+          syncFavs();
+        });
+      });
+      syncFavs();
+
+      // ---- Homepage search and "who is it for" filter ----
+      (function () {
+        var input = document.querySelector('[data-search]');
+        if (!input) return;
+        var cards = document.querySelectorAll('[data-card]');
+        var empty = document.querySelector('[data-empty]');
+        var chips = document.querySelectorAll('[data-chip]');
+        var aud = '';
+        function run() {
+          var q = input.value.trim().toLowerCase();
+          var shown = 0;
+          cards.forEach(function (c) {
+            var okQ = !q || c.dataset.card.indexOf(q) !== -1;
+            var okA = !aud || (' ' + c.dataset.aud + ' ').indexOf(' ' + aud + ' ') !== -1;
+            var hit = (q || aud) ? okQ && okA : c.dataset.extra !== '1';
+            c.classList.toggle('hidden', !hit);
+            if (hit) shown++;
+          });
+          if (empty) empty.classList.toggle('hidden', shown > 0);
+        }
+        input.addEventListener('input', run);
+        chips.forEach(function (ch) {
+          ch.addEventListener('click', function () {
+            aud = ch.dataset.chip;
+            chips.forEach(function (o) { o.setAttribute('aria-pressed', String(o === ch)); });
+            run();
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

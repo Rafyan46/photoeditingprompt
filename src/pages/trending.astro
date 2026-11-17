@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import PromptCard from '../components/PromptCard.astro';
+import { ALL, inCollection } from '../lib/prompts';
+const viral = inCollection('viral');
+import { breadcrumbs, itemList } from '../lib/schema';
+---
+<Base
+  title="Trending Prompt List: Newest AI Photo Prompts"
+  desc="The newest trending photo editing prompts for ChatGPT and Gemini, latest first. Festival, couple, retro and portrait edits. Copy and paste."
+  schema={[breadcrumbs([{ name: 'Home', url: '/' }, { name: 'Trending', url: '/trending/' }]), itemList('Trending photo editing prompts', ALL)]}
+>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Trending</nav>
+    <header style="padding:28px 0 28px">
+      <p class="eyebrow">{ALL.length} prompts · newest first</p>
+      <h1 class="page-title" style="font-size:clamp(32px,5vw,48px);margin-top:8px">Trending Photo Prompts</h1>
+      <p class="lead" style="margin-left:0">Every prompt on the site, newest first. New ones land here as they are published.</p>
+    </header>
+    <h2 class="section-title" style="margin-top:8px">🔥 Viral right now</h2>
+    <p class="muted" style="margin:-8px 0 20px">The looks people are sharing this week. Last checked 16 November 2026. <a class="link" href="/viral-photo-prompts/">Open the full list ›</a></p>
+    <div class="grid">
+      {viral.map((p) => <PromptCard p={p} />)}
+    </div>
+    <h2 class="section-title">All prompts, newest first</h2>
+    <div class="grid">
+      {ALL.filter((p) => p.c !== 'viral').map((p) => <PromptCard p={p} />)}
+    </div>
+  </div>
+</Base>
