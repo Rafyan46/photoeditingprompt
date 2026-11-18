@@ -27,6 +27,10 @@ const SAREE = ['deep red silk saree', 'emerald green silk saree', 'mustard yello
 const KURTA = ['white kurta', 'cream kurta with a Nehru jacket', 'navy blue kurta', 'maroon kurta'];
 
 export const PROMPTS: RawPrompt[] = [
+  { s: 'game-art-private-jet-runway-sunset', t: 'Private Jet Runway Sunset Poster', c: 'game-art', a: 'any', lock: 'single',
+    p: 'Create a stylised open-world crime-game poster in a bold painted illustration style with clean outlines and saturated colour. I stand in the centre, waist up, wearing {outfit}, with sunglasses on my head and a confident smirk, at the foot of the stairs of a sleek white private jet parked on a runway at golden-hour sunset. Behind me are a hot pink and orange sky, palm trees, a glowing city skyline and a black luxury SUV. The jet has no text, no logos and no airline markings. Add original game-style screen elements: a row of five gold stars in the top-right corner (two filled, three empty), a round minimap in the bottom-left corner and a slim green health bar. No title, no readable words, no real game logos and no studio branding. Keep my face a clear, recognisable likeness.',
+    v: { outfit: ['a black linen shirt and beige trousers', 'a white shirt with rolled sleeves', 'a leather jacket over a plain tee', 'a tailored suit with an open collar'] },
+    tip: 'Not affiliated with any game studio. The style and screen elements are our own.' },
   // ---------------- Movie stars (18 Nov 2026; film-star LOOKS only, no real actor, film or studio named) ----------------
   { s: 'movies-bollywood-hero-poster', t: 'Bollywood Hero Poster', c: 'movies', a: 'any', lock: 'single',
     p: 'Turn me into the hero of a big Indian cinema poster. I stand in the centre, waist up, wearing {outfit}, with a confident, intense look. Behind me is {backdrop} under a dramatic, glowing sky, with warm orange and deep teal colour grading, strong rim light on my shoulders and hair, and light haze in the air. The layout leaves space at the top and bottom as on a real film poster, but with no readable title, no credits, no logos and no real film name. My face stays a clear, recognisable likeness.',
