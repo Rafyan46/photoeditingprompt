@@ -22,9 +22,9 @@ export const OTHER_LANGS = LANGS.filter((l) => l.code !== 'en');
 
 const en = {
   home: 'Home', trending: 'Trending', festivals: 'Festivals', collections: 'Collections',
-  heroTitle: 'Photo editing prompts that keep your face.',
-  heroLead: 'Copy a prompt, upload your photo to ChatGPT or Gemini, and paste. Change the outfit, colour and background before you copy.',
-  search: 'Search prompts: couple, 80s, Christmas…',
+  heroTitle: 'Free Photo Editing Prompts for ChatGPT & Gemini',
+  heroLead: 'Keeps your face · Search → Copy → Paste',
+  search: 'Search couple, GTA 6…', searchBtn: 'Search',
   newest: 'Newest prompts', browse: 'Browse by collection', all: 'See all',
   copy: 'Copy prompt', copied: 'Copied', open: 'Open prompt',
   how: 'How to use a prompt',

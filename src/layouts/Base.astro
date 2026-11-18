@@ -26,6 +26,11 @@ const festivals = PAGES.filter((c) => c.festival);
 const org = {
   '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url,
   inLanguage: `${lang}-IN`,
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: { '@type': 'EntryPoint', urlTemplate: `${SITE.url}/?q={search_term_string}` },
+    'query-input': 'required name=search_term_string',
+  },
 };
 ---
 <!doctype html>
@@ -66,6 +71,11 @@ const org = {
     <header class="site-header">
       <div class="wrap bar">
         <a class="brand" href={home}>PhotoEditing<span>Prompt</span></a>
+        <form class="hsearch" action={home} method="get" role="search">
+          <span class="hs-icon" aria-hidden="true">🔍</span>
+          <input type="search" name="q" placeholder={t.search} aria-label={t.search} data-search autocomplete="off" />
+          <button type="submit">{t.searchBtn}</button>
+        </form>
         <nav class="nav" aria-label="Main">
           <a href="/trending/">{t.trending}</a>
           <details class="dd">
@@ -84,6 +94,10 @@ const org = {
             {evergreen.map((c) => <a href={colUrl(c, lang)}>{cName(c, lang)}</a>)}
             <a href="/festivals/">{t.festivals}</a>
             <a href="/saved/">♡ Saved</a>
+            <div class="pill-toggle" role="group" aria-label="Theme">
+              <button type="button" data-theme-set="light" aria-pressed="true" aria-label="Light theme">☀</button>
+              <button type="button" data-theme-set="dark" aria-pressed="false" aria-label="Dark theme">☾</button>
+            </div>
           </div>
         </details>
         <div class="toggles">
@@ -314,34 +328,36 @@ const org = {
       });
       syncFavs();
 
-      // ---- Homepage search and "who is it for" filter ----
+      // ---- Search (header box): filters the cards on the homepage / trending; elsewhere it opens the homepage with ?q= ----
       (function () {
         var input = document.querySelector('[data-search]');
         if (!input) return;
         var cards = document.querySelectorAll('[data-card]');
         var empty = document.querySelector('[data-empty]');
-        var chips = document.querySelectorAll('[data-chip]');
-        var aud = '';
         function run() {
           var q = input.value.trim().toLowerCase();
           var shown = 0;
           cards.forEach(function (c) {
-            var okQ = !q || c.dataset.card.indexOf(q) !== -1;
-            var okA = !aud || (' ' + c.dataset.aud + ' ').indexOf(' ' + aud + ' ') !== -1;
-            var hit = (q || aud) ? okQ && okA : c.dataset.extra !== '1';
+            var hit = q ? c.dataset.card.indexOf(q) !== -1 : c.dataset.extra !== '1';
             c.classList.toggle('hidden', !hit);
             if (hit) shown++;
           });
           if (empty) empty.classList.toggle('hidden', shown > 0);
+          var title = document.querySelector('[data-gallery-title]');
+          if (title) title.classList.toggle('hidden', !!q);
         }
         input.addEventListener('input', run);
-        chips.forEach(function (ch) {
-          ch.addEventListener('click', function () {
-            aud = ch.dataset.chip;
-            chips.forEach(function (o) { o.setAttribute('aria-pressed', String(o === ch)); });
-            run();
+        if (cards.length) {
+          var form = input.form;
+          if (form) form.addEventListener('submit', function (ev) {
+            ev.preventDefault(); run();
+            var g = document.getElementById('gallery'); if (g) g.scrollIntoView({ behavior: 'smooth', block: 'start' });
           });
-        });
+          try {
+            var q0 = new URLSearchParams(window.location.search).get('q');
+            if (q0) { input.value = q0; run(); }
+          } catch (e) {}
+        }
       })();
     </script>
   </body>

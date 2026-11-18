@@ -3,12 +3,14 @@ import Base from '../layouts/Base.astro';
 import HomeBody from '../components/HomeBody.astro';
 import { ALL } from '../lib/prompts';
 import { itemList } from '../lib/schema';
+import { HOME_FAQ } from '../data/site';
+const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: HOME_FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 ---
 <Base
-  title="ChatGPT Photo Editing Prompts (Copy & Paste) | Gemini too"
-  desc="Free photo editing prompts for ChatGPT and Gemini that keep your real face. Couple, 80s look, boys, girls and festival edits. Customise, copy, paste."
+  title="Free Photo Editing Prompts for ChatGPT & Gemini (Copy & Paste)"
+  desc="Free copy-paste photo editing prompts for ChatGPT and Gemini that keep your real face. Couple, girls, boys, GTA 6 style, movie-star looks and festival edits."
   i18n=""
-  schema={[itemList('Newest photo editing prompts', ALL.slice(0, 12))]}
+  schema={[itemList('Newest photo editing prompts', ALL.slice(0, 20)), faqSchema]}
 >
   <HomeBody lang="en" />
 </Base>

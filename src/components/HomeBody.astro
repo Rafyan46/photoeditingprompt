@@ -6,25 +6,53 @@ import Steps from './Steps.astro';
 interface Props { lang?: Lang }
 const { lang = 'en' } = Astro.props;
 const t = T[lang];
-const FIRST = 12;
+import { HOME_FAQ } from '../data/site';
+const FIRST = 20; // 4 columns x 5 rows; the rest appear when someone searches, or on /trending/
 const withImg = ALL.filter((p) => p.sample.chatgpt);
-const ordered = withImg; // homepage grid shows only prompts that have a real result image; the rest live on collection pages
+// The visible grid shows only prompts that have a real result image. Prompts without a photo yet are still in the page (hidden),
+// so the search box can find them (for example "GTA 6" or "movie").
+const ordered = [...withImg, ...ALL.filter((p) => !p.sample.chatgpt)];
 // showcase: one before/after per collection, up to 8
 const seen = new Set<string>();
 const showcase = withImg.filter((p) => p.sample.before && !seen.has(p.c) && seen.add(p.c)).slice(0, 8);
 const FALLBACK: Record<string, string> = { couple: '/samples/col-couple.webp', family: '/samples/col-family.webp', 'car-mods': '/samples/col-car-mods.webp' };
+// Round category buttons (Instagram-story style). Each one is a real link to its own page, which is what lets Google find and rank those pages.
+const EN_LABEL: Record<string, string> = { 'game-art': 'GTA 6 Style', movies: 'Movie Stars', viral: 'Viral', supercars: 'Cars', family: 'Family' };
+const ICONS = ['game-art', 'movies', 'viral', 'girls', 'boys', 'couple', 'family', 'supercars', 'christmas', 'new-year', 'pongal']
+  .map((id) => PAGES.find((c) => c.id === id)).filter((c): c is NonNullable<typeof c> => !!c);
+const NEWTAG = new Set(['game-art', 'movies']);
 const colImg = (id: string) => FALLBACK[id] ?? (inCollection(id).find((p) => p.sample.chatgpt && !/collage|panel|bike|pump|motorbike|scooter|car|highway|poster/.test(p.s)) ?? inCollection(id).find((p) => p.sample.chatgpt))?.sample.chatgpt;
 ---
 <section class="hero wrap">
-  <p class="eyebrow">{ALL.length}+ {t.prompts} · ChatGPT · Gemini</p>
-  <h1>{t.heroTitle}</h1>
+  <h1 set:html={t.heroTitle.replace(/(ChatGPT|Gemini)/g, '<span class="hl">$1</span>')} />
   <p class="lead">{t.heroLead}</p>
-  <input class="search" type="search" placeholder={t.search} aria-label={t.search} data-search />
-  <div class="chips" role="group" aria-label="Filter">
-    {[['', t.all], ['girl', '👩'], ['boy', '🧑'], ['couple', '💑'], ['family', '👨‍👩‍👧‍👦'], ['car', '🏎️']].map(([k, l], i) => (
-      <button type="button" class="chip" data-chip={k} aria-pressed={i === 0 ? 'true' : 'false'}>{l}{k && lang === 'en' ? ' ' + ({ girl: 'Girls', boy: 'Boys', couple: 'Couple', family: 'Family & group', car: 'Cars' } as Record<string, string>)[k] : ''}</button>
+  <nav class="rings" aria-label={t.browse}>
+    <a class="cring" href="#gallery">
+      <span class="rg"><span class="disc all" aria-hidden="true">✨</span></span>
+      <span class="rl">{t.all}</span>
+    </a>
+    {ICONS.map((c) => (
+      <a class="cring" href={colUrl(c, lang)}>
+        <span class="rg"><span class="disc" style={`background:${c.tint}`}>
+          {colImg(c.id) ? <img src={colImg(c.id)} alt="" loading="lazy" width="64" height="64" /> : <span aria-hidden="true">{c.emoji}</span>}
+        </span>{NEWTAG.has(c.id) && <i class="newtag">NEW</i>}</span>
+        <span class="rl">{lang === 'en' && EN_LABEL[c.id] ? EN_LABEL[c.id] : cName(c, lang)}</span>
+      </a>
     ))}
+  </nav>
+</section>
+
+<section class="wrap" id="gallery">
+  <h2 class="sr-only" data-gallery-title>{t.newest}</h2>
+  {t.promptsEnglish && <p class="muted" style="margin:0 0 14px;text-align:center">{t.promptsEnglish}</p>}
+  <div class="grid">
+    {ordered.map((p, i) => <PromptCard p={p} lang={lang} extra={i >= FIRST || !p.sample.chatgpt} />)}
   </div>
+  <p class="muted hidden" data-empty style="text-align:center;padding:40px 0">{t.noResults}</p>
+  <p style="text-align:center;margin-top:28px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+    <a class="btn ghost" href="/trending/">{t.all} {ALL.length} {t.prompts} ›</a>
+    <a class="btn ghost" href="/festivals/">{t.festivals} ›</a>
+  </p>
 </section>
 
 <section class="wrap">
@@ -58,18 +86,18 @@ const colImg = (id: string) => FALLBACK[id] ?? (inCollection(id).find((p) => p.s
 </section>
 
 <section class="wrap">
-  <h2 class="section-title">{t.newest}</h2>
-  {t.promptsEnglish && <p class="muted" style="margin:-8px 0 20px">{t.promptsEnglish}</p>}
-  <div class="grid">
-    {ordered.map((p, i) => <PromptCard p={p} lang={lang} extra={i >= FIRST} />)}
-  </div>
-  <p class="muted hidden" data-empty style="text-align:center;padding:40px 0">{t.noResults}</p>
-  <p style="text-align:center;margin-top:28px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-    <a class="btn ghost" href="/trending/">{t.all} ›</a>
-    <a class="btn ghost" href="/festivals/">{t.festivals} ›</a>
-  </p>
-</section>
-
-<section class="wrap">
   <Steps lang={lang} />
 </section>
+
+{lang === 'en' && (
+  <section class="wrap about-home">
+    <h2 class="section-title">Free photo editing prompts that keep your real face</h2>
+    <p>PhotoEditingPrompt is a free library of copy-and-paste prompts for ChatGPT and Google Gemini. Pick a style (couple, girls, boys, family, cars, festivals, game art or movie-star looks), tap <b>Copy prompt</b>, upload your own photo in ChatGPT or Gemini and paste. Every prompt starts with a face-lock instruction so the result still looks like you, and you can change the outfit, colour and background before you copy.</p>
+    <h2 class="section-title">Questions and answers</h2>
+    <div class="faq">
+      {HOME_FAQ.map((f) => (
+        <details><summary>{f.q}</summary><p>{f.a}</p></details>
+      ))}
+    </div>
+  </section>
+)}

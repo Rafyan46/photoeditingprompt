@@ -75,6 +75,20 @@ export const COLLECTIONS: Collection[] = [
     ],
   },
   {
+    id: 'movies', path: 'movie-star-photo-prompts', emoji: '🎬',
+    tint: 'linear-gradient(135deg,#ffb4a2,#b5838d)',
+    name: 'Movie stars', nameTa: 'சினிமா ஸ்டார்',
+    h1: 'Movie Star Photo Prompts: Be the Hero of Your Own Film',
+    title: 'Movie Star Photo Prompts: Bollywood & South Film Looks (Free)',
+    desc: 'Free ChatGPT and Gemini prompts that make you the hero of your own film: Bollywood poster, mass-hero entry, 90s film star and red carpet. Keeps your face.',
+    intro: 'Be the star of your own film. These prompts turn your photo into a Bollywood-style poster, a South-cinema mass-hero entry, a 90s film-star portrait, a red-carpet premiere shot or a director-on-set frame. They describe the look of the genre in our own words, so they never copy a real actor, film or studio, and your face stays yours. Pick the outfit and setting, copy, and paste with your photo.',
+    faqs: [
+      { q: 'Can I make myself look like a particular film star?', a: 'No. These prompts create a film-star style (the lighting, costume, colour and poster layout of a genre) on your own face. They never use a real actor\'s name or likeness, which also makes them work more reliably in ChatGPT and Gemini, since both can refuse prompts about real people.' },
+      { q: 'Do the prompts use real film posters or titles?', a: 'No. Any text on a poster is a made-up title or a blank. We do not use real film names, studio logos or artwork.' },
+      FACE_FAQ, TOOL_FAQ, FREE_FAQ,
+    ],
+  },
+  {
     id: 'couple', path: 'couple-photo-prompts', emoji: '💑',
     tint: 'linear-gradient(135deg,#ffd6e0,#ffe9c9)',
     name: 'Couple', nameTa: 'ஜோடி',
@@ -322,3 +336,13 @@ export const COLLECTIONS: Collection[] = [
     tint: 'linear-gradient(135deg,#ffe6b8,#ffd3c2)', name: 'Diwali and Chhath', h1: 'Diwali and Chhath Photo Prompts', intro: 'Diyas, rangoli, sparklers and the Chhath ghat at sunrise.' },
 ];
 
+
+
+/** Homepage questions (English). Also used for the FAQPage schema on the homepage. */
+export const HOME_FAQ = [
+  { q: 'How do I use a photo editing prompt in ChatGPT or Gemini?', a: 'Tap Copy prompt on any card, open ChatGPT or Gemini, upload a clear, front-facing photo of yourself, paste the prompt and send. If the first result is off, run it again.' },
+  { q: 'Are these prompts free?', a: 'Yes. Every prompt on this site is free to copy and use. You only need a ChatGPT or Gemini account, and both have free plans that can edit photos.' },
+  { q: 'Will the edited photo still look like me?', a: 'Every prompt starts with a face-lock instruction that tells the AI to keep your face, skin tone and features unchanged. If the face still drifts, upload a clearer, front-facing photo.' },
+  { q: 'Do these prompts work in both ChatGPT and Gemini?', a: 'Yes. They are written in plain language that both ChatGPT and Google Gemini understand.' },
+  { q: 'Can I get GTA 6 style or movie-star style photos?', a: 'Yes. The GTA 6 Style and Movie Stars collections create original game-poster and film-star looks on your own face. They are not affiliated with any game studio or film company, and they never use a real actor\'s name or likeness.' },
+];

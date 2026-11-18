@@ -10,24 +10,20 @@ const img = p.sample.chatgpt ?? p.sample.gemini;
 const g = (cast as Record<string, string>)[p.s];
 const byCast: Record<string, string> = { man: 'boy', woman: 'girl', couple: 'couple', family: 'family', car: 'car' };
 const aud = (img && byCast[g] ? byCast[g] : p.a === 'any' ? 'girl boy' : p.a) + (p.lock === 'car' || p.c === 'supercars' ? ' car' : '');
-const keywords = `${p.t} ${p.collection.name} ${p.a} ${p.p}`.toLowerCase();
+const BOOST: Record<string, string> = { 'game-art': 'gta 6 gta vice city game', movies: 'movie film bollywood tollywood kollywood hero star poster', supercars: 'car cars supercar' };
+const keywords = `${p.t} ${p.collection.name} ${p.a} ${p.p} ${BOOST[p.c] ?? ''}`.toLowerCase();
 ---
 <article class:list={['card', extra && 'hidden']} data-card={keywords} data-extra={extra ? '1' : '0'} data-aud={aud} data-slug={p.s}>
   <button class="fav" type="button" data-fav={p.s} aria-pressed="false" aria-label="Save this prompt">♡</button>
-  <a class="art" href={p.url} style={`background:${p.collection.tint}`} aria-label={p.t}>
-    {img ? <img src={img} alt={`${p.t} – example result`} loading="lazy" width="800" height="600" /> : <span aria-hidden="true">{p.collection.emoji}</span>}
-  </a>
+  <div class="artwrap">
+    <a class="art" href={p.url} style={`background:${p.collection.tint}`} aria-label={p.t}>
+      {img ? <img src={img} alt={`${p.t} – example result`} loading="lazy" width="600" height="800" /> : <span aria-hidden="true">{p.collection.emoji}</span>}
+    </a>
+    <span class="tag">{cName(p.collection, lang)}</span>
+    <button class="btn copy-over" type="button" data-copy-btn data-copy={p.text}>{t.copy}</button>
+  </div>
   <div class="body">
-    <div class="badges">
-      <span class="badge">{cName(p.collection, lang)}</span>
-      <span class="badge">{t.worksWith}</span>
-      {p.tested && <span class="badge ok">✓ {t.tested}</span>}
-    </div>
     <h3><a href={p.url}>{p.t}</a></h3>
     <p class="snippet">{p.p.replace(/\{(\w+)\}/g, (_, k) => p.v?.[k]?.[0] ?? '')}</p>
-    <div class="row">
-      <a class="link" href={p.url} style="font-size:14px">{t.open} ›</a>
-      <button class="btn" type="button" data-copy-btn data-copy={p.text}>{t.copy}</button>
-    </div>
   </div>
 </article>
