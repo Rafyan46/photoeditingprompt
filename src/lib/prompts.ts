@@ -70,8 +70,14 @@ const BLOCKS: Record<Lock, Blocks> = {
   },
 };
 
+// Brand signature added to every prompt. It is the one piece of text that is always allowed.
+const SIGNATURE =
+  'Add \u201cphotoeditingprompt.com\u201d in the bottom-left corner, as a handwritten signature-style mark with thin cursive strokes, small size and subtle premium elegance, in white or soft off-white. It is always allowed and overrides any \u201cno text\u201d instruction elsewhere in this prompt (other text appears only if the scene asks for it); it must be spelled exactly photoeditingprompt.com, must not cover faces or key details, and should look like an elegant photographer\u2019s signature.';
+
 function build(lock: Lock, body: string, collage = false) {
   let b = BLOCKS[lock];
+  // The signature is the one allowed text, so the avoid list must not forbid all text.
+  b = { ...b, avoid: b.avoid.replace(/(?<![\w-])(text|logos)(,| or)/, 'other $1$2').replace(/\bwatermarks\b/, 'other watermarks') };
   // A collage repeats the same person in several frames, so that is not a fault there.
   if (collage) b = { ...b, avoid: b.avoid.replace('duplicated people, ', '') + ' Every frame must show the same person or people from my photo, with the same face in each frame; no misspelled captions.' };
   return [
@@ -80,6 +86,7 @@ function build(lock: Lock, body: string, collage = false) {
     `CAMERA AND LIGHT: ${b.camera}`,
     `FINISH: ${b.finish}`,
     `AVOID: ${b.avoid}`,
+    `TEXT / SIGNATURE: ${SIGNATURE}`,
   ].join('\n\n');
 }
 
