@@ -48,7 +48,6 @@ const vars = Object.entries(p.v ?? {});
     </div>
   )}
 
-  <p class="prompt-text" data-prompt-text>{p.text}</p>
   {p.tip && <p class="tip">💡 {p.tip}</p>}
 
   <div class="foot">
@@ -57,4 +56,9 @@ const vars = Object.entries(p.v ?? {});
     <a class="btn ghost" href="https://chatgpt.com/" data-open="chatgpt" rel="noopener nofollow">Open in ChatGPT ↗</a>
     <a class="btn ghost" href="https://gemini.google.com/app" data-open="gemini" rel="noopener nofollow">Open in Gemini ↗</a>
   </div>
+
+  <details class="full-prompt" data-show={t.viewFull} data-hide={t.hideFull}>
+    <summary><span class="lbl">{t.viewFull}</span><span class="hint">{t.pasteHint}</span></summary>
+    <p class="prompt-text" data-prompt-text>{p.text}</p>
+  </details>
 </section>

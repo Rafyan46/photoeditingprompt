@@ -213,6 +213,12 @@ const org = {
         buildPrompt(block);
       });
 
+      // ---- Full prompt toggle label ----
+      document.querySelectorAll('details.full-prompt').forEach(function (d) {
+        var lbl = d.querySelector('.lbl');
+        d.addEventListener('toggle', function () { lbl.textContent = d.open ? d.dataset.hide : d.dataset.show; });
+      });
+
       // ---- Copy buttons ----
       function copyText(text) {
         if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
