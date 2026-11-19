@@ -52,7 +52,7 @@ export const COLLECTIONS: Collection[] = [
     tint: 'linear-gradient(135deg,#ffcfb8,#ffd1e0)',
     name: 'Viral now', nameTa: 'இப்போது வைரல்',
     h1: 'Viral AI Photo Prompts Right Now',
-    title: 'Viral AI Photo Prompts Trending Now (ChatGPT & Gemini)',
+    title: 'Trending Prompt: Viral AI Photo Prompts Now (ChatGPT & Gemini)',
     desc: 'The AI photo trends going viral right now, as free copy-paste prompts: petrol pump bike, glow portrait, 3-panel collage, action figure and more.',
     intro: 'These are the edits filling Instagram and WhatsApp status right now: the midnight petrol pump bike shot, the backlit glow portrait, the harsh-sunlight three-panel collage, the action figure in a box, and more. Each trend is rewritten here as an original, detailed prompt that keeps your real face. This list was last checked on 16 November 2026 and is refreshed as trends change.',
     faqs: [
