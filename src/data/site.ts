@@ -174,7 +174,7 @@ export const COLLECTIONS: Collection[] = [
     desc: 'Free family and group photo prompts for ChatGPT and Gemini. Three-generation, festival, wedding, friends and college group edits that keep every face.',
     intro: 'Group photos are the hardest edit, because the AI must keep every face, age and height right at once. Each prompt here starts with a line that locks every person and tells the AI not to add, remove or merge anyone. Upload one clear group photo where all faces are visible, pick the outfits from the dropdown, then copy.',
     faqs: [
-      { q: 'How many people can be in the photo?', a: 'Up to five or six people works best. With larger groups the AI may blur or change faces at the edges, so crop the photo closer or edit the group in two smaller batches.' },
+      { q: 'How many people can be in the photo?', a: 'Any number. The prompts tell the AI to count everyone in your photo and keep the same people. Very large groups can blur faces at the edges, so use a sharp photo taken a little closer, or edit the group in two smaller batches.' },
       { q: 'One face keeps changing. What should I do?', a: 'Use a higher-resolution photo where that person is clearly visible and facing the camera, then run the prompt again. Adding "keep the person on the far left exactly as in the photo" can help.' },
       FACE_FAQ, TOOL_FAQ,
     ],

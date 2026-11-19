@@ -32,7 +32,7 @@ const BLOCKS: Record<Lock, Blocks> = {
   },
   family: {
     identity:
-      'Use the uploaded group photo as the only identity reference. Keep every person in it, each with their own exact face, age, skin tone, hairstyle, height and build. The number of people must be exactly the same as in the photo, whether that is two or twenty. If the group is large, arrange them in tidy staggered rows (eldest seated in the centre, children in front, the rest around them) so that every single face is visible and nobody is hidden or cropped. Do not add, remove, merge, duplicate or swap anyone, and do not make faces look alike. Keep glasses, beards and head coverings as they are in the photo.',
+      'Use the uploaded group photo as the only identity reference. First count every person in it (babies, children, parents and elders included) and keep that exact number. Keep every person in it, each with their own exact face, age, skin tone, hairstyle, height and build. The number of people must be exactly the same as in the photo, whether that is two or twenty. If the group is large, arrange them in tidy staggered rows (eldest seated in the centre, children in front, the rest around them) so that every single face is visible and nobody is hidden or cropped. Do not add, remove, merge, duplicate or swap anyone, and do not make faces look alike. Keep glasses, beards and head coverings as they are in the photo.',
     sceneLabel: 'SCENE, POSE AND STYLING', camera: PERSON_CAMERA + ' Deep enough focus that every face is sharp, front row and back row alike; nobody hidden behind another person.', finish: PERSON_FINISH,
     avoid: PERSON_AVOID + ' No missing or invented family members, no identical-looking faces.',
   },
