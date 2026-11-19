@@ -27,10 +27,6 @@ const SAREE = ['deep red silk saree', 'emerald green silk saree', 'mustard yello
 const KURTA = ['white kurta', 'cream kurta with a Nehru jacket', 'navy blue kurta', 'maroon kurta'];
 
 export const PROMPTS: RawPrompt[] = [
-  { s: 'car-mod-full-custom-build-all-in-one', t: 'Full Custom Build: Colour, Alloys, Body Kit, Spoiler and Headlights', c: 'car-mods', a: 'any', lock: 'car',
-    p: 'Give the car a full custom build in one go. Change the paint to a {colour} finish. Fit {wheels}. Add {bodykit}. Add {spoiler} on the boot. Upgrade the headlights with {headlights}. Keep every part sitting correctly on the body, with true panel lines, wheel-arch clearance and matching reflections, so the whole car looks like one finished, professional build. Keep the car model, doors, glass and number of lights the same.',
-    v: { colour: ['gloss black', 'matte black', 'satin military green', 'pearl white', 'deep metallic red'], wheels: ['18-inch black multi-spoke alloy wheels', '17-inch bronze split-spoke alloy wheels', '18-inch silver diamond-cut alloy wheels'], bodykit: ['a front lip, side skirts and a rear diffuser', 'a clean widebody kit with extended arches and a front splitter', 'a subtle sporty kit with side skirts only'], spoiler: ['a small duck-tail spoiler', 'a roof-edge spoiler', 'a carbon fibre lip spoiler'], headlights: ['sleek LED projector lamps with a slim daytime-running-light strip', 'dark smoked housings with bright white LED eyebrows', 'angel-eye style halo rings with clear lenses'] },
-    tip: 'Upload your own car photo and pick one option for each part. You can also use the single-part car prompts one by one.' },
   { s: 'game-art-private-jet-runway-sunset', t: 'Private Jet Runway Sunset Poster', c: 'game-art', a: 'any', lock: 'single',
     p: 'Create a stylised open-world crime-game poster in a bold painted illustration style with clean outlines and saturated colour. I stand in the centre, waist up, wearing {outfit}, with sunglasses on my head and a confident smirk, at the foot of the stairs of a sleek white private jet parked on a runway at golden-hour sunset. Behind me are a hot pink and orange sky, palm trees, a glowing city skyline and a black luxury SUV. The jet has no text, no logos and no airline markings. Add original game-style screen elements: a row of five gold stars in the top-right corner (two filled, three empty), a round minimap in the bottom-left corner and a slim green health bar. No title, no readable words, no real game logos and no studio branding. Keep my face a clear, recognisable likeness.',
     v: { outfit: ['a black linen shirt and beige trousers', 'a white shirt with rolled sleeves', 'a leather jacket over a plain tee', 'a tailored suit with an open collar'] },
@@ -251,37 +247,6 @@ export const PROMPTS: RawPrompt[] = [
     v: { car: ['a black Rolls-Royce Ghost', 'a red Ferrari Roma', 'a white Lamborghini Huracán', 'a grey Porsche 911'], outfit: ['black formal outfits', 'a red dress and a black suit', 'matching all-white outfits', 'a saree and a bandhgala'] } },
 
   // ---------------- Car modifications (upload a photo of your car) ----------------
-  { s: 'car-mod-alloy-wheels-swap', t: 'Swap to Alloy Wheels', c: 'car-mods', a: 'any', lock: 'car',
-    p: 'Replace only the wheels with {wheel}. Keep the tyres sized correctly, add a slightly lower tyre profile and a small, natural wheel gap. Match the lighting and reflections of the original photo so the new wheels look like they were there all along.',
-    v: { wheel: ['18-inch black multi-spoke alloy wheels', '19-inch bronze mesh alloy wheels', '17-inch silver five-spoke alloy wheels', '20-inch gloss black split-spoke wheels'] } },
-  { s: 'car-mod-matte-wrap-colour-change', t: 'Matte Wrap Colour Change', c: 'car-mods', a: 'any', lock: 'car',
-    p: 'Change the car paint to a {colour} vinyl wrap. Keep all panel gaps, door handles, badges, windows, lights and trims exactly where they are. The finish should look like a real wrap, with soft light falloff on the curves and no paint on the glass or tyres.',
-    v: { colour: ['matte black', 'satin military green', 'matte midnight blue', 'satin chrome grey', 'matte deep red'] } },
-  { s: 'car-mod-lowered-stance-look', t: 'Lowered Stance Look', c: 'car-mods', a: 'any', lock: 'car',
-    p: 'Lower the car by about {drop}, so the body sits closer to the road with a tight, even wheel gap and slightly wider-looking wheels. Keep the paint colour, wheels and background as they are. Add a soft shadow under the car that matches the lighting.',
-    v: { drop: ['four centimetres', 'six centimetres', 'a clearly slammed height'] } },
-  { s: 'car-mod-widebody-kit-aggressive', t: 'Widebody Kit Look', c: 'car-mods', a: 'any', lock: 'car',
-    p: 'Add a {kit} to the car, with extended wheel arches, a front splitter, side skirts and a rear diffuser in a matching finish. Keep the original paint colour, wheels and background. The parts should look factory-fitted, with correct panel lines and reflections.',
-    v: { kit: ['clean widebody kit', 'rally-style bolt-on widebody kit', 'subtle sporty body kit', 'track-inspired aero kit'] } },
-  { s: 'car-mod-neon-underglow-night', t: 'Neon Underglow at Night', c: 'car-mods', a: 'any', lock: 'car',
-    p: 'Turn the scene into a night shot and add {colour} underglow lighting below the car, throwing a glow on the road and reflecting softly on the wheels and lower body. Keep the car and the location the same. Slightly wet road, soft haze, cinematic night look.',
-    v: { colour: ['purple and pink', 'electric blue', 'cyan and magenta', 'red'] } },
-  { s: 'car-mod-carbon-fibre-hood-and-spoiler', t: 'Carbon Fibre Hood and Spoiler', c: 'car-mods', a: 'any', lock: 'car',
-    p: 'Add a visible carbon fibre bonnet and a {spoiler} to the car, with a glossy weave that catches the light. Keep the paint colour, wheels, body shape and background unchanged. The carbon should follow the curves of the panels without any stretching.',
-    v: { spoiler: ['small duck-tail spoiler', 'tall GT wing', 'subtle roof-edge spoiler'] } },
-  { s: 'car-mod-chrome-delete-blackout', t: 'Chrome Delete Blackout', c: 'car-mods', a: 'any', lock: 'car',
-    p: 'Black out all the chrome on the car: grille, window surrounds, door handles, mirror caps and badges, in {finish}. Keep the body colour, wheels and background the same. Add lightly tinted windows and darkened headlight surrounds without hiding the lights.',
-    v: { finish: ['gloss black', 'satin black', 'dark smoked grey'] } },
-  { s: 'car-mod-offroad-lift-kit-mud', t: 'Off-Road Lift Kit and Mud', c: 'car-mods', a: 'any', lock: 'car',
-    p: 'Give the vehicle a {lift} lift kit with chunky all-terrain tyres, a roof rack and a front bull bar. Splash realistic dried mud on the lower doors and wheels. Keep the paint colour and shape. Change the ground to a muddy trail, with dust in the air and trees behind.',
-    v: { lift: ['two-inch', 'three-inch', 'four-inch'] } },
-  { s: 'car-mod-indian-hatchback-street-build', t: 'Indian Hatchback Street Build', c: 'car-mods', a: 'any', lock: 'car',
-    p: 'Turn this hatchback into a clean street build: {wheel}, a lowered stance, a small lip spoiler, a front lip, tinted windows and a subtle {accent} accent stripe along the side. Keep the model, colour, background and number of doors exactly the same. Keep it realistic, like a tasteful modification you could do in India.',
-    v: { wheel: ['black 16-inch alloy wheels', 'bronze 17-inch alloy wheels', 'silver 16-inch mesh alloy wheels'], accent: ['red', 'white', 'orange', 'blue'] } },
-  { s: 'car-mod-showroom-detailing-ceramic-finish', t: 'Showroom Detailing Finish', c: 'car-mods', a: 'any', lock: 'car',
-    p: 'Make the car look freshly detailed with a ceramic coating: deep, even gloss on the paint, clean wheels with shiny tyres, no dust, scratches or water marks. Place it on a clean {setting} with soft reflections. Keep the car exactly as it is in shape and colour.',
-    v: { setting: ['studio floor with soft white light', 'covered car park with warm lights', 'quiet road at golden hour'] } },
-
   // ---------------- Gen Z style ----------------
   { s: 'genz-flash-digicam-party-snap', t: 'Flash Digicam Party Snap', c: 'genz', a: 'any', lock: 'single',
     p: 'Turn my photo into a harsh-flash digicam snapshot from a friend\'s house party at night. I am wearing {outfit}, mid-laugh and looking at the camera, with a plastic cup in one hand. Direct flash, slightly blown highlights, dark background with blurry friends, visible noise and a faint date-stamp style grain. Messy, real and candid.',

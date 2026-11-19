@@ -194,20 +194,6 @@ export const COLLECTIONS: Collection[] = [
     ],
   },
   {
-    id: 'car-mods', path: 'car-modification-prompts', emoji: '🔧',
-    tint: 'linear-gradient(135deg,#d9d9e8,#cfe4ff)',
-    name: 'Car mods', nameTa: 'கார் மாடிஃபிகேஷன்',
-    h1: 'Car Modification Prompts',
-    title: 'Car Modification Prompts for ChatGPT & Gemini (Copy & Paste)',
-    desc: 'Free car modification prompts for ChatGPT and Gemini. Preview wheels, wraps, stance, body kits and underglow on a photo of your own car before you spend.',
-    intro: 'Preview a modification before you pay for it. Upload a photo of your own car, pick a wheel style, wrap colour, stance or body kit from the dropdowns, and copy the prompt. Each one tells the AI to keep your car\'s model, shape and background and to change only the part you chose.',
-    faqs: [
-      { q: 'Which photo works best?', a: 'A clear side or three-quarter photo in daylight, with the whole car in the frame and nothing blocking the wheels. Avoid close-ups that cut off the bumpers.' },
-      { q: 'Will the AI result match real parts?', a: 'It is a visual preview only. Real wheels, offsets and body kits depend on your exact car, so check fitment with a workshop before buying.' },
-      TOOL_FAQ, FREE_FAQ,
-    ],
-  },
-  {
     id: 'genz', path: 'gen-z-photo-prompts', emoji: '✨',
     tint: 'linear-gradient(135deg,#e6d6ff,#c9f2ff)',
     name: 'Gen Z style', nameTa: 'ஜென் Z ஸ்டைல்',
