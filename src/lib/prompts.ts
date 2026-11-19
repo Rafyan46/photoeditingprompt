@@ -74,8 +74,16 @@ const BLOCKS: Record<Lock, Blocks> = {
 const SIGNATURE =
   'Add \u201cphotoeditingprompt.com\u201d in the bottom-left corner, as a handwritten signature-style mark with thin cursive strokes, small size and subtle premium elegance, in white or soft off-white. It is always allowed and overrides any \u201cno text\u201d instruction elsewhere in this prompt (other text appears only if the scene asks for it); it must be spelled exactly photoeditingprompt.com, must not cover faces or key details, and should look like an elegant photographer\u2019s signature.';
 
-function build(lock: Lock, body: string, collage = false) {
+// Poster art lives or dies by its camera angle, so for game-art the angle in the scene wins.
+const ART_CAMERA =
+  'Use exactly the camera angle, height and framing described in the scene as \u201cCamera angle\u201d; it overrides any generic framing. Strong poster perspective with clear foreground, middle ground and background, and the horizon placed to suit that angle. Keep the face accurate at that angle: natural face proportions with no stretching, no wide-angle distortion of the face or neck, my head straight and level on the body with a neutral chin, no head tilt, and my face large and clearly recognisable. Light on me matches the scene: warm sunset rim light and soft shadows.';
+
+const ART_FINISH =
+  'A finished piece of illustrated poster art, not a photograph: painterly brush texture with clean confident edges, rich saturated colour, smooth believable skin shading that keeps my real skin tone, detailed fabric folds, correct hands with five fingers and natural body proportions. Crisp, high resolution, with no blur and no over-smoothing.';
+
+function build(lock: Lock, body: string, collage = false, art = false) {
   let b = BLOCKS[lock];
+  if (art) b = { ...b, finish: ART_FINISH, camera: ART_CAMERA + (lock === 'couple' ? ' Both faces equally sharp and equally well lit.' : '') };
   // The signature is the one allowed text, so the avoid list must not forbid all text.
   b = { ...b, avoid: b.avoid.replace(/(?<![\w-])(text|logos)(,| or)/, 'other $1$2').replace(/\bwatermarks\b/, 'other watermarks') };
   // A collage repeats the same person in several frames, so that is not a fault there.
@@ -119,7 +127,7 @@ const byId = new Map(COLLECTIONS.map((c) => [c.id, c]));
 export const ALL: Prompt[] = PROMPTS.map((r) => {
   const collection = byId.get(r.c);
   if (!collection) throw new Error(`Prompt "${r.s}" uses unknown collection "${r.c}"`);
-  const template = build(r.lock, r.p, r.c === 'collage' || /collage|panel/.test(r.s));
+  const template = build(r.lock, r.p, r.c === 'collage' || /collage|panel/.test(r.s), r.c === 'game-art');
   for (const m of template.matchAll(/\{(\w+)\}/g)) {
     if (!r.v?.[m[1]]) throw new Error(`Prompt "${r.s}" uses {${m[1]}} but has no options for it`);
   }
