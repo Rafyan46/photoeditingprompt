@@ -13,8 +13,10 @@ interface Props {
   schema?: object[];
   ogType?: string;
   noindex?: boolean;
+  /** Share image (path or URL). Defaults to the site card. */
+  image?: string;
 }
-const { title, desc, lang = 'en', i18n, schema = [], ogType = 'website', noindex = false } = Astro.props;
+const { title, desc, lang = 'en', i18n, schema = [], ogType = 'website', noindex = false, image } = Astro.props;
 const t = T[lang];
 const here = new URL(Astro.url.pathname, SITE.url).href;
 const abs = (p: string) => new URL(p, SITE.url).href;
@@ -53,7 +55,7 @@ const org = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={desc} />
     <meta property="og:url" content={here} />
-    <meta property="og:image" content={abs('/og.png')} />
+    <meta property="og:image" content={abs(image ?? '/og.png')} />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />

@@ -1,0 +1,14 @@
+# PhotoEditingPrompt
+
+> Free, copy-and-paste photo editing prompts for ChatGPT and Gemini. Each prompt keeps your real face and comes with a sample result image. Written by us; not copied from other sites.
+
+## Main collections
+- [Couple prompts](https://photoeditingprompt.com/couple-photo-prompts/)
+- [1980s photo prompts](https://photoeditingprompt.com/1980s-photo-prompts/)
+- [Photo prompts for boys](https://photoeditingprompt.com/photo-prompts-for-boys/)
+- [Photo prompts for girls](https://photoeditingprompt.com/photo-prompts-for-girls/)
+- [Family and group photo prompts](https://photoeditingprompt.com/family-group-photo-prompts/)
+- [Festival prompts](https://photoeditingprompt.com/festivals/)
+
+## How to use
+Open ChatGPT or Gemini, upload a clear front-facing photo, paste the prompt, send.

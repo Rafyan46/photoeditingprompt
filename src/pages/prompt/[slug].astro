@@ -13,7 +13,8 @@ const { p } = Astro.props;
 const c = p.collection;
 const related = inCollection(c.id).filter((o) => o.s !== p.s).slice(0, 3);
 const title = `${p.t} – AI Photo Prompt`;
-const desc = `Free ${p.t} prompt for ChatGPT and Gemini. Keeps your real face; change the details before you copy.`;
+const desc = `Free ${p.t} prompt for ChatGPT and Gemini photo editing. Keeps your real face; change the details, copy and paste.`;
+const shareImage = p.sample.chatgpt ?? p.sample.gemini;
 const options = Object.keys(p.v ?? {});
 const g = GUIDE[p.lock];
 ---
@@ -21,6 +22,7 @@ const g = GUIDE[p.lock];
   title={title}
   desc={desc}
   ogType="article"
+  image={shareImage}
   schema={[breadcrumbs([{ name: 'Home', url: '/' }, { name: c.name, url: colUrl(c) }, { name: p.t, url: p.url }]), article(p, desc)]}
 >
   <div class="narrow">
