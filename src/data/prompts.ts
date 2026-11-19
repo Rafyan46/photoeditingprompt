@@ -184,7 +184,7 @@ export const PROMPTS: RawPrompt[] = [
     v: { backdrop: ['warm beige', 'soft grey', 'deep green', 'cream'], outfit: ['their original clothes from the photo', 'coordinated shades of white and cream', 'traditional Indian festive wear', 'smart casual clothes in matching colours'] },
     tip: 'Upload one photo where every face is clearly visible.' },
   { s: 'family-grandparents-generations-portrait', t: 'Three Generations Portrait', c: 'family', a: 'family', lock: 'family',
-    p: 'Show all of us as a three-generation family portrait on a sofa and standing behind it, with the grandparents seated in the centre and the younger family around them. Everyone is smiling and leaning in slightly. Everyone wears {outfit}. Warm home interior, soft window light, a loving and relaxed mood.',
+    p: 'Show all of us as a three-generation family portrait on a sofa and standing behind it, with the eldest members seated in the centre and everyone else, parents and children, standing or sitting around and in front of them, every single person from my photo included. Everyone is smiling and leaning in slightly. Everyone wears {outfit}. Warm home interior, soft window light, a loving and relaxed mood.',
     v: { outfit: ['their original clothes from the photo', 'traditional Indian festive wear', 'matching shades of blue', 'white and gold festive outfits'] } },
   { s: 'family-beach-sunset-walk-group', t: 'Family Beach Sunset Walk', c: 'family', a: 'family', lock: 'family',
     p: 'Show all of us walking together along a beach at {time}, laughing and holding hands, with gentle waves around our ankles. Everyone wears {outfit}. Warm backlight with every face still clearly lit, soft sea breeze in the clothes, a candid family-holiday look.',
