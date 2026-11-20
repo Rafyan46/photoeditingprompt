@@ -15,7 +15,7 @@ const ordered = [...withImg, ...ALL.filter((p) => !p.sample.chatgpt)];
 // showcase: one before/after per collection, up to 8
 const seen = new Set<string>();
 const showcase = withImg.filter((p) => p.sample.before && !seen.has(p.c) && seen.add(p.c)).slice(0, 8);
-const FALLBACK: Record<string, string> = { couple: '/samples/col-couple.webp', family: '/samples/col-family.webp' };
+const FALLBACK: Record<string, string> = { 'game-art': '/samples/game-art-tropical-night-criminal-duo-chatgpt.webp', couple: '/samples/col-couple.webp', family: '/samples/col-family.webp' };
 // Round category buttons (Instagram-story style). Each one is a real link to its own page, which is what lets Google find and rank those pages.
 const EN_LABEL: Record<string, string> = { 'game-art': 'GTA 6 Style', movies: 'Movie Stars', viral: 'Viral', supercars: 'Cars', family: 'Family' };
 const ICONS = ['game-art', 'movies', 'viral', 'girls', 'boys', 'couple', 'family', 'supercars', 'christmas', 'new-year', 'pongal']
