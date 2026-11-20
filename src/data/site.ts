@@ -194,6 +194,20 @@ export const COLLECTIONS: Collection[] = [
     ],
   },
   {
+    id: 'car-poses', path: 'car-photo-prompts-for-boys', emoji: '🚙',
+    tint: 'linear-gradient(135deg,#d9d9d9,#ffe1c2)',
+    name: 'Car poses for boys', nameTa: 'கார் போஸ்',
+    h1: 'Car Photo Prompts for Boys',
+    title: 'Car Prompt for Boys: Thar, SUV & Vintage Car Photo Prompts (ChatGPT & Gemini)',
+    desc: 'Free car prompts for boys for ChatGPT and Gemini: Thar bonnet sit, SUV phone pose, vintage car lean, black and white and sunset horse shots. Keeps your face.',
+    intro: 'Stand beside your favourite SUV and look like a cover shot. These car photo prompts for boys cover a Thar bonnet sit, a black-and-white SUV pose, a vintage car lean, a rainy night fuel-station portrait and a sunset shot with a horse. Pick the car and your outfit from the dropdowns, copy, and paste with your photo. Your face stays yours; only the scene changes.',
+    faqs: [
+      { q: 'Can I use my own car?', a: 'Yes. Upload a photo of yourself, change the car in the dropdown or type your own car\'s model into the copied text, and keep the line about the number plate not being readable.' },
+      { q: 'Which camera angle looks best?', a: 'Low angles make the car look big and you look tall. Each prompt already names its camera angle, so keep that sentence and the pose will match the picture.' },
+      FACE_FAQ, TOOL_FAQ,
+    ],
+  },
+  {
     id: 'genz', path: 'gen-z-photo-prompts', emoji: '✨',
     tint: 'linear-gradient(135deg,#e6d6ff,#c9f2ff)',
     name: 'Gen Z style', nameTa: 'ஜென் Z ஸ்டைல்',
