@@ -146,6 +146,13 @@ export const inCollection = (id: string) => ALL.filter((p) => p.c === id);
 export const homeUrl = (lang: Lang = 'en') => (lang === 'en' ? '/' : `/${lang}/`);
 export const colUrl = (c: Collection, lang: Lang = 'en') =>
   c.hub ? `/festivals/#${c.id}` : lang === 'en' ? `/${c.path}/` : `/${lang}/${c.path}/`;
+/** Short name for a long option, so dropdowns stay readable. The full text is still what goes into the prompt. */
+export function shortOpt(o: string, max = 34) {
+  let t = o.split(':')[0].split(/, | with | and the | so /)[0].trim();
+  t = t.charAt(0).toUpperCase() + t.slice(1);
+  if (t.length > max) { t = t.slice(0, max); t = t.slice(0, t.lastIndexOf(' ')) + '…'; }
+  return t;
+}
 export const label = (key: string) => key.charAt(0).toUpperCase() + key.slice(1);
 
 // ---------- Translated collection text ----------

@@ -1,6 +1,6 @@
 ---
 import { T, SITE, type Lang } from '../data/site';
-import { label, type Prompt } from '../lib/prompts';
+import { label, shortOpt, type Prompt } from '../lib/prompts';
 interface Props { p: Prompt; lang?: Lang; n?: number; linkTitle?: boolean; heading?: 'h2' | 'h3' }
 const { p, lang = 'en', n, linkTitle = true, heading: H = 'h2' } = Astro.props;
 const t = T[lang];
@@ -37,16 +37,19 @@ const pinUrl = after ? `https://www.pinterest.com/pin/create/button/?url=${encod
   )}
 
   {vars.length > 0 && (
-    <div class="customiser">
-      {vars.map(([key, options]) => (
-        <label>
-          {label(key)}
-          <select data-key={key}>
-            {options.map((o) => <option value={o}>{o}</option>)}
-          </select>
-        </label>
-      ))}
-    </div>
+    <details class="custom">
+      <summary><span class="lbl">⚙ {t.customise}</span><span class="hint">{vars.map(([k]) => label(k)).join(' · ')}</span></summary>
+      <div class="customiser">
+        {vars.map(([key, options]) => (
+          <label>
+            {label(key)}
+            <select data-key={key}>
+              {options.map((o) => <option value={o} title={o}>{shortOpt(o)}</option>)}
+            </select>
+          </label>
+        ))}
+      </div>
+    </details>
   )}
 
   {p.tip && <p class="tip">💡 {p.tip}</p>}

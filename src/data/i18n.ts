@@ -34,6 +34,7 @@ const en = {
   faq: 'Questions and answers', prompts: 'prompts', noResults: 'No prompts match that search.',
   worksWith: 'ChatGPT · Gemini', tested: 'Tested', sample: 'Before / after',
   before: 'Before', after: 'After',
+  customise: 'Customise', customiseHint: 'change the look',
   viewFull: 'View full prompt', hideFull: 'Hide full prompt', pasteHint: 'Just tap Copy and paste it with your photo. You do not need to read it.',
   promptsEnglish: '',
   footNote: 'Prompts on this site are original and free to use for your own photos.',
