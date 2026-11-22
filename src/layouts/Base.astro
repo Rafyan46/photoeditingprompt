@@ -357,11 +357,23 @@ const org = {
         if (!input) return;
         var cards = document.querySelectorAll('[data-card]');
         var empty = document.querySelector('[data-empty]');
+        var chips = document.querySelectorAll('[data-chip]');
+        var aud = 'all';
+        chips.forEach(function (ch) {
+          ch.addEventListener('click', function () {
+            aud = ch.dataset.chip;
+            chips.forEach(function (o) { o.setAttribute('aria-pressed', o === ch ? 'true' : 'false'); });
+            run();
+          });
+        });
         function run() {
           var q = input.value.trim().toLowerCase();
           var shown = 0;
           cards.forEach(function (c) {
-            var hit = q ? c.dataset.card.indexOf(q) !== -1 : c.dataset.extra !== '1';
+            var inAud = aud === 'all' || (' ' + c.dataset.aud + ' ').indexOf(' ' + aud + ' ') !== -1;
+            // With a chip chosen, show every prompt that has a photo for that group; otherwise the first rows only.
+            var base = q ? c.dataset.card.indexOf(q) !== -1 : (aud === 'all' ? c.dataset.extra !== '1' : c.dataset.img === '1');
+            var hit = base && inAud;
             c.classList.toggle('hidden', !hit);
             if (hit) shown++;
           });

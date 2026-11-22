@@ -13,7 +13,7 @@ const aud = (img && byCast[g] ? byCast[g] : p.a === 'any' ? 'girl boy' : p.a) + 
 const BOOST: Record<string, string> = { 'game-art': 'gta 6 gta vice city game', movies: 'movie film bollywood tollywood kollywood hero star poster', supercars: 'car cars supercar' };
 const keywords = `${p.t} ${p.collection.name} ${p.a} ${p.p} ${BOOST[p.c] ?? ''}`.toLowerCase();
 ---
-<article class:list={['card', extra && 'hidden']} data-card={keywords} data-extra={extra ? '1' : '0'} data-aud={aud} data-slug={p.s}>
+<article class:list={['card', extra && 'hidden']} data-card={keywords} data-extra={extra ? '1' : '0'} data-aud={aud} data-img={img ? '1' : '0'} data-slug={p.s}>
   <button class="fav" type="button" data-fav={p.s} aria-pressed="false" aria-label="Save this prompt">♡</button>
   <div class="artwrap">
     <a class="art" href={p.url} style={`background:${p.collection.tint}`} aria-label={p.t}>
