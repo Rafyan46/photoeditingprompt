@@ -73,7 +73,7 @@ const BLOCKS: Record<Lock, Blocks> = {
 
 // Brand signature added to every prompt. It is the one piece of text that is always allowed.
 const SIGNATURE =
-  'Add \u201cphotoeditingprompt.com\u201d in the bottom-left corner, as a handwritten signature-style mark with thin cursive strokes, small size and subtle premium elegance, in white or soft off-white. It is always allowed and overrides any \u201cno text\u201d instruction elsewhere in this prompt (other text appears only if the scene asks for it); it must be spelled exactly photoeditingprompt.com, must not cover faces or key details, and should look like an elegant photographer\u2019s signature.';
+  'Add \u201cphotoeditingprompt.com\u201d in the bottom-left corner, as a clean, upright, easily readable lettering in a simple handwritten print style (not looping cursive), medium weight, about 5 to 6 percent of the image height, in white or soft off-white with a faint soft shadow so it stays readable on any background, every letter distinct. It is always allowed and overrides any \u201cno text\u201d instruction elsewhere in this prompt (other text appears only if the scene asks for it); it must be spelled exactly photoeditingprompt.com, must not cover faces or key details, and should look tidy and professional.';
 
 // Poster art lives or dies by its camera angle, so for game-art the angle in the scene wins.
 const ART_CAMERA =
