@@ -16,7 +16,7 @@ const pinUrl = after ? `https://www.pinterest.com/pin/create/button/?url=${encod
       {linkTitle ? <a href={p.url}>{p.t}</a> : p.t}
     </H>
     <div class="badges">
-      <span class="badge">{t.worksWith}</span>
+      {linkTitle && <span class="badge">{t.worksWith}</span>}
       {p.tested && <span class="badge ok">✓ {t.tested}</span>}
     </div>
   </div>

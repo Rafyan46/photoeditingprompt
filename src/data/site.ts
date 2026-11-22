@@ -6,7 +6,6 @@ export const SITE = {
   name: 'PhotoEditingPrompt',
   domain: 'photoeditingprompt.com',
   url: 'https://photoeditingprompt.com',
-  // TODO: replace with your real contact address before launch.
   email: 'hello@photoeditingprompt.com',
   tagline: 'Copy-paste photo editing prompts for ChatGPT and Gemini',
 };
@@ -52,7 +51,7 @@ export const COLLECTIONS: Collection[] = [
     tint: 'linear-gradient(135deg,#ffcfb8,#ffd1e0)',
     name: 'Viral now', nameTa: 'இப்போது வைரல்',
     h1: 'Viral AI Photo Prompts Right Now',
-    title: 'Trending Prompt: Viral AI Photo Prompts Now (ChatGPT & Gemini)',
+    title: 'Viral AI Photo Prompts Now: ChatGPT & Gemini',
     desc: 'The AI photo trends going viral right now, as free copy-paste prompts: petrol pump bike, glow portrait, 3-panel collage, action figure and more.',
     intro: 'These are the edits filling Instagram and WhatsApp status right now: the midnight petrol pump bike shot, the backlit glow portrait, the harsh-sunlight three-panel collage, the action figure in a box, and more. Each trend is rewritten here as an original, detailed prompt that keeps your real face. This list was last checked on 16 November 2026 and is refreshed as trends change.',
     faqs: [
@@ -79,7 +78,7 @@ export const COLLECTIONS: Collection[] = [
     tint: 'linear-gradient(135deg,#ffb4a2,#b5838d)',
     name: 'Movie stars', nameTa: 'சினிமா ஸ்டார்',
     h1: 'Movie Star Photo Prompts: Be the Hero of Your Own Film',
-    title: 'Movie Star Photo Prompts: Bollywood & South Film Looks (Free)',
+    title: 'Movie Star Photo Prompts: Bollywood & South Looks',
     desc: 'Free ChatGPT and Gemini prompts that make you the hero of your own film: Bollywood poster, mass-hero entry, 90s film star and red carpet. Keeps your face.',
     intro: 'Be the star of your own film. These prompts turn your photo into a Bollywood-style poster, a South-cinema mass-hero entry, a 90s film-star portrait, a red-carpet premiere shot or a director-on-set frame. They describe the look of the genre in our own words, so they never copy a real actor, film or studio, and your face stays yours. Pick the outfit and setting, copy, and paste with your photo.',
     faqs: [
@@ -107,7 +106,7 @@ export const COLLECTIONS: Collection[] = [
     tint: 'linear-gradient(135deg,#ffe2b8,#f7c59f)',
     name: '1980s look', nameTa: '1980கள் லுக்',
     h1: '1980s Photo Prompts', h1Ta: '1980கள் புகைப்பட ப்ராம்ப்ட்கள்',
-    title: '1980s Photo Prompt for ChatGPT & Gemini (Copy & Paste)',
+    title: '1980s Photo Prompts for ChatGPT & Gemini',
     desc: 'Free 1980s photo prompts for ChatGPT and Gemini photo editing. Retro Indian cinema, studio portraits and faded film prints that keep your real face. Copy and paste.',
     intro: 'A good 80s edit is about the film, not only the clothes. These prompts ask for faded colour, soft grain and the slightly warm print look of a 1980s photo lab, and then change your outfit and hair to match the decade. Your face stays yours; only the era changes.',
     introTa: 'நல்ல 80கள் எடிட் என்பது உடை மட்டுமல்ல, அந்தக் கால ஃபிலிம் தோற்றமும் தான். இந்த ப்ராம்ப்ட்கள் மங்கிய நிறம், மென்மையான கிரெயின், பழைய புகைப்பட அச்சின் தோற்றத்தைக் கேட்கின்றன. உங்கள் முகம் மாறாது; காலம் மட்டும் மாறும்.',
@@ -132,7 +131,7 @@ export const COLLECTIONS: Collection[] = [
     tint: 'linear-gradient(135deg,#ffd9ec,#e6d6ff)',
     name: 'Girls', nameTa: 'பெண்கள்',
     h1: 'Photo Prompts for Girls', h1Ta: 'பெண்களுக்கான புகைப்பட ப்ராம்ப்ட்கள்',
-    title: 'AI Photo Prompts for Girls — ChatGPT & Gemini (Copy & Paste)',
+    title: 'AI Photo Prompts for Girls: ChatGPT & Gemini',
     desc: 'Free AI photo prompts for girls. Saree, aesthetic, cafe and cinematic portraits for ChatGPT and Gemini that keep your real face. Copy and paste.',
     intro: 'Portrait prompts for girls and women: saree looks, soft aesthetic frames, cafe and golden-hour portraits. Each one keeps your own face and skin tone and avoids the over-smoothed "AI skin" look. Pick the outfit colour and setting, then copy.',
     introTa: 'பெண்களுக்கான போர்ட்ரெய்ட் ப்ராம்ப்ட்கள்: புடவை லுக், அழகியல் ஃப்ரேம்கள், கஃபே மற்றும் கோல்டன் ஹவர் படங்கள். ஒவ்வொன்றும் உங்கள் முகத்தையும் நிறத்தையும் மாற்றாமல் வைத்திருக்கும்.',
@@ -143,7 +142,7 @@ export const COLLECTIONS: Collection[] = [
     tint: 'linear-gradient(135deg,#ffe3c2,#ffd6e8)',
     name: 'Aesthetic', nameTa: 'அழகியல்',
     h1: 'Aesthetic Photo Prompts',
-    title: 'Aesthetic Photo Prompts for ChatGPT & Gemini (Copy & Paste)',
+    title: 'Aesthetic Photo Prompts for ChatGPT & Gemini',
     desc: 'Free aesthetic photo prompts for ChatGPT and Gemini: golden hour, window shadows, neon glow, rainy window and cosy cafe looks that keep your real face.',
     intro: 'Aesthetic edits live or die on light. Each prompt here names the light source, where it falls on your face, the lens and the colour grade, so the result looks like a planned photograph and not a filter. Pick the outfit and details from the dropdowns, copy, and paste with a clear photo of yourself.',
     faqs: [
@@ -156,7 +155,7 @@ export const COLLECTIONS: Collection[] = [
     tint: 'linear-gradient(135deg,#d6e8ff,#e9dcff)',
     name: 'Collage', nameTa: 'கொலாஜ்',
     h1: 'Photo Collage Prompts',
-    title: 'Photo Collage Prompts for ChatGPT & Gemini (Copy & Paste)',
+    title: 'Photo Collage Prompts for ChatGPT & Gemini',
     desc: 'Free photo collage prompts for ChatGPT and Gemini: mood grids, film contact sheets, polaroid walls, photobooth strips and lookbooks from one photo.',
     intro: 'One photo in, a whole collage out. These prompts ask for a single image laid out as a grid, film strip, polaroid wall or magazine spread, with you in every frame. Each one says exactly how many frames, what happens in each, and to keep your face the same person throughout.',
     faqs: [
@@ -184,7 +183,7 @@ export const COLLECTIONS: Collection[] = [
     tint: 'linear-gradient(135deg,#ffd1d1,#ffe9b8)',
     name: 'Supercars', nameTa: 'சூப்பர்கார்கள்',
     h1: 'Supercar Photo Prompts With Characters',
-    title: 'Supercar Photo Prompts for ChatGPT & Gemini (Copy & Paste)',
+    title: 'Supercar Photo Prompts for ChatGPT & Gemini',
     desc: 'Free supercar photo prompts for ChatGPT and Gemini. Pick a character like The Boss or The Drifter and a Lamborghini or Ferrari. Keeps your face.',
     intro: 'Put yourself next to a supercar, as a named character. Every prompt here is a small story: The Midnight Racer, The Billionaire, The Drifter, The Boss and more. Choose the car and your outfit from the dropdowns, copy, and upload your photo. Your face and body stay exactly as they are; only the scene changes.',
     faqs: [
@@ -198,7 +197,7 @@ export const COLLECTIONS: Collection[] = [
     tint: 'linear-gradient(135deg,#d9d9d9,#ffe1c2)',
     name: 'Car poses for boys', nameTa: 'கார் போஸ்',
     h1: 'Car Photo Prompts for Boys',
-    title: 'Car Prompt for Boys: Thar, SUV & Vintage Car Photo Prompts (ChatGPT & Gemini)',
+    title: 'Car Photo Prompts for Boys: Thar, SUV & Vintage',
     desc: 'Free car prompts for boys for ChatGPT and Gemini: Thar bonnet sit, SUV phone pose, vintage car lean, black and white and sunset horse shots. Keeps your face.',
     intro: 'Stand beside your favourite SUV and look like a cover shot. These car photo prompts for boys cover a Thar bonnet sit, a black-and-white SUV pose, a vintage car lean, a rainy night fuel-station portrait and a sunset shot with a horse. Pick the car and your outfit from the dropdowns, copy, and paste with your photo. Your face stays yours; only the scene changes.',
     faqs: [
@@ -212,7 +211,7 @@ export const COLLECTIONS: Collection[] = [
     tint: 'linear-gradient(135deg,#e6d6ff,#c9f2ff)',
     name: 'Gen Z style', nameTa: 'ஜென் Z ஸ்டைல்',
     h1: 'Gen Z Style Photo Prompts',
-    title: 'Gen Z Photo Prompts: Flash, Y2K, Coquette (ChatGPT & Gemini)',
+    title: 'Gen Z Photo Prompts: Flash, Y2K, Coquette',
     desc: 'Free Gen Z photo prompts for ChatGPT and Gemini: flash digicam, Y2K mirror selfie, coquette, streetwear, old money and dark academia. Keeps your face.',
     intro: 'The looks that fill your feed, as prompts: harsh-flash digicam, Y2K chrome mirror selfies, coquette bows, streetwear, quiet luxury and dark academia. Each one keeps your own face and skin texture and only changes the style, outfit and setting. Pick the outfit from the dropdown, copy, and paste with your photo.',
     faqs: [
@@ -276,7 +275,7 @@ export const COLLECTIONS: Collection[] = [
     tint: 'linear-gradient(135deg,#ffe3c2,#ffd0d0)',
     name: 'Wedding', nameTa: 'திருமணம்',
     h1: 'Wedding and Pre-Wedding Photo Prompts', h1Ta: 'திருமண புகைப்பட ப்ராம்ப்ட்கள்',
-    title: 'Wedding & Pre-Wedding AI Photo Prompts (Copy & Paste)',
+    title: 'Wedding & Pre-Wedding AI Photo Prompts',
     desc: 'Free wedding and pre-wedding AI photo prompts for ChatGPT and Gemini. Haldi, mehndi, bride, groom and couple frames. Copy and paste.',
     intro: 'Haldi, mehndi, the wedding day and the pre-wedding shoot, as frames for your own photos. Bride, groom and couple prompts all lock your faces first, then change the outfits, jewellery and setting. Choose the outfit and location, then copy.',
     introTa: 'ஹல்தி, மெஹந்தி, திருமண நாள் மற்றும் ப்ரீ-வெட்டிங் படங்களுக்கான ப்ராம்ப்ட்கள். ஒவ்வொன்றும் முதலில் உங்கள் முகங்களை மாற்றாமல் வைத்து, பின்னர் உடை, நகை, இடத்தை மாற்றும்.',

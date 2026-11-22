@@ -11,7 +11,10 @@ export function getStaticPaths() {
 }
 const { p } = Astro.props;
 const c = p.collection;
-const related = inCollection(c.id).filter((o) => o.s !== p.s).slice(0, 3);
+const others = inCollection(c.id).filter((o) => o.s !== p.s);
+const hasImg = (o: typeof p) => Boolean(o.sample.chatgpt ?? o.sample.gemini);
+// Show prompts with a result image first, so the cards never look empty.
+const related = [...others.filter(hasImg), ...others.filter((o) => !hasImg(o))].slice(0, 3);
 const title = `${p.t} – AI Photo Prompt`;
 const desc = `Free ${p.t} prompt for ChatGPT and Gemini photo editing. Keeps your real face; change the details, copy and paste.`;
 const shareImage = p.sample.chatgpt ?? p.sample.gemini;
