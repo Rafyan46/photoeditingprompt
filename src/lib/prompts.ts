@@ -109,7 +109,12 @@ export interface Prompt extends RawPrompt {
 
 const SAMPLE_DIR = path.join(process.cwd(), 'public', 'samples');
 // Family and group prompts share one "before": the five-person family photo they were all made from.
-const FAMILY_BEFORE = '/samples/cast-family-before.webp';
+const SHARED_BEFORE: Record<string, string> = {
+  family: '/samples/cast-family-before.webp',
+  man: '/samples/viral-red-studio-cinematic-portrait-before.webp',
+  woman: '/samples/viral-meet-my-younger-self-before.webp',
+  couple: '/samples/wedding-couple-varmala-moment-before.webp',
+};
 function sampleFor(slug: string) {
   const out: Prompt['sample'] = {};
   for (const [key, suffix] of [['before', 'before'], ['chatgpt', 'chatgpt'], ['gemini', 'gemini']] as const) {
@@ -118,7 +123,9 @@ function sampleFor(slug: string) {
       if (fs.existsSync(path.join(SAMPLE_DIR, file))) { out[key] = `/samples/${file}`; break; }
     }
   }
-  if (!out.before && (cast as Record<string, string>)[slug] === 'family' && fs.existsSync(path.join(SAMPLE_DIR, 'cast-family-before.webp'))) out.before = FAMILY_BEFORE;
+  // Prompts without their own "before" use the shared cast photo that their result was made from.
+  const shared = SHARED_BEFORE[(cast as Record<string, string>)[slug]];
+  if (!out.before && shared && fs.existsSync(path.join(SAMPLE_DIR, shared.slice('/samples/'.length)))) out.before = shared;
   return out;
 }
 
