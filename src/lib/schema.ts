@@ -16,8 +16,8 @@ export const faqPage = (c: Collection) => ({
 });
 export const article = (p: Prompt, desc: string) => ({
   '@context': 'https://schema.org', '@type': 'Article', headline: p.t, description: desc,
-  mainEntityOfPage: abs(p.url), inLanguage: 'en-IN',
+  mainEntityOfPage: abs(p.url), inLanguage: 'en-IN', dateModified: new Date().toISOString().slice(0, 10),
   author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
-  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url, logo: { '@type': 'ImageObject', url: `${SITE.url}/icon-512.png` } },
   ...(p.sample.chatgpt || p.sample.gemini ? { image: abs((p.sample.chatgpt ?? p.sample.gemini)!) } : {}),
 });

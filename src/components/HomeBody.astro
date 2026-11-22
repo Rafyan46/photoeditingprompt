@@ -46,7 +46,7 @@ const colImg = (id: string) => FALLBACK[id] ?? (inCollection(id).find((p) => p.s
   <h2 class="sr-only" data-gallery-title>{t.newest}</h2>
   {t.promptsEnglish && <p class="muted" style="margin:0 0 14px;text-align:center">{t.promptsEnglish}</p>}
   <div class="grid">
-    {ordered.map((p, i) => <PromptCard p={p} lang={lang} extra={i >= FIRST || !p.sample.chatgpt} />)}
+    {ordered.map((p, i) => <PromptCard p={p} lang={lang} extra={i >= FIRST || !p.sample.chatgpt} eager={i < 4} />)}
   </div>
   <p class="muted hidden" data-empty style="text-align:center;padding:40px 0">{t.noResults}</p>
   <p style="text-align:center;margin-top:28px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
@@ -61,8 +61,8 @@ const colImg = (id: string) => FALLBACK[id] ?? (inCollection(id).find((p) => p.s
     {showcase.map((p) => (
       <a class="sc" href={p.url}>
         <span class="pair">
-          <span><img src={p.sample.before} alt={`Before: ${p.t}`} loading="lazy" /><i>Before</i></span>
-          <span><img src={p.sample.chatgpt} alt={`After: ${p.t}`} loading="lazy" /><i>After</i></span>
+          <span><img src={p.sample.before} alt={`Before: ${p.t}`} loading="lazy" width="500" height="625" /><i>Before</i></span>
+          <span><img src={p.sample.chatgpt} alt={`After: ${p.t}`} loading="lazy" width="500" height="625" /><i>After</i></span>
         </span>
         <b>{p.t}</b>
       </a>
@@ -75,7 +75,7 @@ const colImg = (id: string) => FALLBACK[id] ?? (inCollection(id).find((p) => p.s
   <div class="tiles">
     {PAGES.map((c) => (
       <a class="tile" href={colUrl(c, lang)} style={`background:${c.tint};color:#1d1d1f`}>
-        {colImg(c.id) ? <img class="thumb" src={colImg(c.id)} alt="" loading="lazy" /> : <span class="emoji" aria-hidden="true">{c.emoji}</span>}
+        {colImg(c.id) ? <img class="thumb" src={colImg(c.id)} alt="" loading="lazy" width="200" height="200" /> : <span class="emoji" aria-hidden="true">{c.emoji}</span>}
         <span>
           <span class="name" style="display:block">{cName(c, lang)}</span>
           <span class="count" style="color:#48484a">{inCollection(c.id).length} {t.prompts}</span>

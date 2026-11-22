@@ -25,6 +25,10 @@ const home = homeUrl(lang);
 const langUrl = (code: Lang) => (i18n === undefined ? homeUrl(code) : code === 'en' ? `/${i18n}` : `/${code}/${i18n}`);
 const evergreen = PAGES.filter((c) => !c.festival);
 const festivals = PAGES.filter((c) => c.festival);
+const orgSchema = {
+  '@context': 'https://schema.org', '@type': 'Organization', name: SITE.name, url: SITE.url,
+  logo: `${SITE.url}/icon-512.png`,
+};
 const org = {
   '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url,
   inLanguage: `${lang}-IN`,
@@ -58,6 +62,10 @@ const org = {
     <meta property="og:image" content={abs(image ?? '/og.png')} />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta property="og:locale" content={`${lang}_IN`} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="theme-color" content="#000000" />
     <script is:inline>
@@ -67,7 +75,7 @@ const org = {
         if (th !== 'light') document.documentElement.setAttribute('data-theme', 'dark');
       } catch (e) {}
     </script>
-    {[org, ...schema].map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+    {[org, ...(Astro.url.pathname === '/' ? [orgSchema] : []), ...schema].map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
   </head>
   <body>
     <header class="site-header">
@@ -232,11 +240,18 @@ const org = {
           document.body.removeChild(ta);
         });
       }
+      // Card prompts are fetched once, on the first Copy tap, so the page itself stays small.
+      var textsPromise = null;
+      function promptText(slug) {
+        if (!textsPromise) textsPromise = fetch('/prompt-text.json').then(function (r) { return r.json(); });
+        return textsPromise.then(function (all) { return all[slug] || ''; });
+      }
       document.querySelectorAll('[data-copy-btn]').forEach(function (btn) {
         btn.addEventListener('click', function () {
           var block = btn.closest('[data-template]');
-          var text = block ? block.dataset.current : btn.dataset.copy;
-          copyText(text).then(function () {
+          var card = btn.closest('[data-slug]');
+          var getText = block ? Promise.resolve(block.dataset.current) : promptText(card && card.dataset.slug);
+          getText.then(function (text) { return copyText(text); }).then(function () {
             btn.textContent = '✓ ' + copiedLabel; btn.classList.add('done');
             setTimeout(function () { btn.textContent = copyLabel; btn.classList.remove('done'); }, 1800);
           }).catch(function () {});

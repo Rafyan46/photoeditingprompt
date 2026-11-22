@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import PromptBlock from '../../components/PromptBlock.astro';
 import PromptCard from '../../components/PromptCard.astro';
 import Steps from '../../components/Steps.astro';
-import { ALL, inCollection, colUrl } from '../../lib/prompts';
+import { ALL, inCollection, colUrl, metaDesc, label } from '../../lib/prompts';
 import { breadcrumbs, article } from '../../lib/schema';
 import { GUIDE } from '../../lib/guide';
 export function getStaticPaths() {
@@ -16,7 +16,10 @@ const hasImg = (o: typeof p) => Boolean(o.sample.chatgpt ?? o.sample.gemini);
 // Show prompts with a result image first, so the cards never look empty.
 const related = [...others.filter(hasImg), ...others.filter((o) => !hasImg(o))].slice(0, 3);
 const title = `${p.t} – AI Photo Prompt`;
-const desc = `Free ${p.t} prompt for ChatGPT and Gemini photo editing. Keeps your real face; change the details, copy and paste.`;
+// Scene text of this prompt with its first options filled in: this is what makes each page's text and description unique.
+const scene = p.p.replace(/\{(\w+)\}/g, (_: string, k: string) => p.v?.[k]?.[0] ?? '').replace(/\s+/g, ' ').trim();
+const firstSentence = scene.split(/(?<=[.!?])\s/)[0];
+const desc = metaDesc(`${p.t}: ${firstSentence} Free for ChatGPT and Gemini.`, 150);
 const shareImage = p.sample.chatgpt ?? p.sample.gemini;
 const options = Object.keys(p.v ?? {});
 const g = GUIDE[p.lock];
@@ -44,8 +47,14 @@ const g = GUIDE[p.lock];
     <PromptBlock p={p} linkTitle={false} />
 
     <div class="prose">
-      <h2>What this prompt changes, and what it keeps</h2>
-      <p>The first block is the identity lock: it tells the AI to treat your uploaded photo as the only reference for who is in the picture. The next block describes the new scene, clothing and light.</p>
+      <h2>What you get with {p.t}</h2>
+      <p>{scene}</p>
+      {options.length > 0 && (
+        <ul>
+          {Object.entries(p.v ?? {}).map(([key, opts]) => <li><strong>{label(key)}:</strong> {(opts as string[]).join(', ')}</li>)}
+        </ul>
+      )}
+      <p>The first block of the prompt is the identity lock: it tells the AI to treat your uploaded photo as the only reference for who is in the picture, so your face stays yours.</p>
       <h2>Which photo to upload</h2>
       <ul>{g.upload.map((u) => <li>{u}</li>)}</ul>
       <h2>If the result goes wrong</h2>

@@ -2,8 +2,8 @@
 import { T, type Lang } from '../data/site';
 import { cName, type Prompt } from '../lib/prompts';
 import cast from '../data/cast.json';
-interface Props { p: Prompt; lang?: Lang; extra?: boolean }
-const { p, lang = 'en', extra = false } = Astro.props;
+interface Props { p: Prompt; lang?: Lang; extra?: boolean; eager?: boolean }
+const { p, lang = 'en', extra = false, eager = false } = Astro.props;
 const t = T[lang];
 const img = p.sample.chatgpt ?? p.sample.gemini;
 // The photo on the card decides who it is for: the sample was made with the man, woman, couple, family or car cast.
@@ -17,10 +17,10 @@ const keywords = `${p.t} ${p.collection.name} ${p.a} ${p.p} ${BOOST[p.c] ?? ''}`
   <button class="fav" type="button" data-fav={p.s} aria-pressed="false" aria-label="Save this prompt">♡</button>
   <div class="artwrap">
     <a class="art" href={p.url} style={`background:${p.collection.tint}`} aria-label={p.t}>
-      {img ? <img src={img} alt={`${p.t} – example result`} loading="lazy" width="600" height="800" /> : <span aria-hidden="true">{p.collection.emoji}</span>}
+      {img ? <img src={img} alt={`${p.t} – example result`} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} decoding="async" width="600" height="800" /> : <span aria-hidden="true">{p.collection.emoji}</span>}
     </a>
     <span class="tag">{cName(p.collection, lang)}</span>
-    <button class="btn copy-over" type="button" data-copy-btn data-copy={p.text}>{t.copy}</button>
+    <button class="btn copy-over" type="button" data-copy-btn >{t.copy}</button>
   </div>
   <div class="body">
     <h3><a href={p.url}>{p.t}</a></h3>
