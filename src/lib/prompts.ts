@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { PROMPTS, type RawPrompt } from '../data/prompts';
+import cast from '../data/cast.json';
 import { COLLECTIONS, NAMES, PATTERN, type Collection, type Lang } from '../data/site';
 
 // Every prompt is built from labelled blocks, so the AI gets precise, separate
@@ -107,6 +108,8 @@ export interface Prompt extends RawPrompt {
 }
 
 const SAMPLE_DIR = path.join(process.cwd(), 'public', 'samples');
+// Family and group prompts share one "before": the five-person family photo they were all made from.
+const FAMILY_BEFORE = '/samples/cast-family-before.webp';
 function sampleFor(slug: string) {
   const out: Prompt['sample'] = {};
   for (const [key, suffix] of [['before', 'before'], ['chatgpt', 'chatgpt'], ['gemini', 'gemini']] as const) {
@@ -115,6 +118,7 @@ function sampleFor(slug: string) {
       if (fs.existsSync(path.join(SAMPLE_DIR, file))) { out[key] = `/samples/${file}`; break; }
     }
   }
+  if (!out.before && (cast as Record<string, string>)[slug] === 'family' && fs.existsSync(path.join(SAMPLE_DIR, 'cast-family-before.webp'))) out.before = FAMILY_BEFORE;
   return out;
 }
 

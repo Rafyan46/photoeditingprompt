@@ -7,6 +7,8 @@ const t = T[lang];
 const after = p.sample.chatgpt ?? p.sample.gemini;
 const afterTool = p.sample.chatgpt ? 'ChatGPT' : 'Gemini';
 const vars = Object.entries(p.v ?? {});
+const wide = p.sample.before === '/samples/cast-family-before.webp'; // family photos are landscape 4:3
+const [iw, ih] = wide ? [1280, 960] : [1000, 1250];
 const pinUrl = after ? `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(new URL(p.url, SITE.url).href)}&media=${encodeURIComponent(new URL(after, SITE.url).href)}&description=${encodeURIComponent(p.t + ' – free ChatGPT & Gemini photo editing prompt')}` : '';
 ---
 <section class="prompt-block" id={p.s} data-template={p.template}>
@@ -22,9 +24,9 @@ const pinUrl = after ? `https://www.pinterest.com/pin/create/button/?url=${encod
   </div>
 
   {p.sample.before && after && (
-    <div class="ba">
-      <img src={p.sample.before} alt={`${p.t} – original photo`} width="1000" height="1250" decoding="async" />
-      <img class="after" src={after} alt={`${p.t} – result from ${afterTool}`} width="1000" height="1250" decoding="async" />
+    <div class:list={['ba', wide && 'wide']}>
+      <img src={p.sample.before} alt={`${p.t} – original photo`} width={iw} height={ih} decoding="async" />
+      <img class="after" src={after} alt={`${p.t} – result from ${afterTool}`} width={iw} height={ih} decoding="async" />
       <span class="bar"><i class="knob" aria-hidden="true">◀ ▶</i></span>
       <span class="hint" aria-hidden="true">👆 Drag to compare</span>
       <span class="lab l">{t.before}</span>
@@ -33,7 +35,7 @@ const pinUrl = after ? `https://www.pinterest.com/pin/create/button/?url=${encod
     </div>
   )}
   {!p.sample.before && after && (
-    <div class="ba"><img src={after} alt={`${p.t} – result from ${afterTool}`} width="1000" height="1250" decoding="async" loading={linkTitle ? 'lazy' : 'eager'} fetchpriority={linkTitle ? undefined : 'high'} /></div>
+    <div class:list={['ba', wide && 'wide']}><img src={after} alt={`${p.t} – result from ${afterTool}`} width={iw} height={ih} decoding="async" loading={linkTitle ? 'lazy' : 'eager'} fetchpriority={linkTitle ? undefined : 'high'} /></div>
   )}
 
   {vars.length > 0 && (
