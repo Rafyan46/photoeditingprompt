@@ -21,7 +21,8 @@ const EN_LABEL: Record<string, string> = { 'game-art': 'GTA 6 Style', movies: 'M
 const ICONS = ['game-art', 'movies', 'viral', 'girls', 'boys', 'couple', 'family', 'supercars', 'christmas', 'new-year', 'pongal']
   .map((id) => PAGES.find((c) => c.id === id)).filter((c): c is NonNullable<typeof c> => !!c);
 const NEWTAG = new Set(['game-art', 'movies']);
-const colImg = (id: string) => FALLBACK[id] ?? (inCollection(id).find((p) => p.sample.chatgpt && !/collage|panel|bike|pump|motorbike|scooter|car|highway|poster/.test(p.s)) ?? inCollection(id).find((p) => p.sample.chatgpt))?.sample.chatgpt;
+const th = (u?: string) => u?.replace(/\.webp$/, '-thumb.webp'); // small card-size copy made by scripts/make-thumbs.ts
+const colImg = (id: string) => th(FALLBACK[id] ?? (inCollection(id).find((p) => p.sample.chatgpt && !/collage|panel|bike|pump|motorbike|scooter|car|highway|poster/.test(p.s)) ?? inCollection(id).find((p) => p.sample.chatgpt))?.sample.chatgpt);
 ---
 <section class="hero wrap">
   <h1 set:html={t.heroTitle.replace(/(ChatGPT|Gemini)/g, '<span class="hl">$1</span>')} />
@@ -68,8 +69,8 @@ const colImg = (id: string) => FALLBACK[id] ?? (inCollection(id).find((p) => p.s
     {showcase.map((p) => (
       <a class="sc" href={p.url}>
         <span class="pair">
-          <span><img src={p.sample.before} alt={`Before: ${p.t}`} loading="lazy" width="500" height="625" /><i>Before</i></span>
-          <span><img src={p.sample.chatgpt} alt={`After: ${p.t}`} loading="lazy" width="500" height="625" /><i>After</i></span>
+          <span><img src={th(p.sample.before)} alt={`Before: ${p.t}`} loading="lazy" width="500" height="625" /><i>Before</i></span>
+          <span><img src={th(p.sample.chatgpt)} alt={`After: ${p.t}`} loading="lazy" width="500" height="625" /><i>After</i></span>
         </span>
         <b>{p.t}</b>
       </a>
