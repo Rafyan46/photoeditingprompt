@@ -417,3 +417,11 @@ details.custom:not([open]) > summary .lbl::after { content: ' ▾'; }
   .hsearch { flex: 1 1 200px; max-width: none; min-width: 0; }
   .nav { order: 20; flex: 1 0 100%; margin-left: 0; justify-content: center; }
 }
+
+/* Phone menu: open as a full-width sheet under the header, above the story rings */
+@media (max-width: 720px) {
+  .site-header { position: relative; z-index: 60; }
+  .mnav { position: static; }
+  .mnav-panel { position: absolute; left: 10px; right: 10px; top: 100%; min-width: 0; max-height: 75vh; overflow-y: auto; z-index: 70; grid-template-columns: 1fr; box-shadow: 0 16px 48px rgba(0,0,0,.55); }
+  .mnav-panel a { padding: 12px 14px; }
+}
