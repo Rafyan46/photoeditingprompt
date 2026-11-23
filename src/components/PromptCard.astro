@@ -5,7 +5,9 @@ import cast from '../data/cast.json';
 interface Props { p: Prompt; lang?: Lang; extra?: boolean; eager?: boolean }
 const { p, lang = 'en', extra = false, eager = false } = Astro.props;
 const t = T[lang];
-const img = p.sample.chatgpt ?? p.sample.gemini;
+const full = p.sample.chatgpt ?? p.sample.gemini;
+// Cards load a small thumbnail (made by scripts/make-thumbs.ts); the prompt page keeps the full picture.
+const img = full ? full.replace(/\.webp$/, '-thumb.webp') : undefined;
 // The photo on the card decides who it is for: the sample was made with the man, woman, couple, family or car cast.
 const g = (cast as Record<string, string>)[p.s];
 const byCast: Record<string, string> = { man: 'boy', woman: 'girl', couple: 'couple', family: 'family', car: 'car' };
