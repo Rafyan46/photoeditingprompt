@@ -4,8 +4,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "tsx scripts/make-thumbs.ts && astro dev",
+    "build": "tsx scripts/make-thumbs.ts && astro build",
     "preview": "astro preview"
   },
   "dependencies": {
