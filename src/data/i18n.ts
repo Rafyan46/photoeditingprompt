@@ -21,7 +21,7 @@ export type Lang = (typeof LANGS)[number]['code'];
 export const OTHER_LANGS = LANGS.filter((l) => l.code !== 'en');
 
 const en = {
-  home: 'Home', trending: 'Trending', festivals: 'Festivals', collections: 'Collections',
+  home: 'Home', trending: 'Trending', festivals: 'Festivals', collections: 'Collections', categories: 'Categories',
   heroTitle: 'Free Photo Editing Prompts for ChatGPT & Gemini',
   heroLead: 'Keeps your face · Search → Copy → Paste',
   search: 'Search couple, GTA 6…', searchBtn: 'Search',
@@ -44,7 +44,7 @@ type UI = typeof en;
 
 const part: Record<Exclude<Lang, 'en'>, Partial<UI>> = {
   hi: {
-    home: 'होम', trending: 'ट्रेंडिंग', festivals: 'त्योहार', collections: 'कलेक्शन', language: 'भाषा',
+    home: 'होम', trending: 'ट्रेंडिंग', festivals: 'त्योहार', collections: 'कलेक्शन', categories: 'श्रेणियाँ', language: 'भाषा',
     heroTitle: 'फोटो एडिटिंग प्रॉम्प्ट जो आपका चेहरा नहीं बदलते।',
     heroLead: 'प्रॉम्प्ट कॉपी करें, ChatGPT या Gemini में अपनी फोटो अपलोड करें और पेस्ट करें। कॉपी करने से पहले कपड़े, रंग और बैकग्राउंड बदल सकते हैं।',
     newest: 'नए प्रॉम्प्ट', browse: 'कलेक्शन के अनुसार देखें', all: 'सभी देखें',
@@ -57,7 +57,7 @@ const part: Record<Exclude<Lang, 'en'>, Partial<UI>> = {
     footNote: 'इस साइट के प्रॉम्प्ट मौलिक हैं और आपकी अपनी फोटो के लिए मुफ़्त हैं।',
   },
   bn: {
-    home: 'হোম', trending: 'ট্রেন্ডিং', festivals: 'উৎসব', collections: 'কালেকশন', language: 'ভাষা',
+    home: 'হোম', trending: 'ট্রেন্ডিং', festivals: 'উৎসব', collections: 'কালেকশন', categories: 'বিভাগ', language: 'ভাষা',
     heroTitle: 'ফটো এডিটিং প্রম্পট, যা আপনার মুখ বদলায় না।',
     heroLead: 'প্রম্পট কপি করুন, ChatGPT বা Gemini-তে আপনার ছবি আপলোড করুন এবং পেস্ট করুন। কপি করার আগে পোশাক, রং ও ব্যাকগ্রাউন্ড বদলাতে পারেন।',
     newest: 'নতুন প্রম্পট', browse: 'কালেকশন অনুযায়ী দেখুন', all: 'সব দেখুন',
@@ -70,7 +70,7 @@ const part: Record<Exclude<Lang, 'en'>, Partial<UI>> = {
     footNote: 'এই সাইটের প্রম্পটগুলো মৌলিক এবং আপনার নিজের ছবির জন্য বিনামূল্যে ব্যবহারযোগ্য।',
   },
   mr: {
-    home: 'होम', trending: 'ट्रेंडिंग', festivals: 'सण', collections: 'कलेक्शन', language: 'भाषा',
+    home: 'होम', trending: 'ट्रेंडिंग', festivals: 'सण', collections: 'कलेक्शन', categories: 'श्रेणी', language: 'भाषा',
     heroTitle: 'तुमचा चेहरा न बदलणारे फोटो एडिटिंग प्रॉम्प्ट.',
     heroLead: 'प्रॉम्प्ट कॉपी करा, ChatGPT किंवा Gemini मध्ये तुमचा फोटो अपलोड करा आणि पेस्ट करा. कॉपी करण्यापूर्वी कपडे, रंग आणि बॅकग्राउंड बदलू शकता.',
     newest: 'नवीन प्रॉम्प्ट', browse: 'कलेक्शननुसार पहा', all: 'सर्व पहा',
@@ -83,7 +83,7 @@ const part: Record<Exclude<Lang, 'en'>, Partial<UI>> = {
     footNote: 'या साइटवरील प्रॉम्प्ट मूळ आहेत आणि तुमच्या स्वतःच्या फोटोंसाठी मोफत आहेत.',
   },
   te: {
-    home: 'హోమ్', trending: 'ట్రెండింగ్', festivals: 'పండుగలు', collections: 'కలెక్షన్లు', language: 'భాష',
+    home: 'హోమ్', trending: 'ట్రెండింగ్', festivals: 'పండుగలు', collections: 'కలెక్షన్లు', categories: 'వర్గాలు', language: 'భాష',
     heroTitle: 'మీ ముఖాన్ని మార్చని ఫోటో ఎడిటింగ్ ప్రాంప్ట్‌లు.',
     heroLead: 'ప్రాంప్ట్‌ను కాపీ చేయండి, ChatGPT లేదా Geminiలో మీ ఫోటోను అప్‌లోడ్ చేసి పేస్ట్ చేయండి. కాపీ చేసే ముందు దుస్తులు, రంగు, బ్యాక్‌గ్రౌండ్ మార్చుకోవచ్చు.',
     newest: 'కొత్త ప్రాంప్ట్‌లు', browse: 'కలెక్షన్ వారీగా చూడండి', all: 'అన్నీ చూడండి',
@@ -96,7 +96,7 @@ const part: Record<Exclude<Lang, 'en'>, Partial<UI>> = {
     footNote: 'ఈ సైట్‌లోని ప్రాంప్ట్‌లు అసలైనవి; మీ సొంత ఫోటోల కోసం ఉచితంగా వాడుకోవచ్చు.',
   },
   ta: {
-    home: 'முகப்பு', trending: 'டிரெண்டிங்', festivals: 'பண்டிகைகள்', collections: 'தொகுப்புகள்', language: 'மொழி',
+    home: 'முகப்பு', trending: 'டிரெண்டிங்', festivals: 'பண்டிகைகள்', collections: 'தொகுப்புகள்', categories: 'வகைகள்', language: 'மொழி',
     heroTitle: 'உங்கள் முகத்தை மாற்றாத புகைப்பட எடிட்டிங் ப்ராம்ப்ட்கள்.',
     heroLead: 'ப்ராம்ப்டை நகலெடுத்து, ChatGPT அல்லது Gemini-யில் உங்கள் புகைப்படத்தைப் பதிவேற்றி, ஒட்டவும். நகலெடுக்கும் முன் உடை, நிறம், பின்னணியை மாற்றலாம்.',
     newest: 'புதிய ப்ராம்ப்ட்கள்', browse: 'தொகுப்பு வாரியாகப் பாருங்கள்', all: 'அனைத்தையும் பார்',
@@ -109,7 +109,7 @@ const part: Record<Exclude<Lang, 'en'>, Partial<UI>> = {
     footNote: 'இந்தத் தளத்தில் உள்ள ப்ராம்ப்ட்கள் அசலானவை; உங்கள் சொந்தப் புகைப்படங்களுக்கு இலவசமாகப் பயன்படுத்தலாம்.',
   },
   gu: {
-    home: 'હોમ', trending: 'ટ્રેન્ડિંગ', festivals: 'તહેવારો', collections: 'કલેક્શન', language: 'ભાષા',
+    home: 'હોમ', trending: 'ટ્રેન્ડિંગ', festivals: 'તહેવારો', collections: 'કલેક્શન', categories: 'શ્રેણીઓ', language: 'ભાષા',
     heroTitle: 'તમારો ચહેરો ન બદલે તેવા ફોટો એડિટિંગ પ્રોમ્પ્ટ.',
     heroLead: 'પ્રોમ્પ્ટ કૉપિ કરો, ChatGPT અથવા Gemini માં તમારો ફોટો અપલોડ કરો અને પેસ્ટ કરો. કૉપિ કરતા પહેલાં કપડાં, રંગ અને બેકગ્રાઉન્ડ બદલી શકો છો.',
     newest: 'નવા પ્રોમ્પ્ટ', browse: 'કલેક્શન પ્રમાણે જુઓ', all: 'બધા જુઓ',
@@ -122,7 +122,7 @@ const part: Record<Exclude<Lang, 'en'>, Partial<UI>> = {
     footNote: 'આ સાઇટ પરના પ્રોમ્પ્ટ મૌલિક છે અને તમારા પોતાના ફોટા માટે મફત છે.',
   },
   kn: {
-    home: 'ಮುಖಪುಟ', trending: 'ಟ್ರೆಂಡಿಂಗ್', festivals: 'ಹಬ್ಬಗಳು', collections: 'ಸಂಗ್ರಹಗಳು', language: 'ಭಾಷೆ',
+    home: 'ಮುಖಪುಟ', trending: 'ಟ್ರೆಂಡಿಂಗ್', festivals: 'ಹಬ್ಬಗಳು', collections: 'ಸಂಗ್ರಹಗಳು', categories: 'ವರ್ಗಗಳು', language: 'ಭಾಷೆ',
     heroTitle: 'ನಿಮ್ಮ ಮುಖವನ್ನು ಬದಲಾಯಿಸದ ಫೋಟೋ ಎಡಿಟಿಂಗ್ ಪ್ರಾಂಪ್ಟ್‌ಗಳು.',
     heroLead: 'ಪ್ರಾಂಪ್ಟ್ ಕಾಪಿ ಮಾಡಿ, ChatGPT ಅಥವಾ Gemini ಯಲ್ಲಿ ನಿಮ್ಮ ಫೋಟೋ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ ಪೇಸ್ಟ್ ಮಾಡಿ. ಕಾಪಿ ಮಾಡುವ ಮೊದಲು ಉಡುಪು, ಬಣ್ಣ ಮತ್ತು ಹಿನ್ನೆಲೆಯನ್ನು ಬದಲಾಯಿಸಬಹುದು.',
     newest: 'ಹೊಸ ಪ್ರಾಂಪ್ಟ್‌ಗಳು', browse: 'ಸಂಗ್ರಹದ ಪ್ರಕಾರ ನೋಡಿ', all: 'ಎಲ್ಲವನ್ನೂ ನೋಡಿ',
@@ -135,7 +135,7 @@ const part: Record<Exclude<Lang, 'en'>, Partial<UI>> = {
     footNote: 'ಈ ಸೈಟ್‌ನಲ್ಲಿರುವ ಪ್ರಾಂಪ್ಟ್‌ಗಳು ಮೂಲ ಬರಹಗಳು; ನಿಮ್ಮ ಸ್ವಂತ ಫೋಟೋಗಳಿಗೆ ಉಚಿತವಾಗಿ ಬಳಸಬಹುದು.',
   },
   ml: {
-    home: 'ഹോം', trending: 'ട്രെൻഡിംഗ്', festivals: 'ഉത്സവങ്ങൾ', collections: 'കളക്ഷനുകൾ', language: 'ഭാഷ',
+    home: 'ഹോം', trending: 'ട്രെൻഡിംഗ്', festivals: 'ഉത്സവങ്ങൾ', collections: 'കളക്ഷനുകൾ', categories: 'വിഭാഗങ്ങൾ', language: 'ഭാഷ',
     heroTitle: 'നിങ്ങളുടെ മുഖം മാറ്റാത്ത ഫോട്ടോ എഡിറ്റിംഗ് പ്രോംപ്റ്റുകൾ.',
     heroLead: 'പ്രോംപ്റ്റ് കോപ്പി ചെയ്യുക, ChatGPT അല്ലെങ്കിൽ Gemini-യിൽ നിങ്ങളുടെ ഫോട്ടോ അപ്‌ലോഡ് ചെയ്ത് പേസ്റ്റ് ചെയ്യുക. കോപ്പി ചെയ്യുന്നതിന് മുമ്പ് വസ്ത്രം, നിറം, പശ്ചാത്തലം എന്നിവ മാറ്റാം.',
     newest: 'പുതിയ പ്രോംപ്റ്റുകൾ', browse: 'കളക്ഷൻ അനുസരിച്ച് കാണുക', all: 'എല്ലാം കാണുക',
@@ -148,7 +148,7 @@ const part: Record<Exclude<Lang, 'en'>, Partial<UI>> = {
     footNote: 'ഈ സൈറ്റിലെ പ്രോംപ്റ്റുകൾ മൗലികമാണ്; നിങ്ങളുടെ സ്വന്തം ഫോട്ടോകൾക്ക് സൗജന്യമായി ഉപയോഗിക്കാം.',
   },
   pa: {
-    home: 'ਹੋਮ', trending: 'ਟ੍ਰੈਂਡਿੰਗ', festivals: 'ਤਿਉਹਾਰ', collections: 'ਕਲੈਕਸ਼ਨ', language: 'ਭਾਸ਼ਾ',
+    home: 'ਹੋਮ', trending: 'ਟ੍ਰੈਂਡਿੰਗ', festivals: 'ਤਿਉਹਾਰ', collections: 'ਕਲੈਕਸ਼ਨ', categories: 'ਸ਼੍ਰੇਣੀਆਂ', language: 'ਭਾਸ਼ਾ',
     heroTitle: 'ਫੋਟੋ ਐਡਿਟਿੰਗ ਪ੍ਰੌਂਪਟ ਜੋ ਤੁਹਾਡਾ ਚਿਹਰਾ ਨਹੀਂ ਬਦਲਦੇ।',
     heroLead: 'ਪ੍ਰੌਂਪਟ ਕਾਪੀ ਕਰੋ, ChatGPT ਜਾਂ Gemini ਵਿੱਚ ਆਪਣੀ ਫੋਟੋ ਅੱਪਲੋਡ ਕਰੋ ਅਤੇ ਪੇਸਟ ਕਰੋ। ਕਾਪੀ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਕੱਪੜੇ, ਰੰਗ ਅਤੇ ਬੈਕਗ੍ਰਾਊਂਡ ਬਦਲ ਸਕਦੇ ਹੋ।',
     newest: 'ਨਵੇਂ ਪ੍ਰੌਂਪਟ', browse: 'ਕਲੈਕਸ਼ਨ ਅਨੁਸਾਰ ਵੇਖੋ', all: 'ਸਾਰੇ ਵੇਖੋ',
@@ -161,7 +161,7 @@ const part: Record<Exclude<Lang, 'en'>, Partial<UI>> = {
     footNote: 'ਇਸ ਸਾਈਟ ਦੇ ਪ੍ਰੌਂਪਟ ਮੌਲਿਕ ਹਨ ਅਤੇ ਤੁਹਾਡੀਆਂ ਆਪਣੀਆਂ ਫੋਟੋਆਂ ਲਈ ਮੁਫ਼ਤ ਹਨ।',
   },
   or: {
-    home: 'ହୋମ୍', trending: 'ଟ୍ରେଣ୍ଡିଂ', festivals: 'ପର୍ବପର୍ବାଣି', collections: 'କଲେକ୍ସନ୍', language: 'ଭାଷା',
+    home: 'ହୋମ୍', trending: 'ଟ୍ରେଣ୍ଡିଂ', festivals: 'ପର୍ବପର୍ବାଣି', collections: 'କଲେକ୍ସନ୍', categories: 'ବର୍ଗ', language: 'ଭାଷା',
     heroTitle: 'ଆପଣଙ୍କ ମୁହଁ ନ ବଦଳାଉଥିବା ଫଟୋ ଏଡିଟିଂ ପ୍ରମ୍ପ୍ଟ।',
     heroLead: 'ପ୍ରମ୍ପ୍ଟ କପି କରନ୍ତୁ, ChatGPT କିମ୍ବା Gemini ରେ ଆପଣଙ୍କ ଫଟୋ ଅପଲୋଡ୍ କରି ପେଷ୍ଟ କରନ୍ତୁ। କପି କରିବା ପୂର୍ବରୁ ପୋଷାକ, ରଙ୍ଗ ଓ ବ୍ୟାକଗ୍ରାଉଣ୍ଡ ବଦଳାଇପାରିବେ।',
     newest: 'ନୂଆ ପ୍ରମ୍ପ୍ଟ', browse: 'କଲେକ୍ସନ୍ ଅନୁସାରେ ଦେଖନ୍ତୁ', all: 'ସବୁ ଦେଖନ୍ତୁ',

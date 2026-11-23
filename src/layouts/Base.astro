@@ -24,6 +24,10 @@ const home = homeUrl(lang);
 // Where the language switcher sends you: the same page if it is translated, else that language's homepage.
 const langUrl = (code: Lang) => (i18n === undefined ? homeUrl(code) : code === 'en' ? `/${i18n}` : `/${code}/${i18n}`);
 const evergreen = PAGES.filter((c) => !c.festival);
+// Categories = who or what the photo is of; Collections = themed looks.
+const CAT_IDS = ['girls', 'boys', 'couple', 'family', 'wedding', 'genz', 'aesthetic', 'supercars', 'car-poses', 'collage', 'fix'];
+const categories = CAT_IDS.map((id) => evergreen.find((c) => c.id === id)).filter((c): c is NonNullable<typeof c> => !!c);
+const collectionsList = evergreen.filter((c) => !CAT_IDS.includes(c.id));
 const festivals = PAGES.filter((c) => c.festival);
 const orgSchema = {
   '@context': 'https://schema.org', '@type': 'Organization', name: SITE.name, url: SITE.url,
@@ -89,9 +93,15 @@ const org = {
         <nav class="nav" aria-label="Main">
           <a href="/trending/">{t.trending}</a>
           <details class="dd">
+            <summary>{t.categories} ▾</summary>
+            <div class="mnav-panel dd-panel">
+              {categories.map((c) => <a href={colUrl(c, lang)}>{c.emoji} {cName(c, lang)}</a>)}
+            </div>
+          </details>
+          <details class="dd">
             <summary>{t.collections} ▾</summary>
             <div class="mnav-panel dd-panel">
-              {evergreen.map((c) => <a href={colUrl(c, lang)}>{c.emoji} {cName(c, lang)}</a>)}
+              {collectionsList.map((c) => <a href={colUrl(c, lang)}>{c.emoji} {cName(c, lang)}</a>)}
             </div>
           </details>
           <a href="/festivals/">{t.festivals}</a>
@@ -101,7 +111,10 @@ const org = {
           <summary aria-label="Menu">☰</summary>
           <div class="mnav-panel">
             <a href="/trending/">{t.trending}</a>
-            {evergreen.map((c) => <a href={colUrl(c, lang)}>{cName(c, lang)}</a>)}
+            <p class="mnav-h">{t.categories}</p>
+            {categories.map((c) => <a href={colUrl(c, lang)}>{cName(c, lang)}</a>)}
+            <p class="mnav-h">{t.collections}</p>
+            {collectionsList.map((c) => <a href={colUrl(c, lang)}>{cName(c, lang)}</a>)}
             <a href="/festivals/">{t.festivals}</a>
             <a href="/saved/">♡ Saved</a>
             <div class="pill-toggle" role="group" aria-label="Theme">
@@ -132,7 +145,7 @@ const org = {
         <div class="cols">
           <div>
             <h4>{t.collections}</h4>
-            {evergreen.map((c) => <a href={colUrl(c, lang)}>{cH1(c, lang)}</a>)}
+            {[...categories, ...collectionsList].map((c) => <a href={colUrl(c, lang)}>{cH1(c, lang)}</a>)}
           </div>
           <div>
             <h4>{t.festivals}</h4>

@@ -405,3 +405,5 @@ details.custom:not([open]) > summary .lbl::after { content: ' ▾'; }
   .card .copy-over { opacity: 0; transform: translateY(6px); transition: opacity .2s ease, transform .2s ease; }
   .card:hover .copy-over, .card:focus-within .copy-over { opacity: 1; transform: none; }
 }
+
+.mnav-h { margin: 8px 12px 2px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
