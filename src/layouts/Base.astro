@@ -89,7 +89,7 @@ const org = {
     <div class="topbar"><a href="/app/">📱 Android app coming soon</a></div>
     <header class="site-header">
       <div class="wrap bar">
-        <a class="brand" href={home}><img class="brand-logo" src="/logo.svg" alt="" width="28" height="28" />PhotoEditing<span>Prompt</span>.com</a>
+        <a class="brand" href={home}><img class="brand-logo" src="/logo.svg" alt="" width="28" height="28" /><span class="brand-text">PhotoEditing<span>Prompt</span>.com</span></a>
         <form class="hsearch" action={home} method="get" role="search">
           <span class="hs-icon" aria-hidden="true">🔍</span>
           <input type="search" name="q" placeholder={t.search} aria-label={t.search} data-search autocomplete="off" />
@@ -112,6 +112,17 @@ const org = {
           <a href="/festivals/">{t.festivals}</a>
           <a href="/saved/">♡ Saved</a>
           <a href="/app/">📱 App</a>
+          <details class="dd">
+            <summary>More ▾</summary>
+            <div class="mnav-panel dd-panel">
+              <a href="/about/">ℹ️ {t.about}</a>
+              <a href="/contact/">✉️ {t.contact}</a>
+              <a href="/privacy-policy/">🔒 {t.privacy}</a>
+              <a href="/terms/">📄 {t.terms}</a>
+              <a href="/disclaimer/">⚠️ Disclaimer</a>
+              <a href="/copyright/">©️ Copyright &amp; Takedown</a>
+            </div>
+          </details>
         </nav>
         <details class="mnav">
           <summary aria-label="Menu">☰</summary>
@@ -124,6 +135,13 @@ const org = {
             <a href="/festivals/">{t.festivals}</a>
             <a href="/saved/">♡ Saved</a>
             <a href="/app/">📱 App</a>
+            <p class="mnav-h">More</p>
+            <a href="/about/">{t.about}</a>
+            <a href="/contact/">{t.contact}</a>
+            <a href="/privacy-policy/">{t.privacy}</a>
+            <a href="/terms/">{t.terms}</a>
+            <a href="/disclaimer/">Disclaimer</a>
+            <a href="/copyright/">Copyright &amp; Takedown</a>
             <div class="pill-toggle" role="group" aria-label="Theme">
               <button type="button" data-theme-set="light" aria-pressed="true" aria-label="Light theme">☀</button>
               <button type="button" data-theme-set="dark" aria-pressed="false" aria-label="Dark theme">☾</button>
