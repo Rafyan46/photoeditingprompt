@@ -9,6 +9,9 @@ const afterTool = p.sample.chatgpt ? 'ChatGPT' : 'Gemini';
 const vars = Object.entries(p.v ?? {});
 const wide = p.sample.before === '/samples/cast-family-before.webp'; // family photos are landscape 4:3
 const [iw, ih] = wide ? [1280, 960] : [1000, 1250];
+// On list pages (collections, festivals) use the small thumbnail and lazy-load; the single prompt page keeps the full-size picture.
+const pic = (u: string) => (linkTitle ? u.replace(/\.webp$/, '-thumb.webp') : u);
+const lz = linkTitle ? 'lazy' : undefined;
 const pinUrl = after ? `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(new URL(p.url, SITE.url).href)}&media=${encodeURIComponent(new URL(after, SITE.url).href)}&description=${encodeURIComponent(p.t + ' – free ChatGPT & Gemini photo editing prompt')}` : '';
 ---
 <section class="prompt-block" id={p.s} data-template={p.template}>
@@ -25,8 +28,8 @@ const pinUrl = after ? `https://www.pinterest.com/pin/create/button/?url=${encod
 
   {p.sample.before && after && (
     <div class:list={['ba', wide && 'wide']}>
-      <img src={p.sample.before} alt={`${p.t} – original photo`} width={iw} height={ih} decoding="async" />
-      <img class="after" src={after} alt={`${p.t} – result from ${afterTool}`} width={iw} height={ih} decoding="async" />
+      <img src={pic(p.sample.before)} alt={`${p.t} – original photo`} width={iw} height={ih} decoding="async" loading={lz} />
+      <img class="after" src={pic(after)} alt={`${p.t} – result from ${afterTool}`} width={iw} height={ih} decoding="async" loading={lz} />
       <span class="bar"><i class="knob" aria-hidden="true">◀ ▶</i></span>
       <span class="hint" aria-hidden="true">👆 Drag to compare</span>
       <span class="lab l">{t.before}</span>
@@ -35,7 +38,7 @@ const pinUrl = after ? `https://www.pinterest.com/pin/create/button/?url=${encod
     </div>
   )}
   {!p.sample.before && after && (
-    <div class:list={['ba', wide && 'wide']}><img src={after} alt={`${p.t} – result from ${afterTool}`} width={iw} height={ih} decoding="async" loading={linkTitle ? 'lazy' : 'eager'} fetchpriority={linkTitle ? undefined : 'high'} /></div>
+    <div class:list={['ba', wide && 'wide']}><img src={pic(after)} alt={`${p.t} – result from ${afterTool}`} width={iw} height={ih} decoding="async" loading={linkTitle ? 'lazy' : 'eager'} fetchpriority={linkTitle ? undefined : 'high'} /></div>
   )}
 
   {vars.length > 0 && (
