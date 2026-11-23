@@ -82,6 +82,7 @@ const org = {
     {[org, ...(Astro.url.pathname === '/' ? [orgSchema] : []), ...schema].map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
   </head>
   <body>
+    <div class="topbar"><a href="/app/">📱 Android app coming soon</a></div>
     <header class="site-header">
       <div class="wrap bar">
         <a class="brand" href={home}>PhotoEditing<span>Prompt</span></a>
