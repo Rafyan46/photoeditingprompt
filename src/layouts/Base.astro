@@ -34,7 +34,7 @@ const orgSchema = {
   logo: `${SITE.url}/logo-512.png`,
 };
 const org = {
-  '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url,
+  '@context': 'https://schema.org', '@type': 'WebSite', name: 'PhotoEditingPrompt.com', alternateName: ['PhotoEditingPrompt', 'photoeditingprompt.com'], url: SITE.url,
   inLanguage: `${lang}-IN`,
   potentialAction: {
     '@type': 'SearchAction',
@@ -59,7 +59,7 @@ const org = {
       </>
     )}
     <meta property="og:type" content={ogType} />
-    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:site_name" content="PhotoEditingPrompt.com" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={desc} />
     <meta property="og:url" content={here} />
@@ -89,7 +89,7 @@ const org = {
     <div class="topbar"><a href="/app/">📱 Android app coming soon</a></div>
     <header class="site-header">
       <div class="wrap bar">
-        <a class="brand" href={home}><img class="brand-logo" src="/logo.svg" alt="" width="28" height="28" />PhotoEditing<span>Prompt</span></a>
+        <a class="brand" href={home}><img class="brand-logo" src="/logo.svg" alt="" width="28" height="28" />PhotoEditing<span>Prompt</span>.com</a>
         <form class="hsearch" action={home} method="get" role="search">
           <span class="hs-icon" aria-hidden="true">🔍</span>
           <input type="search" name="q" placeholder={t.search} aria-label={t.search} data-search autocomplete="off" />
