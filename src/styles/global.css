@@ -410,3 +410,10 @@ details.custom:not([open]) > summary .lbl::after { content: ' ▾'; }
 
 .topbar { text-align: center; font-size: 12.5px; padding: 6px 12px; background: var(--code-bg); color: var(--muted); }
 .topbar a:hover { color: var(--text); text-decoration: underline; }
+
+/* Tablet / small laptop (721-1340px): the one-row header is wider than the screen, so let the menu drop to a second row */
+@media (min-width: 721px) and (max-width: 1340px) {
+  .site-header .bar { flex-wrap: wrap; height: auto; padding-top: 8px; padding-bottom: 8px; row-gap: 4px; }
+  .hsearch { flex: 1 1 200px; max-width: none; min-width: 0; }
+  .nav { order: 20; flex: 1 0 100%; margin-left: 0; justify-content: center; }
+}
