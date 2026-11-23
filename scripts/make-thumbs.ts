@@ -13,8 +13,8 @@ for (const f of fs.readdirSync(dir)) {
   const src = path.join(dir, f);
   const out = path.join(dir, f.replace(/\.webp$/, '-thumb.webp'));
   if (fs.existsSync(out) && fs.statSync(out).mtimeMs >= fs.statSync(src).mtimeMs) continue;
-  // short side = 600 px (enough for a card on a phone), never enlarge
-  await sharp(src).resize({ width: 600, height: 600, fit: 'outside', withoutEnlargement: true }).webp({ quality: 78 }).toFile(out);
+  // short side = 400 px (a card is about 190 px wide on a phone, so 400 still looks sharp on 2x screens), never enlarge
+  await sharp(src).resize({ width: 400, height: 400, fit: 'outside', withoutEnlargement: true }).webp({ quality: 74 }).toFile(out);
   made++;
 }
 console.log(`make-thumbs: created ${made} thumbnail(s)`);
