@@ -105,8 +105,8 @@ const org = {
           </details>
           <details class="dd">
             <summary>{t.collections} ▾</summary>
-            <div class="mnav-panel dd-panel">
-              {collectionsList.map((c) => <a href={colUrl(c, lang)}>{c.emoji} {cName(c, lang)}</a>)}
+            <div class="mnav-panel dd-panel dd-wide">
+              {[...categories, ...collectionsList].map((c) => <a href={colUrl(c, lang)}>{cH1(c, lang)}</a>)}
             </div>
           </details>
           <a href="/festivals/">{t.festivals}</a>
@@ -131,7 +131,7 @@ const org = {
             <p class="mnav-h">{t.categories}</p>
             {categories.map((c) => <a href={colUrl(c, lang)}>{cName(c, lang)}</a>)}
             <p class="mnav-h">{t.collections}</p>
-            {collectionsList.map((c) => <a href={colUrl(c, lang)}>{cName(c, lang)}</a>)}
+            {[...categories, ...collectionsList].map((c) => <a href={colUrl(c, lang)}>{cH1(c, lang)}</a>)}
             <a href="/festivals/">{t.festivals}</a>
             <a href="/saved/">♡ Saved</a>
             <a href="/app/">📱 App</a>
