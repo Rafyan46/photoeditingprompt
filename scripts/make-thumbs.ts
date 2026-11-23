@@ -9,7 +9,7 @@ if (!fs.existsSync(dir)) process.exit(0);
 
 let made = 0;
 for (const f of fs.readdirSync(dir)) {
-  if (!f.endsWith('.webp') || f.endsWith('-thumb.webp') || f.endsWith('-before.webp')) continue;
+  if (!f.endsWith('.webp') || f.endsWith('-thumb.webp')) continue;
   const src = path.join(dir, f);
   const out = path.join(dir, f.replace(/\.webp$/, '-thumb.webp'));
   if (fs.existsSync(out) && fs.statSync(out).mtimeMs >= fs.statSync(src).mtimeMs) continue;
