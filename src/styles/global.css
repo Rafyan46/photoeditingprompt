@@ -407,3 +407,6 @@ details.custom:not([open]) > summary .lbl::after { content: ' ▾'; }
 }
 
 .mnav-h { margin: 8px 12px 2px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.app-soon { text-align: center; font-size: 14px; margin: 18px auto 0; }
+.app-soon a { display: inline-block; padding: 8px 16px; border-radius: 999px; background: var(--code-bg); color: var(--text); }
+.app-soon a:hover { text-decoration: underline; }

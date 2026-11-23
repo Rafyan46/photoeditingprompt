@@ -106,6 +106,7 @@ const org = {
           </details>
           <a href="/festivals/">{t.festivals}</a>
           <a href="/saved/">♡ Saved</a>
+          <a href="/app/">📱 App</a>
         </nav>
         <details class="mnav">
           <summary aria-label="Menu">☰</summary>
@@ -117,6 +118,7 @@ const org = {
             {collectionsList.map((c) => <a href={colUrl(c, lang)}>{cName(c, lang)}</a>)}
             <a href="/festivals/">{t.festivals}</a>
             <a href="/saved/">♡ Saved</a>
+            <a href="/app/">📱 App</a>
             <div class="pill-toggle" role="group" aria-label="Theme">
               <button type="button" data-theme-set="light" aria-pressed="true" aria-label="Light theme">☀</button>
               <button type="button" data-theme-set="dark" aria-pressed="false" aria-label="Dark theme">☾</button>
@@ -158,6 +160,7 @@ const org = {
             <a href="/trending/">{t.trending}</a>
             <a href="/about/">{t.about}</a>
             <a href="/contact/">{t.contact}</a>
+            <a href="/app/">Android app – coming soon</a>
           </div>
           <div>
             <h4>Legal</h4>
