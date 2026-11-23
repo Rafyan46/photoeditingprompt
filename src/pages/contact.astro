@@ -2,13 +2,23 @@
 import Base from '../layouts/Base.astro';
 import { SITE } from '../data/site';
 ---
-<Base title="Contact PhotoEditingPrompt" desc="Get in touch with PhotoEditingPrompt about a prompt, a correction or a suggestion.">
+<Base title="Contact PhotoEditingPrompt" desc="Get in touch with PhotoEditingPrompt about a prompt, a correction, a suggestion or a copyright or privacy question.">
   <div class="narrow">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Contact</nav>
-    <h1 class="page-title" style="font-size:clamp(30px,5vw,44px);margin:28px 0 20px">Contact</h1>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Contact Us</nav>
+    <h1 class="page-title" style="font-size:clamp(30px,5vw,44px);margin:28px 0 20px">Contact Us</h1>
     <div class="prose">
-      <p>Found a prompt that does not work, want to suggest a new one, or have a copyright or privacy question? Email us at <a class="link" href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
-      <p>Please include the name of the prompt and which tool you used (ChatGPT or Gemini). We read every message, but cannot promise a reply to each one.</p>
+      <p>{SITE.name} is a small, independent project that shares free photo editing prompts for ChatGPT and Google Gemini. We write and test the prompts ourselves, and we are happy to hear from you.</p>
+      <h2>What you can write to us about</h2>
+      <ul>
+        <li>A prompt that does not work well, or a mistake on a page.</li>
+        <li>An idea for a new prompt or collection.</li>
+        <li>Collaborations or press.</li>
+        <li>A <a class="link" href="/copyright/">copyright</a> or <a class="link" href="/privacy-policy/">privacy</a> question.</li>
+        <li>What you would like to see in our upcoming <a class="link" href="/app/">Android app</a>.</li>
+      </ul>
+      <h2>Get in touch</h2>
+      <p>Email: <a class="link" href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+      <p>Please include the name of the prompt and which tool you used (ChatGPT or Gemini). We read every message, but cannot promise a reply to each one. We usually reply within a few days.</p>
     </div>
   </div>
 </Base>

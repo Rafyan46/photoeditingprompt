@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site';
+---
+<Base title="Copyright & Takedown | PhotoEditingPrompt" desc="How to report copyrighted material on PhotoEditingPrompt and how we handle takedown requests.">
+  <div class="narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Copyright &amp; Takedown</nav>
+    <h1 class="page-title" style="font-size:clamp(30px,5vw,44px);margin:28px 0 20px">Copyright &amp; Takedown</h1>
+    <div class="prose">
+      <p>Last updated: 23 November 2026.</p>
+      <p>We respect the intellectual property rights of others and expect the same of visitors. The prompts and example images on {SITE.name} are our own work; our example images are AI-generated.</p>
+      <h2>Reporting a problem</h2>
+      <p>If you believe something on the Website infringes your copyright, or that an example image resembles you or your work, email <a class="link" href={`mailto:${SITE.email}`}>{SITE.email}</a> with the subject "Copyright notice" and include:</p>
+      <ul>
+        <li>Your name and contact details.</li>
+        <li>A description of the work you own, with a link to the original if one exists.</li>
+        <li>The exact web address (URL) of the page on our site that you are concerned about.</li>
+        <li>A statement that you believe in good faith that the use is not authorised by the owner, the owner's agent or the law.</li>
+        <li>A statement that the information in your notice is accurate, and that you are the owner or authorised to act for the owner.</li>
+      </ul>
+      <h2>What happens next</h2>
+      <p>We review every complete notice and normally respond within 7 days. If the claim is valid, we remove or change the material. We may share a notice with the person who is responsible for the material, and we may ignore notices that are incomplete or abusive.</p>
+      <h2>Using our content</h2>
+      <p>You may use our prompts for your own photos. Please do not copy our library, text or example images in bulk. See our <a class="link" href="/terms/">Terms &amp; Conditions</a> for details.</p>
+    </div>
+  </div>
+</Base>

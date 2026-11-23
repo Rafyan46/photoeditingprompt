@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site';
+---
+<Base title="Disclaimer | PhotoEditingPrompt" desc="Important notes about AI results, third-party tools and the example images on PhotoEditingPrompt.">
+  <div class="narrow">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Disclaimer</nav>
+    <h1 class="page-title" style="font-size:clamp(30px,5vw,44px);margin:28px 0 20px">Disclaimer</h1>
+    <div class="prose">
+      <p>Last updated: 23 November 2026.</p>
+      <h2>Results vary</h2>
+      <p>The prompts on {SITE.name} are written to help you edit your own photos with AI tools such as ChatGPT and Google Gemini. We cannot guarantee any particular result. The same prompt can give different pictures on different days, with different photos, or in different tools.</p>
+      <h2>Example images are AI-generated</h2>
+      <p>The people, places and scenes in our before and after examples are AI-generated. They are not real people and are not photographs of real events. They are shown only to illustrate a prompt.</p>
+      <h2>No affiliation</h2>
+      <p>{SITE.name} is an independent website. We are not affiliated with, endorsed by or sponsored by OpenAI, Google, Pinterest or any other company whose tools or names appear on this site.</p>
+      <h2>Your photos and your responsibility</h2>
+      <p>You upload photos directly to the AI tool you choose, under that tool's terms and privacy policy. Only upload photos you have the right to use, and get consent before editing photos of other people. Do not use prompts to deceive others or to create harmful, hateful or explicit content.</p>
+      <h2>Not professional advice</h2>
+      <p>Content on this site is for general creative and educational purposes. It is not legal, financial, medical or professional advice.</p>
+      <h2>Contact</h2>
+      <p>Questions: <a class="link" href={`mailto:${SITE.email}`}>{SITE.email}</a>. See also our <a class="link" href="/terms/">Terms &amp; Conditions</a> and <a class="link" href="/privacy-policy/">Privacy Policy</a>.</p>
+    </div>
+  </div>
+</Base>
