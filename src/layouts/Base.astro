@@ -83,6 +83,7 @@ const org = {
       } catch (e) {}
     </script>
     {[org, ...(Astro.url.pathname === '/' ? [orgSchema] : []), ...schema].map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+    <style is:global>.site-footer h3 { color: var(--text); font-weight: 600; margin-bottom: 8px; font-size: 13px; }</style>
   </head>
   <body>
     <div class="topbar"><a href="/app/">📱 Android app coming soon</a></div>
@@ -150,16 +151,16 @@ const org = {
       <div class="wrap">
         <div class="cols">
           <div>
-            <h4>{t.collections}</h4>
+            <h3>{t.collections}</h3>
             {[...categories, ...collectionsList].map((c) => <a href={colUrl(c, lang)}>{cH1(c, lang)}</a>)}
           </div>
           <div>
-            <h4>{t.festivals}</h4>
+            <h3>{t.festivals}</h3>
             {festivals.map((c) => <a href={colUrl(c, lang)}>{cH1(c, lang)}</a>)}
             <a href="/festivals/">{t.all}</a>
           </div>
           <div>
-            <h4>{SITE.name}</h4>
+            <h3>{SITE.name}</h3>
             <a href={home}>{t.home}</a>
             <a href="/trending/">{t.trending}</a>
             <a href="/about/">{t.about}</a>
@@ -167,7 +168,7 @@ const org = {
             <a href="/app/">Android app – coming soon</a>
           </div>
           <div>
-            <h4>Legal</h4>
+            <h3>Legal</h3>
             <a href="/privacy-policy/">{t.privacy}</a>
             <a href="/terms/">{t.terms}</a>
             <a href="/disclaimer/">Disclaimer</a>
