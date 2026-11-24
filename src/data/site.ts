@@ -98,6 +98,9 @@ export const COLLECTIONS: Collection[] = [
     introTa: 'ஜோடி எடிட்கள் AI-க்கு கடினமானவை, ஏனெனில் இரண்டு முகங்களையும் ஒரே நேரத்தில் சரியாக வைத்திருக்க வேண்டும். கீழே உள்ள ஒவ்வொரு ப்ராம்ப்டும் முதலில் இருவரின் முகம், நிறம், உயர வித்தியாசத்தை மாற்றாமல் வைக்கச் சொல்கிறது. உங்கள் புகைப்படத்தைப் பதிவேற்றி, உடை மற்றும் இடத்தைத் தேர்ந்தெடுத்து, நகலெடுக்கவும்.',
     faqs: [
       { q: 'What is the best AI prompt for a couple photo?', a: 'The best couple prompt locks both faces first, then describes one clear scene: a romantic golden-hour walk, a pre-wedding shoot, a travel frame or a cinematic night street. Every prompt on this page follows that order and is free to copy for ChatGPT or Gemini.' },
+      { q: 'Is there a Gemini couple prompt I can copy and paste?', a: 'Yes. Every couple prompt on this page works in Gemini and in ChatGPT. Upload one clear photo of the two of you, paste the prompt, and send. Use the Open in Gemini button on any prompt.' },
+      { q: 'Are there prompts for husband and wife photos?', a: 'Yes. Pick the wedding, anniversary, festival or travel prompts here and keep the outfit dropdowns for husband and wife. All of them lock both faces first, so you stay recognisable.' },
+      { q: 'What are the trending couple prompts right now?', a: 'The newest couple looks are at the top of this page: golden-hour walks, rainy umbrella scenes, pre-wedding shoots and cinematic night streets. See also the Trending page for the viral couple edits.' },
       { q: 'Should I upload one photo or two?', a: 'Either works. One clear photo of both of you gives the most natural result. If you use two separate photos, add a line saying who is on the left and who is on the right.' },
       FACE_FAQ, TOOL_FAQ,
     ],
@@ -121,12 +124,13 @@ export const COLLECTIONS: Collection[] = [
     id: 'boys', path: 'photo-prompts-for-boys', emoji: '🧑',
     tint: 'linear-gradient(135deg,#cfe4ff,#d9d6ff)',
     name: 'Boys', nameTa: 'ஆண்கள்',
-    h1: 'Photo Prompts for Boys', h1Ta: 'ஆண்களுக்கான புகைப்பட ப்ராம்ப்ட்கள்',
+    h1: 'Photo Prompts for Boys & Men', h1Ta: 'ஆண்களுக்கான புகைப்பட ப்ராம்ப்ட்கள்',
     title: 'Boys Prompt for Gemini & ChatGPT: AI Photo Prompts for Men',
     desc: 'Free Gemini and ChatGPT prompts for boys and men: bike, street style, formal and cinematic portraits that keep your real face. Copy and paste.',
     intro: 'Portrait prompts for boys and men: bikes, street style, formal looks and cinematic lighting. None of them describe a particular face, beard or hairstyle, so they work on your photo as it is. Change the outfit and location from the dropdowns before you copy.',
     introTa: 'ஆண்களுக்கான போர்ட்ரெய்ட் ப்ராம்ப்ட்கள்: பைக், ஸ்ட்ரீட் ஸ்டைல், ஃபார்மல் மற்றும் சினிமாட்டிக் லுக். இவை எந்த குறிப்பிட்ட முகத்தையும் தாடியையும் விவரிக்காது, எனவே உங்கள் புகைப்படத்தில் அப்படியே வேலை செய்யும்.',
     faqs: [
+      { q: 'What is the best AI prompt for men?', a: 'The best prompt for men names the outfit, the place, the camera angle and the light, and tells the AI to keep your real face, beard and hairstyle. Every prompt on this page is a free prompt for men that you can copy into ChatGPT or Gemini, with a photo prompt for men in each style: bike, street, formal and cinematic.' },
       { q: 'What is a good Gemini AI prompt for a boy photo?', a: 'A good Gemini prompt for boys names the outfit, the location, the camera angle and the light, and tells the AI to keep your real face. Pick a style from this page, upload one clear photo to Gemini, paste and send.' },
       FACE_FAQ, TOOL_FAQ, FREE_FAQ,
     ],
@@ -154,6 +158,7 @@ export const COLLECTIONS: Collection[] = [
     desc: 'Free aesthetic photo prompts for ChatGPT and Gemini: golden hour, window shadows, neon glow, rainy window and cosy cafe looks that keep your real face.',
     intro: 'Aesthetic edits live or die on light. Each prompt here names the light source, where it falls on your face, the lens and the colour grade, so the result looks like a planned photograph and not a filter. Pick the outfit and details from the dropdowns, copy, and paste with a clear photo of yourself.',
     faqs: [
+      { q: 'What is an aesthetic prompt?', a: 'An aesthetic prompt describes a mood and a look, such as golden hour, soft window shadows or neon glow, instead of one fixed scene. Pick one here, change the outfit in the dropdown, and copy it into ChatGPT or Gemini with your photo.' },
       { q: 'What is a cinematic photography prompt?', a: 'A cinematic prompt asks for film-style light, a wide lens, a colour grade and a still-from-a-movie mood. The golden-hour, neon and rainy window prompts on this page are cinematic image prompts you can copy for ChatGPT or Gemini.' },
       { q: 'Which photo should I upload for aesthetic edits?', a: 'A sharp, front-facing photo in soft daylight works best. Avoid heavy filters and sunglasses, because the AI needs to see your real skin tone and eyes.' },
       FACE_FAQ, TOOL_FAQ, FREE_FAQ,
@@ -182,6 +187,7 @@ export const COLLECTIONS: Collection[] = [
     desc: 'Free family and group photo prompts for ChatGPT and Gemini. Three-generation, festival, wedding, friends and college group edits that keep every face.',
     intro: 'Group photos are the hardest edit, because the AI must keep every face, age and height right at once. Each prompt here starts with a line that locks every person and tells the AI not to add, remove or merge anyone. Upload one clear group photo where all faces are visible, pick the outfits from the dropdown, then copy.',
     faqs: [
+      { q: 'What is a good family prompt for Gemini AI?', a: 'A good family prompt counts every person in your photo first, keeps each face, age and height, and then describes one clear scene. The prompts on this page do that and work in Gemini and ChatGPT. Upload one sharp group photo and paste.' },
       { q: 'How many people can be in the photo?', a: 'Any number. The prompts tell the AI to count everyone in your photo and keep the same people. Very large groups can blur faces at the edges, so use a sharp photo taken a little closer, or edit the group in two smaller batches.' },
       { q: 'One face keeps changing. What should I do?', a: 'Use a higher-resolution photo where that person is clearly visible and facing the camera, then run the prompt again. Adding "keep the person on the far left exactly as in the photo" can help.' },
       FACE_FAQ, TOOL_FAQ,
@@ -365,6 +371,7 @@ export const COLLECTIONS: Collection[] = [
 export const HOME_FAQ = [
   { q: 'How do I use a photo editing prompt in ChatGPT or Gemini?', a: 'Tap Copy prompt on any card, open ChatGPT or Gemini, upload a clear, front-facing photo of yourself, paste the prompt and send. If the first result is off, run it again.' },
   { q: 'What is an AI photo editor prompt?', a: 'It is a block of text you paste into ChatGPT or Gemini together with your photo, and the AI edits the photo for you. An AI image editing prompt names the scene, the outfit, the light and what must stay the same, such as your face.' },
+  { q: 'What is a photo prompt, and where do I find new prompts?', a: 'A photo prompt is the text you give an AI image tool to edit or create a picture. New photo editing prompts are added to this site every few days. Open the Trending page to see the newest first, or search by style, such as couple, men, women, family or birthday.' },
   { q: 'Where can I copy ChatGPT photo editing prompts as text?', a: 'Every prompt on this site is plain text. Tap Copy prompt on any card, then paste it into ChatGPT or Gemini. You can edit the words before you send them.' },
   { q: 'Are these prompts free?', a: 'Yes. Every prompt on this site is free to copy and use. You only need a ChatGPT or Gemini account, and both have free plans that can edit photos.' },
   { q: 'Will the edited photo still look like me?', a: 'Every prompt starts with a face-lock instruction that tells the AI to keep your face, skin tone and features unchanged. If the face still drifts, upload a clearer, front-facing photo.' },
