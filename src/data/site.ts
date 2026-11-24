@@ -237,6 +237,21 @@ export const COLLECTIONS: Collection[] = [
     ],
   },
   {
+    id: 'cinematic', path: 'cinematic-photo-prompts', emoji: '🎞️',
+    tint: 'linear-gradient(135deg,#c9d6ff,#ffd9b8)',
+    name: 'Cinematic', nameTa: 'சினிமாட்டிக்',
+    h1: 'Cinematic Photo Prompts for ChatGPT & Gemini',
+    title: 'Cinematic Photo Prompt: AI Film-Look Portraits',
+    desc: 'Free cinematic photo prompts for ChatGPT and Gemini: rainy noir street, neon alley, golden hour, double exposure and film-still portraits. Keeps your face.',
+    intro: 'Turn one photo into a still from a film. These cinematic image prompts name the lens, the light, the colour grade and the film frame, which is what separates a movie look from a filter. You will find a rainy noir street, a neon alley, a golden-hour desert, a railway platform for couples, a candlelit period portrait, a double exposure and a black and white film noir. None uses a real film, actor or studio. Pick the outfit and setting, copy, and paste with your photo.',
+    faqs: [
+      { q: 'What is a cinematic photo prompt?', a: 'A cinematic photo prompt describes a photo like a film frame: a wide or anamorphic lens, one strong light source, a colour grade such as teal and orange, a little grain, and a mood. Every prompt on this page is written that way for ChatGPT and Gemini.' },
+      { q: 'How do I get a cinematic image from my own photo?', a: 'Upload one clear, front-facing photo, paste the prompt, and send. The prompt asks the AI to keep your real face, then rebuilds the lighting and background around you in a film style.' },
+      { q: 'Do these prompts copy a real film or actor?', a: 'No. They describe genres of film light and colour in our own words, with no film titles, actors, studios or logos, so they also work more reliably in ChatGPT and Gemini.' },
+      FACE_FAQ, TOOL_FAQ, FREE_FAQ,
+    ],
+  },
+  {
     id: 'birthday', path: 'birthday-ai-photo-prompts', emoji: '🎂',
     tint: 'linear-gradient(135deg,#ffe0f0,#fff1c9)',
     name: 'Birthday', nameTa: 'பிறந்தநாள்',
