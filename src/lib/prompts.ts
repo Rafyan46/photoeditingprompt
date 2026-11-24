@@ -71,6 +71,18 @@ const BLOCKS: Record<Lock, Blocks> = {
   },
 };
 
+// Handles any kind of input photo, and keeps the result faithful to the scene as written.
+const INPUT_PERSON =
+  'Works with any photo. My photo may be a close-up, a selfie, a half-body or full-body shot, a side angle, a cropped group photo, in low light, a little blurry or low resolution, or have sunglasses, a mask, a hand or hair covering part of the face. Whatever it is, still create the complete scene described below. If the photo shows only the face or upper body, extend the body, clothes, pose and background naturally to match the scene and my real build. Never copy the photo\u2019s own background, clothes, filter or lighting unless the scene says so; re-light my face to match the new scene while keeping it the same face. If my face is turned or partly covered, use only the features that are visible, keep the same side of the face, and do not invent a different person. If the photo is low resolution, rebuild clean detail without changing who I am. Follow the scene exactly as written: every outfit, prop, pose, setting and framing it names must appear, and nothing it does not name should be added. Produce one single finished image.';
+const INPUT_FIX =
+  'Works with any photo: portrait or landscape, colour or black and white, old, torn, faded, blurry, dark or low resolution. Judge what is wrong from the photo itself and apply only the edit named below, and nothing more. Produce one single finished image.';
+const INPUT_CAR =
+  'Works with any car photo: front, side, rear or three-quarter angle, day or night, parked or on the road, even if the car is partly cropped or dirty. Keep the angle and background as they are, and apply only the modification named below. Produce one single finished image.';
+const INPUT: Record<Lock, string> = {
+  single: INPUT_PERSON, couple: INPUT_PERSON, family: INPUT_PERSON, era: INPUT_PERSON, eraCouple: INPUT_PERSON,
+  fix: INPUT_FIX, car: INPUT_CAR,
+};
+
 // Brand signature added to every prompt. It is the one piece of text that is always allowed.
 const SIGNATURE =
   'Add \u201cphotoeditingprompt.com\u201d in the bottom-left corner, in a friendly, clean, rounded sans-serif font (not cursive, not decorative), regular weight, about 6 percent of the image height, easy on the eyes and instantly readable, in white or soft off-white with a faint soft shadow so it stays readable on any background, every letter distinct. It is always allowed and overrides any \u201cno text\u201d instruction elsewhere in this prompt (other text appears only if the scene asks for it); it must be spelled exactly photoeditingprompt.com, must not cover faces or key details, and should look tidy and professional.';
@@ -91,6 +103,7 @@ function build(lock: Lock, body: string, collage = false, art = false) {
   if (collage) b = { ...b, avoid: b.avoid.replace('duplicated people, ', '') + ' Every frame must show the same person or people from my photo, with the same face in each frame; no misspelled captions.' };
   return [
     `IDENTITY LOCK: ${b.identity}`,
+    `INPUT PHOTO: ${INPUT[lock]}`,
     `${b.sceneLabel}: ${body}`,
     `CAMERA AND LIGHT: ${b.camera}`,
     `FINISH: ${b.finish}`,
