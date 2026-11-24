@@ -229,6 +229,21 @@ export const COLLECTIONS: Collection[] = [
     ],
   },
   {
+    id: 'birthday', path: 'birthday-ai-photo-prompts', emoji: '🎂',
+    tint: 'linear-gradient(135deg,#ffe0f0,#fff1c9)',
+    name: 'Birthday', nameTa: 'பிறந்தநாள்',
+    h1: 'Birthday AI Photo Prompts for ChatGPT & Gemini',
+    title: 'Birthday Prompt for ChatGPT: AI Birthday Photoshoot',
+    desc: 'Free birthday photo prompts for ChatGPT and Gemini: cake and candle glow, balloon arch, sparklers, couple surprise, family and kids. Keeps your face.',
+    intro: 'Make your own birthday photoshoot from one photo. These birthday prompts for ChatGPT and Gemini cover a candle-glow cake portrait, a balloon arch, a saree and diya look, a sparkler night, a couple surprise, a family cake table and two first-birthday-style shoots for kids. Each one keeps the real faces, and none puts letters or numbers on cakes or balloons, which AI often gets wrong. Pick the cake and outfit from the dropdowns, copy, and paste with your photo.',
+    faqs: [
+      { q: 'What is the best birthday prompt for ChatGPT?', a: 'A good birthday prompt names the light (candles, string lights or daylight), the cake, the outfit and the camera framing, and tells the AI to keep your real face. Every prompt on this page follows that pattern and is free to copy for ChatGPT or Gemini.' },
+      { q: 'Can I make a birthday photo of my child?', a: 'Yes. Use the little girl or little boy prompts, upload one clear, front-facing photo of your child, and keep the face-lock line. The prompts ask the AI to keep the child\'s face, age and size as they are.' },
+      { q: 'Why is there no Happy Birthday text on the cake or banner?', a: 'AI image tools often misspell words or draw wrong numbers. The prompts leave lettering out, so you can add a name, age or Happy Birthday message afterwards in any photo editor.' },
+      FACE_FAQ, TOOL_FAQ, FREE_FAQ,
+    ],
+  },
+  {
     id: 'fix', path: 'fix-photo-prompts', emoji: '🛠️',
     tint: 'linear-gradient(135deg,#d6f5e3,#cfeeff)',
     name: 'Fix my photo', nameTa: 'புகைப்படத்தைச் சரிசெய்',
