@@ -98,6 +98,7 @@ export const COLLECTIONS: Collection[] = [
     introTa: 'ஜோடி எடிட்கள் AI-க்கு கடினமானவை, ஏனெனில் இரண்டு முகங்களையும் ஒரே நேரத்தில் சரியாக வைத்திருக்க வேண்டும். கீழே உள்ள ஒவ்வொரு ப்ராம்ப்டும் முதலில் இருவரின் முகம், நிறம், உயர வித்தியாசத்தை மாற்றாமல் வைக்கச் சொல்கிறது. உங்கள் புகைப்படத்தைப் பதிவேற்றி, உடை மற்றும் இடத்தைத் தேர்ந்தெடுத்து, நகலெடுக்கவும்.',
     faqs: [
       { q: 'What is the best AI prompt for a couple photo?', a: 'The best couple prompt locks both faces first, then describes one clear scene: a romantic golden-hour walk, a pre-wedding shoot, a travel frame or a cinematic night street. Every prompt on this page follows that order and is free to copy for ChatGPT or Gemini.' },
+      { q: 'What is a good romantic couple prompt for ChatGPT or Gemini?', a: 'A romantic couple prompt describes one tender scene, such as a rain umbrella, a sunset walk or a candlelit dinner, and keeps both faces unchanged. Many people search for it as a lovers prompt or a prompt for a romantic couple scene (often typed "scene" as "seen"). All of those are covered by the prompts on this page.' },
       { q: 'Is there a Gemini couple prompt I can copy and paste?', a: 'Yes. Every couple prompt on this page works in Gemini and in ChatGPT. Upload one clear photo of the two of you, paste the prompt, and send. Use the Open in Gemini button on any prompt.' },
       { q: 'Are there prompts for husband and wife photos?', a: 'Yes. Pick the wedding, anniversary, festival or travel prompts here and keep the outfit dropdowns for husband and wife. All of them lock both faces first, so you stay recognisable.' },
       { q: 'What are the trending couple prompts right now?', a: 'The newest couple looks are at the top of this page: golden-hour walks, rainy umbrella scenes, pre-wedding shoots and cinematic night streets. See also the Trending page for the viral couple edits.' },
@@ -111,10 +112,11 @@ export const COLLECTIONS: Collection[] = [
     name: '1980s look', nameTa: '1980கள் லுக்',
     h1: '1980s Photo Prompts', h1Ta: '1980கள் புகைப்பட ப்ராம்ப்ட்கள்',
     title: '1980s Photo Prompt for ChatGPT: Free 80s Trend Look',
-    desc: 'Free 1980s photo prompts and the 80s trend for ChatGPT and Gemini: retro Indian cinema and faded film prints that keep your real face. Copy and paste.',
+    desc: 'Free 1980s photo prompts for ChatGPT and Gemini: the 80s look and trend prompt, retro Indian cinema and faded film prints. Keeps your real face.',
     intro: 'A good 80s edit is about the film, not only the clothes. These prompts ask for faded colour, soft grain and the slightly warm print look of a 1980s photo lab, and then change your outfit and hair to match the decade. Your face stays yours; only the era changes.',
     introTa: 'நல்ல 80கள் எடிட் என்பது உடை மட்டுமல்ல, அந்தக் கால ஃபிலிம் தோற்றமும் தான். இந்த ப்ராம்ப்ட்கள் மங்கிய நிறம், மென்மையான கிரெயின், பழைய புகைப்பட அச்சின் தோற்றத்தைக் கேட்கின்றன. உங்கள் முகம் மாறாது; காலம் மட்டும் மாறும்.',
     faqs: [
+      { q: 'What is the 1980 prompt or 80s look prompt that is trending?', a: 'It is a photo prompt that turns your picture into a 1980s print: faded colour, grain, retro hair and clothes, with your own face kept. The trending 80s prompts on this page also work as a prompt for an 80s photo in Gemini, and each is free to copy and paste.' },
       { q: 'How do I see what I would look like in the 80s with ChatGPT?', a: 'Upload one clear photo, paste any prompt on this page and send. Each one changes your hair, outfit and photo texture to a 1980s look, and keeps your face. This is the same 80s trend going around Instagram.' },
       { q: 'Why does my 80s photo look like a modern photo in costume?', a: 'The prompt is missing the film look. Make sure it asks for faded colour, visible grain and a printed-photo texture, as the prompts on this page do.' },
       FACE_FAQ, TOOL_FAQ,
@@ -212,7 +214,7 @@ export const COLLECTIONS: Collection[] = [
     tint: 'linear-gradient(135deg,#d9d9d9,#ffe1c2)',
     name: 'Car poses for boys', nameTa: 'கார் போஸ்',
     h1: 'Car Photo Prompts for Boys',
-    title: 'Car Photo Prompts for Boys: Thar, SUV & Vintage',
+    title: 'Car Prompt for Boys: Thar, SUV & Vintage Photo Edits',
     desc: 'Free car prompts for boys for ChatGPT and Gemini: Thar bonnet sit, SUV phone pose, vintage car lean, black and white and sunset horse shots. Keeps your face.',
     intro: 'Stand beside your favourite SUV and look like a cover shot. These car photo prompts for boys cover a Thar bonnet sit, a black-and-white SUV pose, a vintage car lean, a rainy night fuel-station portrait and a sunset shot with a horse. Pick the car and your outfit from the dropdowns, copy, and paste with your photo. Your face stays yours; only the scene changes.',
     faqs: [
@@ -371,6 +373,7 @@ export const COLLECTIONS: Collection[] = [
 export const HOME_FAQ = [
   { q: 'How do I use a photo editing prompt in ChatGPT or Gemini?', a: 'Tap Copy prompt on any card, open ChatGPT or Gemini, upload a clear, front-facing photo of yourself, paste the prompt and send. If the first result is off, run it again.' },
   { q: 'What is an AI photo editor prompt?', a: 'It is a block of text you paste into ChatGPT or Gemini together with your photo, and the AI edits the photo for you. An AI image editing prompt names the scene, the outfit, the light and what must stay the same, such as your face.' },
+  { q: 'What are the best editing prompts for photos?', a: 'The best editing prompts say exactly what to change (outfit, place, light, camera angle) and what must stay the same (your face). Every photo editing prompt on this site is written that way, as a plain-text prompt you can paste into ChatGPT or Gemini, and you can copy AI prompts from any card.' },
   { q: 'What is a photo prompt, and where do I find new prompts?', a: 'A photo prompt is the text you give an AI image tool to edit or create a picture. New photo editing prompts are added to this site every few days. Open the Trending page to see the newest first, or search by style, such as couple, men, women, family or birthday.' },
   { q: 'Where can I copy ChatGPT photo editing prompts as text?', a: 'Every prompt on this site is plain text. Tap Copy prompt on any card, then paste it into ChatGPT or Gemini. You can edit the words before you send them.' },
   { q: 'Are these prompts free?', a: 'Yes. Every prompt on this site is free to copy and use. You only need a ChatGPT or Gemini account, and both have free plans that can edit photos.' },
