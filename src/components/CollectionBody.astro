@@ -10,6 +10,7 @@ const t = T[lang];
 const list = inCollection(c.id);
 const others = PAGES.filter((o) => o.id !== c.id);
 const home = homeUrl(lang);
+const related = (c.related ?? []).map((id) => PAGES.find((o) => o.id === id)).filter((o): o is NonNullable<typeof o> => !!o);
 // The guide for the kind of photo most prompts in this collection need.
 const counts = new Map<string, number>();
 for (const p of list) counts.set(p.lock, (counts.get(p.lock) ?? 0) + 1);
@@ -68,6 +69,15 @@ const g = GUIDE[mainLock];
           <p>{f.a}</p>
         </details>
       ))}
+    </section>
+  )}
+
+  {lang === 'en' && related.length > 0 && (
+    <section class="prose">
+      <h2 class="section-title">Related prompt categories</h2>
+      <ul>
+        {related.map((o) => <li><a class="link" href={colUrl(o, lang)}>{cH1(o, lang)}</a></li>)}
+      </ul>
     </section>
   )}
 

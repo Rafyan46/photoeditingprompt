@@ -35,7 +35,7 @@ const colImg = (id: string) => th(FALLBACK[id] ?? (inCollection(id).find((p) => 
     {ICONS.map((c) => (
       <a class="cring" href={colUrl(c, lang)}>
         <span class="rg"><span class="disc" style={`background:${c.tint}`}>
-          {colImg(c.id) ? <img src={colImg(c.id)} alt="" loading="lazy" width="64" height="64" /> : <span aria-hidden="true">{c.emoji}</span>}
+          {colImg(c.id) ? <img src={colImg(c.id)} alt={`${cName(c, lang)} – AI photo editing result`} loading="lazy" width="64" height="64" /> : <span aria-hidden="true">{c.emoji}</span>}
         </span>{NEWTAG.has(c.id) && <i class="newtag">NEW</i>}</span>
         <span class="rl">{lang === 'en' && EN_LABEL[c.id] ? EN_LABEL[c.id] : cName(c, lang)}</span>
       </a>
@@ -83,7 +83,7 @@ const colImg = (id: string) => th(FALLBACK[id] ?? (inCollection(id).find((p) => 
   <div class="tiles">
     {PAGES.map((c) => (
       <a class="tile" href={colUrl(c, lang)} style={`background:${c.tint};color:#1d1d1f`}>
-        {colImg(c.id) ? <img class="thumb" src={colImg(c.id)} alt="" loading="lazy" width="200" height="200" /> : <span class="emoji" aria-hidden="true">{c.emoji}</span>}
+        {colImg(c.id) ? <img class="thumb" src={colImg(c.id)} alt={`${cName(c, lang)} – AI photo editing result`} loading="lazy" width="200" height="200" /> : <span class="emoji" aria-hidden="true">{c.emoji}</span>}
         <span>
           <span class="name" style="display:block">{cName(c, lang)}</span>
           <span class="count" style="color:#48484a">{inCollection(c.id).length} {t.prompts}</span>
@@ -100,7 +100,7 @@ const colImg = (id: string) => th(FALLBACK[id] ?? (inCollection(id).find((p) => 
 {lang === 'en' && (
   <section class="wrap about-home">
     <h2 class="section-title">Free photo editing prompts that keep your real face</h2>
-    <p>PhotoEditingPrompt is a free library of copy-and-paste prompts for ChatGPT and Google Gemini. Pick a style (couple, girls, boys, family, cars, festivals, game art or movie-star looks), tap <b>Copy prompt</b>, upload your own photo in ChatGPT or Gemini and paste. Every prompt starts with a face-lock instruction so the result still looks like you, and you can change the outfit, colour and background before you copy.</p>
+    <p>PhotoEditingPrompt.com is a free library of copy-and-paste prompts for ChatGPT and Google Gemini. Pick a style (couple, girls, boys, family, cars, festivals, game art or movie-star looks), tap <b>Copy prompt</b>, upload your own photo in ChatGPT or Gemini and paste. Every prompt starts with a face-lock instruction so the result still looks like you, and you can change the outfit, colour and background before you copy.</p>
     <h2 class="section-title">Questions and answers</h2>
     <div class="faq">
       {HOME_FAQ.map((f) => (

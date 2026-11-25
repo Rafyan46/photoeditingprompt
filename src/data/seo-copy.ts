@@ -1,0 +1,280 @@
+// Search-focused copy for every category page: title, meta description, intro (100 to 150 words),
+// four FAQs and the related categories to link to. It is merged over the collections in site.ts,
+// so the H1, prompts and design of each page stay as they were.
+// Title format: "[Category] Photo Editing Prompts for ChatGPT & Gemini (Free)".
+
+export interface SeoCopy {
+  title: string;
+  desc: string;
+  intro: string;
+  faqs: { q: string; a: string }[];
+  /** collection ids, 4 to 6, shown as "Related prompt categories" */
+  related: string[];
+}
+
+export const SEO_COPY: Record<string, SeoCopy> = {
+  viral: {
+    title: 'Viral Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free viral photo editing prompts for ChatGPT and Gemini: teal aura smoke, torn paper pose, petrol pump bike, backlit glow and more. Copy, paste, keep your face.',
+    intro: 'Every few weeks a new look takes over Instagram and WhatsApp status, and this page collects the viral photo editing prompts behind them in one place. You will find the teal aura smoke portrait, the torn paper triple pose, the neon outline evening walk, the midnight petrol pump bike shot, the backlit glow portrait and many more. We do not copy anyone else\'s prompt text. Each trend is studied, rewritten in our own words and written in the same plain, step by step way, so it works in ChatGPT and in Gemini. Choose the outfit, colour or setting from the dropdowns, tap Copy prompt, upload one clear photo of yourself and paste. The list is refreshed every few days as new trends appear, so check back often.',
+    faqs: [
+      { q: 'What is the best prompt for a viral Instagram photo?', a: 'The best viral prompts describe one strong idea: a single light colour, a clear pose and a simple background. The teal aura smoke, backlit glow and neon outline prompts on this page follow that rule, and each one asks the AI to keep your real face.' },
+      { q: 'How to use a viral photo prompt in ChatGPT or Gemini?', a: 'Tap Copy prompt, open ChatGPT or Gemini, upload one clear front-facing photo, paste the prompt and send. If the first result is slightly off, run the same prompt again, because each run gives a different version.' },
+      { q: 'How do you find which photo trends are viral right now?', a: 'We watch what Indian creators share each week and rewrite every trend as an original prompt. The newest ones are added to the top of this page and to the Trending page, so you do not have to hunt for them.' },
+      { q: 'What is the best prompt for a viral look that keeps my own face?', a: 'Pick any prompt here, because every one begins with an identity lock that tells the AI to use your uploaded photo as the only face reference. For the most accurate face, upload a sharp, evenly lit, front-facing photo.' },
+    ],
+    related: ['couple', 'cinematic', 'aesthetic', 'genz', 'girls'],
+  },
+  'game-art': {
+    title: 'Game Art Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free game art photo editing prompts for ChatGPT and Gemini: sunset beach hero poster, neon city cover art, loading screen and character card. Keeps your face.',
+    intro: 'Want to see yourself on an open-world game poster? These game art photo editing prompts turn one ordinary photo into an original sunset beach hero poster, a neon city cover, a loading-screen scene or a character card with stats. They are our own style: no studio logos, no game titles and no copied artwork, and the site is not affiliated with any game company. Because the result is illustrated poster art rather than a photograph, the prompts also fix the camera angle, the horizon and the colour palette, so the face stays recognisable. Pick the outfit and setting, copy the prompt, upload a clear photo and paste. Duo and couple prompts are included for photos of two people.',
+    faqs: [
+      { q: 'What is the best prompt for game poster art from my photo?', a: 'The best prompt names the camera angle, the time of day, the outfit and what must not change. The sunset beach hero poster and the neon city cover art prompts here do exactly that and keep your face recognisable.' },
+      { q: 'How to turn my photo into game art with ChatGPT or Gemini?', a: 'Copy a prompt, upload one clear front-facing photo to ChatGPT or Gemini, paste it and send. Use the dropdowns first to choose the outfit and setting, and run it again if the first poster is not quite right.' },
+      { q: 'Is this game art style affiliated with any game studio?', a: 'No. The prompts describe a general stylised open-world look in our own words, with no studio names, logos, titles or copied artwork. They are not affiliated with or endorsed by any game company.' },
+      { q: 'What is the best prompt for a duo or couple game cover?', a: 'Use the duo prompts, such as the back-to-back cover art or the poolside duo, and upload one photo that shows both people clearly. The prompt asks the AI to keep both faces and their height difference.' },
+    ],
+    related: ['movies', 'cinematic', 'supercars', 'viral', 'genz'],
+  },
+  movies: {
+    title: 'Movie Star Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free movie star photo editing prompts for ChatGPT and Gemini: hero poster, mass entry scene, red carpet night and 90s film studio look. Copy, paste, keep your face.',
+    intro: 'Be the hero of your own film with these movie star photo editing prompts for ChatGPT and Gemini. Choose a Bollywood hero poster, a mass hero entry scene, a 90s film star studio portrait, a red carpet premiere night, a director on a film set or a romantic hero in the hills. Every look is an original description of film style, with no real actor, film title or studio named, so the picture stays yours and works more reliably in the AI tools. The face-lock line at the start tells the AI to keep your own face, not a star\'s. Pick the outfit and setting from the dropdowns, tap Copy prompt, upload one clear photo and paste it into ChatGPT or Gemini.',
+    faqs: [
+      { q: 'What is the best prompt for a movie hero poster of myself?', a: 'Use the Bollywood Hero Poster prompt. It describes a film-poster pose, dramatic lighting and bold colour, and asks the AI to keep your real face rather than copy an actor.' },
+      { q: 'How to make a photo that looks like a film still?', a: 'Upload one clear photo to ChatGPT or Gemini, paste a movie star prompt and send. For a more realistic film-still mood, also try the Cinematic category, which names the lens and colour grade.' },
+      { q: 'Do these prompts use real actors or film names?', a: 'No. They describe the style of cinema in our own words and never use an actor\'s name, a film title or a studio. This also keeps the AI from changing your face into someone else\'s.' },
+      { q: 'What is the best prompt for a 90s film star look?', a: 'The 90s Film Star Studio Portrait prompt is built for it, with a studio portrait set-up and a 90s film look. Choose the outfit from the dropdown before you copy.' },
+    ],
+    related: ['cinematic', 'game-art', 'eighties', 'boys', 'girls', 'viral'],
+  },
+  couple: {
+    title: 'Couple Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free couple photo editing prompts for ChatGPT and Gemini: pre-wedding, beach sunset, rain umbrella, anniversary dinner and more. Copy, paste, keep both faces.',
+    intro: 'Looking for a couple photo prompt that keeps both faces looking like you? These couple photo editing prompts for ChatGPT and Gemini cover a golden hour field walk, sharing an umbrella in the rain, a palace-steps pre-wedding shoot, a beach sunset, an anniversary candlelight dinner, a scooter ride through the old city and a black and white studio portrait. Each one starts with an identity lock for two people, which tells the AI not to blend, swap or beautify either face and to keep your height difference. Upload one photo where both of you are clear, choose the outfits from the dropdowns, tap Copy prompt and paste. Husband and wife, boyfriend and girlfriend, and friends all work.',
+    faqs: [
+      { q: 'What is the best prompt for a couple photo with ChatGPT?', a: 'A good couple prompt names the place, the light, the outfits and how close you stand, and tells the AI to keep both faces. The golden hour walk and the umbrella in the rain prompts on this page are popular starting points.' },
+      { q: 'How to keep both faces accurate in a couple photo edit?', a: 'Upload one sharp photo where both faces are clearly visible and well lit, then paste the prompt. The couple identity lock asks the AI not to blend the two faces or swap sides.' },
+      { q: 'What is the best prompt for a husband and wife photo?', a: 'The anniversary candlelight dinner, coffee date by the window and cooking together prompts suit a married couple well. Each one keeps both faces, ages and heights as they are in your photo.' },
+      { q: 'How to get a pre-wedding photo from a normal couple selfie?', a: 'Use the pre-wedding prompts, such as Pre-Wedding on Palace Steps on this page, or the fort twirl in the Wedding category. Upload a selfie where you both face the camera, paste the prompt and choose the outfits from the dropdowns first.' },
+    ],
+    related: ['wedding', 'valentines', 'cinematic', 'birthday', 'family', 'aesthetic'],
+  },
+  eighties: {
+    title: '1980s Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free 1980s photo editing prompts for ChatGPT and Gemini: studio backdrop, college campus, hill station snapshot, wedding flash photo. Copy, paste, keep your face.',
+    intro: 'The 80s trend turns a modern selfie into a photo that looks like it came out of a family album from the 1980s. These 1980s photo editing prompts for ChatGPT and Gemini cover a painted-backdrop studio portrait, an Indian cinema lead look, a college campus candid, a hill station holiday, a wedding reception flash photo, a gully cricket snapshot and a Diwali evening at home. Only the hairstyle, clothes and surroundings change to suit the decade; the face stays yours. The prompts ask for period film grain, a slight fade and the lens softness of old cameras. Pick the outfit from the dropdowns, tap Copy prompt, upload one clear photo and paste.',
+    faqs: [
+      { q: 'What is the best prompt for the 1980s photo trend?', a: 'A good 80s prompt names the era look: period hair and clothes, film grain, a faded print and a typical setting. The 1980s Studio Portrait With Painted Backdrop is the closest to the original trend.' },
+      { q: 'How to make a 1980s version of my photo in ChatGPT?', a: 'Copy an 80s prompt, upload one clear front-facing photo to ChatGPT, paste and send. The prompt keeps your face and changes only the hair, clothing and surroundings to fit the decade.' },
+      { q: 'What is the best prompt for a 1980s couple photo?', a: 'Use the 1980s Wedding Reception Flash Photo, which is written for two people. Upload a photo with both faces visible, and the prompt keeps each face as it is. The Black-and-White Family Portrait and Family Beach Outing suit a whole family.' },
+      { q: 'How to stop the 80s edit from changing my face?', a: 'Every prompt here begins with a face-lock for the era look. For best results, use a sharp, evenly lit photo, and avoid sunglasses or heavy filters in the original.' },
+    ],
+    related: ['couple', 'family', 'boys', 'girls', 'wedding', 'cinematic'],
+  },
+  boys: {
+    title: 'Boys & Men Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free photo editing prompts for boys and men for ChatGPT and Gemini: suit portrait, bike on a mountain road, kurta haveli, gym and rooftop. Copy and paste.',
+    intro: 'These photo editing prompts for boys and men give you ready-to-use looks for ChatGPT and Gemini, from a formal suit studio portrait to a motorcycle on a mountain road. You can choose a kurta portrait in a haveli courtyard, a street style shot under neon lights, a cricket ground at sunset, a gym fitness portrait, a rooftop with the city skyline, a sherwani wedding guest look or a trek summit portrait. The prompts keep your real face, beard, hairline and build, and only change the clothes and the place. Choose the outfit and colour from the dropdowns, tap Copy prompt, upload one clear, front-facing photo and paste it with the prompt.',
+    faqs: [
+      { q: 'What is the best prompt for a boy\'s Instagram photo?', a: 'Start with the Motorcycle on a Mountain Road, Street Style Under Neon Lights or Formal Suit Studio Portrait prompts. Each one gives the AI a clear outfit, place, light and camera angle, which is what makes a profile photo look natural.' },
+      { q: 'How to get a stylish photo of myself with Gemini or ChatGPT?', a: 'Copy a prompt, upload one clear photo of your face to Gemini or ChatGPT, paste the prompt and send. Choose the outfit and colour in the dropdowns before you copy.' },
+      { q: 'What is the best prompt for a men\'s wedding or festival look?', a: 'Use the Sherwani Wedding Guest Look or the Kurta Portrait in a Haveli Courtyard. Both ask the AI to keep your face, beard and hairstyle, and change only the clothes and the setting.' },
+      { q: 'How to keep my beard and hairstyle in the edit?', a: 'The identity lock tells the AI to keep facial hair, hairline and hair texture exactly as they are. Upload a photo where your beard and hair are clearly visible and well lit.' },
+    ],
+    related: ['car-poses', 'supercars', 'cinematic', 'genz', 'wedding', 'girls'],
+  },
+  girls: {
+    title: 'Girls Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free photo editing prompts for girls and women for ChatGPT and Gemini: saree terrace, lehenga palace, cafe aesthetic, sunflower field. Copy and paste, keep your face.',
+    intro: 'This page gathers photo editing prompts for girls and women that work in both ChatGPT and Gemini. You can try a saree on the terrace at golden hour, a lehenga in a palace corridor, an Anarkali with diyas at dusk, a cafe aesthetic with a book, a sunflower field portrait, a monsoon balcony with chai, a classical dance pose or a graduation day portrait. The prompts keep your real face, skin tone and hairstyle, and only change the outfit, the place and the light. Choose the saree colour or the setting from the dropdowns, tap Copy prompt, upload one clear photo of yourself and paste the prompt with it.',
+    faqs: [
+      { q: 'What is the best prompt for a girl\'s profile photo?', a: 'The Cafe Aesthetic With a Book, Beach Breeze Portrait and Saree on the Terrace prompts are the most used. Each describes the outfit, light and framing clearly, which gives a natural-looking profile picture.' },
+      { q: 'How to get a saree or lehenga photo from a normal selfie?', a: 'Open the Saree on the Terrace or Lehenga in a Palace Corridor prompt, pick the colour from the dropdown, copy it, and paste it into ChatGPT or Gemini with one clear photo.' },
+      { q: 'What is the best prompt for an aesthetic photo of myself?', a: 'Choose the Rainy Window Moody Portrait or the Cafe Aesthetic With a Book prompt. Both use soft window light and a calm mood, and keep your real face and skin tone.' },
+      { q: 'How to keep my skin tone natural in an AI edit?', a: 'The face-lock tells the AI not to lighten, smooth or change your skin tone. If the colour still looks off, upload a photo taken in even daylight and run the prompt again.' },
+    ],
+    related: ['aesthetic', 'wedding', 'cinematic', 'genz', 'birthday', 'couple'],
+  },
+  aesthetic: {
+    title: 'Aesthetic Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free aesthetic photo editing prompts for ChatGPT and Gemini: golden hour field, window shadows, rainy car window, neon glow and blue hour beach. Copy and paste.',
+    intro: 'An aesthetic photo is mostly about mood: soft light, muted colour and a simple scene. These aesthetic photo editing prompts for ChatGPT and Gemini describe ten of those moods, including a golden hour field portrait, window blind shadows, a rainy car window, a pastel flower market, neon sign night glow, a minimal white studio shadow, a blue hour beach and a cosy bookstore corner. Each prompt names the time of day, the colour palette and the camera framing, and asks the AI to keep your real face. Tap Copy prompt, upload one clear photo of yourself and paste. If you want a sharper film look, try the Cinematic category next.',
+    faqs: [
+      { q: 'What is the best prompt for an aesthetic photo?', a: 'The best aesthetic prompts name one light source, a soft colour palette and a quiet setting. Golden Hour Field Portrait and Window Blind Shadows Portrait are good first picks on this page.' },
+      { q: 'How to make my photo look aesthetic with ChatGPT or Gemini?', a: 'Copy an aesthetic prompt, upload a clear photo, paste and send. The prompt rebuilds the light and background around you, so use a front-facing photo and avoid heavy filters on the original.' },
+      { q: 'What is the best prompt for a moody rainy photo?', a: 'Use Rainy Car Window Mood or Monsoon Terrace Chai. Both build a rainy, quiet mood around you without changing your face.' },
+      { q: 'How to get a minimal studio portrait from a selfie?', a: 'Choose the Minimal White Studio Shadow prompt. It places you against a plain white wall in hard sunlight with your own sharp shadow beside you, and keeps your face and build as they are in the photo.' },
+    ],
+    related: ['cinematic', 'girls', 'genz', 'collage', 'viral', 'couple'],
+  },
+  collage: {
+    title: 'Photo Collage Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free photo collage editing prompts for ChatGPT and Gemini: four moods grid, film strip, polaroid wall, magazine layout and travel postcard. Copy and paste.',
+    intro: 'A collage turns one photo into a small story, and these photo collage editing prompts show how to ask for it in ChatGPT and Gemini. You can create a four moods grid, a film strip contact sheet, a polaroid wall of memories, a magazine editorial layout, a day and night split portrait, a travel postcard grid, a couple photobooth strip, a birthday frames collage, a torn paper scrapbook page or a three looks lookbook. Every frame must show the same face from your photo, and the prompts avoid captions that the AI tends to misspell. Upload one clear photo, tap Copy prompt and paste. Single-frame looks are in the Aesthetic and Cinematic categories.',
+    faqs: [
+      { q: 'What is the best prompt for a photo collage with AI?', a: 'The best collage prompt states the number of frames, the layout and what changes in each frame, while the face stays the same. Four Moods Grid Collage and Polaroid Wall of Memories are good starting points.' },
+      { q: 'How to make a photobooth strip from one photo?', a: 'Use the Couple Photobooth Strip prompt, upload one photo with both faces clear, and paste it into ChatGPT or Gemini. It asks for two photobooth strips of four frames each, with direct flash and a different expression in every frame.' },
+      { q: 'Why is there no text or captions in the collage prompts?', a: 'AI image tools often misspell words and jumble letters. The prompts leave captions out, so you can add your own text afterwards in any photo app.' },
+      { q: 'How to keep the same face in every frame?', a: 'Each collage prompt tells the AI that every frame must show the same person from your photo. Upload one sharp, front-facing photo, and re-run the prompt if one frame drifts.' },
+    ],
+    related: ['genz', 'aesthetic', 'birthday', 'couple', 'viral', 'family'],
+  },
+  family: {
+    title: 'Family Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free family and group photo editing prompts for ChatGPT and Gemini: studio portrait, three generations, Diwali courtyard, friends rooftop. Keeps every face.',
+    intro: 'Family and group photos are the hardest to edit, because the AI tends to lose people or make faces look alike. These family photo editing prompts for ChatGPT and Gemini are written to prevent that. They ask the AI to count everyone in your photo first and keep exactly that number, whether it is two people or twenty. Choose a family portrait studio look, a three generations portrait, a beach sunset walk, a Diwali courtyard group, a hill station road trip, a wedding guests group photo, a college farewell, an office team outing or a vintage 1970s studio portrait. Put everyone in one clear photo, tap Copy prompt and paste it.',
+    faqs: [
+      { q: 'What is the best prompt for a family photo edit?', a: 'The best family prompt tells the AI to count the people and keep every face, age and height. The Family Portrait Studio Look and Three Generations Portrait prompts do this, and large groups are arranged in tidy rows so every face stays visible.' },
+      { q: 'How to stop the AI from adding or removing people?', a: 'Upload one clear photo where every face is visible, and use a prompt from this page. The identity lock says the number of people must stay exactly the same, with nobody added, merged or missing.' },
+      { q: 'What is the best prompt for a group photo with friends?', a: 'Use Friends Group on a Rooftop or College Farewell Group Photo. For larger groups, take the original photo a little closer, so each face is big enough to stay recognisable.' },
+      { q: 'How to make a festival family photo from a normal photo?', a: 'Choose Family Diwali Courtyard Group or Family Festival Group Selfie, upload your family photo to ChatGPT or Gemini, and paste the prompt. Festival clothes and decorations change, but the faces do not.' },
+    ],
+    related: ['couple', 'birthday', 'wedding', 'eighties', 'christmas', 'collage'],
+  },
+  supercars: {
+    title: 'Supercar Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free supercar photo editing prompts for ChatGPT and Gemini: midnight racer, showroom, neon garage, desert rally and highway golden hour. Copy and paste.',
+    intro: 'Pose beside a supercar without leaving your street. These supercar photo editing prompts for ChatGPT and Gemini each give you a character and a place: the Midnight Racer at night, the Billionaire in a showroom, the Drifter in a neon garage, the Desert Nomad on a dusty rally track, the Boss on a rooftop car park, the Phantom in a tunnel of light trails, the Champion in the pit lane, the Wanderer on a mountain road, the Heir on a golden hour highway and a Power Couple pose. The AI keeps your face and puts you next to the car. Pick the car colour and outfit from the dropdowns, tap Copy prompt and paste.',
+    faqs: [
+      { q: 'What is the best prompt for a photo with a supercar?', a: 'The best supercar prompt names the car colour, the place, the light and your pose. The Midnight Racer and The Billionaire prompts are the most popular, and both keep your real face.' },
+      { q: 'How to put myself next to a supercar with AI?', a: 'Upload one clear photo of yourself to ChatGPT or Gemini, paste a supercar prompt and send. Use a photo where your full face and upper body are visible for the best match.' },
+      { q: 'What is the best prompt for a couple supercar photo?', a: 'Use The Power Couple: Supercar Pose, and upload a photo showing both people clearly. The prompt keeps both faces and places you together beside the car.' },
+      { q: 'How to edit my own car into a different look instead?', a: 'Use the car modification prompts in the Car Photo Prompts category, which edit your own car photo, or the car pose prompts, which add you leaning on a car.' },
+    ],
+    related: ['car-poses', 'boys', 'cinematic', 'game-art', 'genz'],
+  },
+  'car-poses': {
+    title: 'Car Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free car photo editing prompts for boys for ChatGPT and Gemini: Thar bonnet sit, SUV phone pose, vintage sedan lean, highway golden hour. Copy and paste.',
+    intro: 'A good car photo needs the right pose, and these car photo editing prompts for ChatGPT and Gemini describe it in detail. Try a leaning pose against a black SUV, a Thar bonnet sit in black and white, a cap and sunglasses bonnet pose, a vintage sedan lean in the countryside, a muddy forest 4x4 pose, a rainy night fuel station portrait, standing on the car roof at a viewpoint, a highway lean at golden hour or a driver seat window portrait. Your real face and build stay the same, and the car and place are rebuilt around you. Tap Copy prompt, upload one clear photo of yourself and paste.',
+    faqs: [
+      { q: 'What is the best prompt for a bonnet sit photo?', a: 'The Black and White Thar Bonnet Sit and Cap and Sunglasses SUV Bonnet Pose prompts describe the sitting pose, the light and the framing, so the AI gets the posture right.' },
+      { q: 'How to get a photo with a Thar or SUV without owning one?', a: 'Upload one clear photo of yourself to ChatGPT or Gemini and paste a car prompt. The AI places you with a car of the type named in the prompt, and your face stays yours.' },
+      { q: 'What is the best prompt for a night car portrait?', a: 'Use Rainy Night Fuel Station Portrait. It describes a petrol station canopy just after rain, with wet ground reflecting red, blue and white lights and a thin mist, and keeps your face unchanged.' },
+      { q: 'How to keep the pose natural and the proportions right?', a: 'The prompts include a body rule that keeps natural proportions and a normal neck length. Upload a photo with your face clear, and re-run the prompt if the pose looks stretched.' },
+    ],
+    related: ['supercars', 'boys', 'cinematic', 'genz', 'game-art'],
+  },
+  genz: {
+    title: 'Gen Z Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free Gen Z photo editing prompts for ChatGPT and Gemini: flash digicam, Y2K mirror selfie, coquette bow, streetwear, old money and dark academia.',
+    intro: 'Gen Z photo trends borrow from old cameras and online fashion tribes, and these Gen Z photo editing prompts for ChatGPT and Gemini turn them into one-tap looks. Try a flash digicam party snap, a Y2K chrome mirror selfie, a coquette bow soft portrait, a streetwear sneaker crouch shot, a photo dump film collage, a grunge bedroom poster wall, a matcha cafe outfit portrait, an old money quiet luxury portrait, a disposable camera college fest or a dark academia library portrait. Each prompt describes the camera, the flash and the colour of the style while keeping your real face. Tap Copy prompt, upload one clear photo and paste.',
+    faqs: [
+      { q: 'What is the best prompt for a flash digicam photo?', a: 'The Flash Digicam Party Snap prompt asks for harsh direct flash, slightly blown highlights, visible noise and a faint date-stamp grain, which recreates the early digital camera look.' },
+      { q: 'How to get the old money or dark academia look from my photo?', a: 'Pick the Old Money Quiet Luxury Portrait or the Dark Academia Library Portrait prompt, upload a clear photo to ChatGPT or Gemini, and paste. The outfit and room change, while your face stays the same.' },
+      { q: 'What is the best prompt for a Y2K mirror selfie?', a: 'Use the Y2K Chrome Mirror Selfie prompt. It describes a bedroom with chrome stickers, fairy lights and a disco ball in cool silver and pink tones, and keeps your face and proportions.' },
+      { q: 'How to make a photo dump style collage?', a: 'Use Photo Dump Film Collage for a mixed grid of candid looks, or look in the Collage category for strips, polaroid walls and scrapbook pages.' },
+    ],
+    related: ['collage', 'aesthetic', 'viral', 'girls', 'boys', 'cinematic'],
+  },
+  cinematic: {
+    title: 'Cinematic Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free cinematic photo editing prompts for ChatGPT and Gemini: rainy noir street, neon alley, golden hour desert, foggy forest and film noir. Copy and paste.',
+    intro: 'A cinematic photo looks like a frame from a film, and it comes from the lens, the light and the colour grade rather than from a filter. These cinematic photo editing prompts for ChatGPT and Gemini name all three. You will find a rainy night noir street, a neon alley night portrait, a golden hour desert wide shot, a rainy window portrait, a foggy forest film still, a railway platform for couples, a rooftop teal and orange skyline, a candlelit period portrait, a double exposure and a black and white film noir. None uses a real film, actor or studio. Choose the outfit and setting, tap Copy prompt, upload one clear photo and paste.',
+    faqs: [
+      { q: 'What is the best prompt for a cinematic photo?', a: 'The best cinematic prompt names one strong light, a lens, a colour grade such as teal and orange, and a mood. Rainy Night Noir Street and Neon Alley Night Portrait follow that pattern.' },
+      { q: 'How to make my photo look like a movie scene?', a: 'Upload one clear photo to ChatGPT or Gemini, paste a cinematic prompt and send. The prompt rebuilds the lighting, background and colour around you in a wide film frame, and keeps your face.' },
+      { q: 'What is the best prompt for a double exposure photo?', a: 'Use the Double Exposure Forest Portrait prompt. It fills a side-lit profile of your head with a misty forest, while your real face stays clearly visible. Upload one clear, evenly lit photo.' },
+      { q: 'How to get a black and white film noir portrait?', a: 'Use the Black and White Film Noir Portrait prompt, which asks for hard side light, deep shadows and fine grain. Upload an evenly lit, front-facing photo for the cleanest result.' },
+    ],
+    related: ['movies', 'aesthetic', 'couple', 'viral', 'girls', 'boys'],
+  },
+  birthday: {
+    title: 'Birthday Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free birthday photo editing prompts for ChatGPT and Gemini: candle glow cake, balloon arch, sparkler night, couple surprise and kids shoots. Copy and paste.',
+    intro: 'Make your own birthday photoshoot from one photo with these birthday photo editing prompts for ChatGPT and Gemini. You can choose a candle glow cake portrait, a pastel balloon arch, a saree birthday with flowers and diyas, a sparkler night portrait, a rooftop cake cutting, a confetti burst studio shot, a couple surprise cake, a family around the cake and two kids\' shoots, one with balloons and one with a safari theme. The prompts avoid letters and numbers on cakes and balloons, which AI often gets wrong. Pick the cake and outfit from the dropdowns, tap Copy prompt, upload one clear photo and paste.',
+    faqs: [
+      { q: 'What is the best prompt for a birthday photo?', a: 'A good birthday prompt names the light (candles, string lights or daylight), the cake, the outfit and the framing. The Candle Glow Birthday Portrait is a good first choice.' },
+      { q: 'How to make a birthday photoshoot for my child with AI?', a: 'Use the Little Girl Balloon or Little Boy Safari prompt, upload one clear front-facing photo of your child, and paste it. The prompt keeps the child\'s face, age and size unchanged.' },
+      { q: 'Why is there no Happy Birthday text in the prompts?', a: 'AI image tools often misspell words and draw wrong numbers. The prompts leave lettering out, so you can add a name or age afterwards in any photo editor.' },
+      { q: 'What is the best prompt for a couple birthday surprise photo?', a: 'Use Couple Surprise Birthday Cake and upload one photo with both faces visible. The prompt keeps both faces and adds the cake, candles and warm light.' },
+    ],
+    related: ['family', 'couple', 'collage', 'girls', 'boys', 'genz'],
+  },
+  fix: {
+    title: 'Fix Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free photo fix prompts for ChatGPT and Gemini: restore old photos, sharpen blurry ones, change backgrounds, passport photo and LinkedIn headshot.',
+    intro: 'Not every photo edit is a style. Sometimes you just need to fix a photo, and these photo editing prompts for ChatGPT and Gemini are for that. Restore an old damaged or wedding photo, sharpen a blurry picture, brighten a dark one, colourise a black and white print, change a background naturally, remove strangers or a date stamp, open closed eyes in a group photo, make a passport-style photo or a LinkedIn headshot from a selfie, or clean a product or document photo. These prompts tell the AI to repair the photo and leave the people unchanged. Upload the photo, tap Copy prompt and paste.',
+    faqs: [
+      { q: 'What is the best prompt to restore an old photo?', a: 'Use Restore an Old Damaged Photo. It removes scratches, stains and fold lines, corrects fading and lets you keep black and white or add colour from the dropdown.' },
+      { q: 'How to sharpen a blurry photo with ChatGPT or Gemini?', a: 'Paste the Sharpen a Blurry or Low-Quality Photo prompt with your photo. It asks the AI to recover detail in hair, eyes and fabric without changing the face or composition.' },
+      { q: 'What is the best prompt for a LinkedIn headshot?', a: 'LinkedIn Headshot From a Selfie asks for a chest-up shot, a professional outfit, soft studio light and natural skin. Choose the outfit and background from the dropdowns.' },
+      { q: 'How to change a photo background without a cut-out look?', a: 'Use Change the Background Naturally. It asks the AI to match the light and add shadows on the people, so they do not look pasted onto the new background.' },
+    ],
+    related: ['family', 'wedding', 'eighties', 'girls', 'boys'],
+  },
+  wedding: {
+    title: 'Wedding Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free wedding and pre-wedding photo editing prompts for ChatGPT and Gemini: haldi, mehndi, varmala, nikah, church aisle and fort twirl. Copy and paste.',
+    intro: 'Wedding photos carry a lot of detail, and these wedding photo editing prompts for ChatGPT and Gemini describe the details for you. They cover a haldi ceremony candid, a mehndi hands bridal portrait, a bride getting ready at the mirror, a groom portrait in a sherwani, a varmala garland exchange, a South Indian mandapam couple portrait, a nikah couple portrait, a church wedding aisle portrait, a pre-wedding twirl at a fort and a wedding stage family photo. Each prompt keeps the real faces and only changes the outfits, jewellery and place. Choose the options from the dropdowns, tap Copy prompt, upload one clear photo and paste.',
+    faqs: [
+      { q: 'What is the best prompt for a pre-wedding photoshoot?', a: 'Use Pre-Wedding Twirl at a Fort, or the palace steps prompt in the Couple category. Upload a photo with both faces visible and choose the outfits from the dropdowns.' },
+      { q: 'How to make a haldi or mehndi photo from a normal picture?', a: 'Copy the Haldi Ceremony Candid or Mehndi Hands Bridal Portrait prompt, upload one clear photo to ChatGPT or Gemini and paste. The ceremony details change, and your face stays yours.' },
+      { q: 'What is the best prompt for a nikah or church wedding photo?', a: 'Use Nikah Couple Portrait or Church Wedding Aisle Portrait. Both keep both faces as they are in your photo and change only the clothing and the setting.' },
+      { q: 'How to get a wedding stage family photo with everyone in it?', a: 'Use Wedding Stage Family Photo with one clear group photo. The prompt asks the AI to count everyone and keep every face, with nobody added or missing.' },
+    ],
+    related: ['couple', 'family', 'valentines', 'girls', 'boys', 'birthday'],
+  },
+  christmas: {
+    title: 'Christmas Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free Christmas photo editing prompts for ChatGPT and Gemini: fairy lights tree, candlelit mass, snowy market walk and couple star lantern. Copy and paste.',
+    intro: 'Christmas looks are all about warm lights and cosy details, and these Christmas photo editing prompts for ChatGPT and Gemini bring them to your own photo. Choose a Christmas tree with fairy lights, a midnight mass candlelight portrait, a couple under a star lantern, a family Christmas cake photo, a Santa hat cafe window portrait, a snowy Christmas market walk, a gift wrapping candid at home or a bike with string lights. Each prompt describes the lights, the outfit and the mood, and keeps your face unchanged. Pick the options from the dropdowns, tap Copy prompt, upload one clear photo and paste.',
+    faqs: [
+      { q: 'What is the best prompt for a Christmas photo?', a: 'The Christmas Tree Fairy Lights Portrait is the classic choice. It uses warm bokeh lights, a cosy outfit and a soft smile, and keeps your face as it is.' },
+      { q: 'How to make a family Christmas photo with AI?', a: 'Use Family Christmas Cake Photo, upload one clear family photo to ChatGPT or Gemini and paste. The prompt keeps every face and the number of people unchanged.' },
+      { q: 'What is the best prompt for a couple Christmas photo?', a: 'Use Couple Under a Christmas Star Lantern, with one photo showing both faces. The balcony, string lights and warm lantern glow are added, and both faces stay as they are.' },
+      { q: 'How to get a snowy Christmas look in India?', a: 'Use Snowy Christmas Market Walk. The prompt adds snow, winter clothes and market lights to your photo, so you do not need real snow.' },
+    ],
+    related: ['new-year', 'family', 'couple', 'birthday', 'pongal'],
+  },
+  'new-year': {
+    title: 'New Year Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free New Year 2027 photo editing prompts for ChatGPT and Gemini: rooftop fireworks, midnight countdown couple, sparklers and first sunrise. Copy and paste.',
+    intro: 'Start 2027 with a photo you made yourself. These New Year photo editing prompts for ChatGPT and Gemini cover a rooftop fireworks portrait, a Happy New Year 2027 balloon frame, a couple midnight countdown, friends with sparklers, the first sunrise of the year at the beach, a confetti party close-up, a New Year goals desk portrait and a New Year morning temple visit. Every prompt keeps your real face and changes the outfit, the light and the place. Where a year or a message appears, check the spelling in the result, since AI sometimes gets numbers wrong. Pick the options, tap Copy prompt, upload one clear photo and paste.',
+    faqs: [
+      { q: 'What is the best prompt for a New Year 2027 photo?', a: 'Use Rooftop Fireworks New Year Portrait for a night look or First Sunrise of the Year at the Beach for a calm one. Both keep your face and add the festive light.' },
+      { q: 'How to make a New Year photo with friends using AI?', a: 'Use Friends With Sparklers Group Photo, upload one clear group photo and paste the prompt. It keeps every face and the number of people the same.' },
+      { q: 'What is the best prompt for a couple midnight countdown photo?', a: 'Use Couple Midnight Countdown. It asks for fireworks light, warm faces and a close pose, and keeps both faces as they are in your photo.' },
+      { q: 'How to get the year 2027 to appear correctly in the photo?', a: 'AI tools often misspell numbers, so check the result. If the digits are wrong, re-run the prompt or add the year yourself afterwards in any photo editor.' },
+    ],
+    related: ['christmas', 'couple', 'family', 'genz', 'birthday'],
+  },
+  pongal: {
+    title: 'Pongal Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free Pongal and Sankranti photo editing prompts for ChatGPT and Gemini: pongal pot and kolam, mattu pongal, kite flying and Lohri bonfire. Copy and paste.',
+    intro: 'Pongal and Sankranti are full of colour, and these Pongal photo editing prompts for ChatGPT and Gemini help you capture it. Choose a pongal pot and kolam portrait, a kolam drawing at the doorstep, a family Pongal celebration, a sugarcane walk on a village road, Mattu Pongal with a decorated bull, a Sankranti kite flying on the terrace, a couple flying a kite together or a Lohri bonfire night portrait. Traditional clothes, kolam patterns and festival light are described in detail, and your face is kept as it is. Choose the outfit from the dropdowns, tap Copy prompt, upload one clear photo and paste.',
+    faqs: [
+      { q: 'What is the best prompt for a Pongal photo?', a: 'Use Pongal Pot and Kolam Portrait. It describes a boiling pot, kolam patterns and morning sun with a traditional outfit, and keeps your face unchanged.' },
+      { q: 'How to make a kite flying photo for Sankranti?', a: 'Use Sankranti Kite Flying on the Terrace, or Couple Flying a Kite Together. Upload one clear photo and paste the prompt into ChatGPT or Gemini.' },
+      { q: 'What is the best prompt for a family Pongal photo?', a: 'Use Family Pongal Celebration with one clear photo of the whole family. The prompt keeps every face and the number of people the same.' },
+      { q: 'How to get a Lohri bonfire photo from a normal picture?', a: 'Use Lohri Bonfire Night Portrait. It adds a warm fire glow, dark night sky and festive clothes, and keeps your face as it is.' },
+    ],
+    related: ['family', 'couple', 'republic-day', 'christmas', 'girls', 'boys'],
+  },
+  valentines: {
+    title: 'Valentine Photo Editing Prompts for ChatGPT & Gemini (Free)',
+    desc: 'Free Valentine\'s Day photo editing prompts for ChatGPT and Gemini: rose bouquet, candlelight dinner, proposal and heart balloons. Copy and paste, keep both faces.',
+    intro: 'Valentine\'s Day photos work best when they feel real, and these Valentine\'s Day photo editing prompts for ChatGPT and Gemini aim for that. Choose a rose bouquet surprise, a candlelight dinner, a proposal on one knee, heart balloons in the park, a dancing in the rain scene or a Valentine portrait for one. The couple prompts keep both faces, ages and your height difference, and the solo portrait keeps your own face. The lights are soft, the colours warm and the poses natural. Pick the options from the dropdowns, tap Copy prompt, upload one clear photo and paste. Many more romantic looks are in the Couple category.',
+    faqs: [
+      { q: 'What is the best prompt for a Valentine\'s Day couple photo?', a: 'Use Valentine Candlelight Dinner or Rose Bouquet Surprise. Both ask for warm light and natural poses, and keep both faces as they are in your photo.' },
+      { q: 'How to make a proposal photo with AI?', a: 'Use Proposal on One Knee. Upload one photo showing both of you clearly, paste the prompt into ChatGPT or Gemini, and choose the setting from the dropdown first.' },
+      { q: 'What is the best prompt for a Valentine photo if I am single?', a: 'Use Valentine Portrait for One, where you hold a single red rose against a soft pink and red backdrop of blurred lights, and keeps your own face.' },
+      { q: 'How to get more romantic couple looks?', a: 'Open the Couple category for twenty more prompts, including a golden hour walk, an umbrella in the rain and an anniversary candlelight dinner.' },
+    ],
+    related: ['couple', 'wedding', 'birthday', 'cinematic', 'aesthetic'],
+  },
+  'republic-day': {
+    title: 'Republic Day Photo Editing Prompts: ChatGPT & Gemini (Free)',
+    desc: 'Free Republic Day photo editing prompts for ChatGPT and Gemini: tricolour flag portrait, flag hoisting salute and family in saffron, white and green.',
+    intro: 'Make a respectful Republic Day photo for your status or profile picture with these Republic Day photo editing prompts for ChatGPT and Gemini. Choose a tricolour flag portrait, a flag hoisting salute, a family in saffron, white and green, or a morning at a national monument. The prompts describe clothes in the three colours, bright morning light and a proud, calm expression, and keep your face as it is. They also ask the AI to draw the flag correctly: saffron on top, white with a navy Ashoka Chakra in the middle, green below. Pick the options from the dropdowns, tap Copy prompt, upload one clear photo and paste. More festival looks are on the Festivals page.',
+    faqs: [
+      { q: 'What is the best prompt for a Republic Day photo?', a: 'Use Tricolour Flag Portrait. It asks for a correctly drawn flag, a blue morning sky and a proud stance, and keeps your face unchanged.' },
+      { q: 'How to make a family Republic Day photo with AI?', a: 'Use Family in Saffron, White and Green, upload one clear family photo to ChatGPT or Gemini, and paste. The prompt keeps every face and the number of people the same.' },
+      { q: 'What is the best prompt for a flag hoisting photo?', a: 'Use Flag Hoisting Salute. It describes a salute on a school ground, with falling marigold petals and morning sun.' },
+      { q: 'How to keep the flag looking correct?', a: 'AI tools can mix up the flag. The prompts spell out the order: saffron, white with a navy Ashoka Chakra, then green. If the flag still looks wrong, run the prompt again.' },
+    ],
+    related: ['pongal', 'family', 'new-year', 'boys', 'girls'],
+  },
+};

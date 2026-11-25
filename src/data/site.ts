@@ -3,12 +3,14 @@
 // A collection only appears on the site once it has at least one prompt.
 
 export const SITE = {
-  name: 'PhotoEditingPrompt',
+  name: 'PhotoEditingPrompt.com',
   domain: 'photoeditingprompt.com',
   url: 'https://photoeditingprompt.com',
   email: 'hello@photoeditingprompt.com',
   tagline: 'Copy-paste photo editing prompts for ChatGPT and Gemini',
 };
+
+import { SEO_COPY } from './seo-copy';
 
 export { T, LANGS, OTHER_LANGS, NAMES, PATTERN, type Lang } from './i18n';
 
@@ -30,6 +32,8 @@ export interface Collection {
   intro: string;
   introTa?: string;
   faqs?: { q: string; a: string }[];
+  /** ids of related categories, shown as links on the page */
+  related?: string[];
 }
 
 const FACE_FAQ = {
@@ -45,7 +49,7 @@ const FREE_FAQ = {
   a: 'Yes. Every prompt on this site is free to copy and use. You only need a ChatGPT or Gemini account, and both have free plans that can edit photos.',
 };
 
-export const COLLECTIONS: Collection[] = [
+const BASE_COLLECTIONS: Collection[] = [
   {
     id: 'viral', path: 'viral-photo-prompts', emoji: '🔥',
     tint: 'linear-gradient(135deg,#ffcfb8,#ffd1e0)',
@@ -381,6 +385,9 @@ export const COLLECTIONS: Collection[] = [
   { id: 'diwali', path: 'festivals', festival: true, hub: true, when: 'About October–November 2027', emoji: '🪔',
     tint: 'linear-gradient(135deg,#ffe6b8,#ffd3c2)', name: 'Diwali and Chhath', h1: 'Diwali and Chhath Photo Prompts', intro: 'Diyas, rangoli, sparklers and the Chhath ghat at sunrise.' },
 ];
+
+// Search copy (title, description, intro, FAQs, related links) for each category page lives in seo-copy.ts.
+export const COLLECTIONS: Collection[] = BASE_COLLECTIONS.map((c) => (SEO_COPY[c.id] ? { ...c, ...SEO_COPY[c.id] } : c));
 
 
 
