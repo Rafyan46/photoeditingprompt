@@ -5,6 +5,7 @@ import PromptCard from '../../components/PromptCard.astro';
 import Steps from '../../components/Steps.astro';
 import { ALL, inCollection, colUrl, metaDesc, label } from '../../lib/prompts';
 import { breadcrumbs, article } from '../../lib/schema';
+import { whatItDoes, metaFor } from '../../lib/prompt-copy';
 import { GUIDE } from '../../lib/guide';
 export function getStaticPaths() {
   return ALL.map((p) => ({ params: { slug: p.s }, props: { p } }));
@@ -14,12 +15,19 @@ const c = p.collection;
 const others = inCollection(c.id).filter((o) => o.s !== p.s);
 const hasImg = (o: typeof p) => Boolean(o.sample.chatgpt ?? o.sample.gemini);
 // Show prompts with a result image first, so the cards never look empty.
-const related = [...others.filter(hasImg), ...others.filter((o) => !hasImg(o))].slice(0, 3);
-const title = `${p.t} – AI Photo Prompt`;
-// Scene text of this prompt with its first options filled in: this is what makes each page's text and description unique.
+const sameColl = [...others.filter(hasImg), ...others.filter((o) => !hasImg(o))];
+// Small collections (the festival hubs have only two prompts) are topped up with the closest prompts elsewhere:
+// same kind of page (festival or not) and same audience first, so there are always 3 or 4 related prompts.
+const elsewhere = ALL.filter((o) => o.c !== p.c && o.collection.festival === c.festival)
+  .sort((x, y) => Number(y.a === p.a) - Number(x.a === p.a) || Number(hasImg(y)) - Number(hasImg(x)));
+const related = [...sameColl, ...elsewhere].slice(0, 4);
+// Two prompts share a name (in different collections), so add the collection to keep every title unique.
+const sameName = ALL.filter((o) => o.t === p.t).length > 1;
+const title = `${sameName ? `${p.t} (${c.name})` : p.t} Prompt – Free for ChatGPT & Gemini`;
+// Scene text of this prompt with its first options filled in: this is what makes each page's text unique.
 const scene = p.p.replace(/\{(\w+)\}/g, (_: string, k: string) => p.v?.[k]?.[0] ?? '').replace(/\s+/g, ' ').trim();
-const firstSentence = scene.split(/(?<=[.!?])\s/)[0];
-const desc = metaDesc(`${p.t}: ${firstSentence} Free for ChatGPT and Gemini.`, 150);
+const desc = metaFor(p, 155);
+const about = whatItDoes(p);
 const shareImage = p.sample.chatgpt ?? p.sample.gemini;
 const options = Object.keys(p.v ?? {});
 const g = GUIDE[p.lock];
@@ -44,6 +52,8 @@ const g = GUIDE[p.lock];
       </p>
     </header>
 
+    <p class="about-prompt" style="margin:0 0 20px;line-height:1.7">{about}</p>
+
     <PromptBlock p={p} linkTitle={false} />
 
     <div class="prose">
@@ -67,11 +77,11 @@ const g = GUIDE[p.lock];
 
     {related.length > 0 && (
       <section>
-        <h2 class="section-title">More {c.name.toLowerCase()} prompts</h2>
+        <h2 class="section-title">Related prompts</h2>
         <div class="grid">
           {related.map((r) => <PromptCard p={r} />)}
         </div>
-        <p style="margin-top:20px"><a class="link" href={colUrl(c)}>See all {c.h1.toLowerCase()} ›</a></p>
+        <p style="margin-top:20px"><a class="link" href={colUrl(c)}>All prompts in this category: {c.h1} ›</a></p>
       </section>
     )}
   </div>
