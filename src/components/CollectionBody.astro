@@ -25,15 +25,15 @@ const g = GUIDE[mainLock];
   </nav>
   <header style="padding:28px 0 8px">
     <p class="eyebrow">{list.length} {t.prompts} · ChatGPT · Gemini{lang === 'en' && <> · Updated {SITE_UPDATED}</>}</p>
-    <h1 class="page-title" style="font-size:clamp(32px,5vw,48px);margin-top:8px">{cH1(c, lang)}</h1>
-    <p class="lead" style="margin-left:0;max-width:none">{cIntro(c, lang)}</p>
+    <h1 class="page-title" style="font-size:clamp(26px,3.6vw,36px);margin-top:8px">{cH1(c, lang)}</h1>
+    <p class="lead" style="margin-left:0;max-width:none;font-size:clamp(15px,1.6vw,17px);line-height:1.6">{cIntro(c, lang)}</p>
     {t.promptsEnglish && <p class="muted" style="margin-top:14px;font-size:15px">{t.promptsEnglish}</p>}
   </header>
 
   {c.id === 'family' && lang === 'en' && (
-    <aside style="margin:12px 0 8px;padding:16px 20px;border-radius:14px;background:#fff6e0;border:1px solid #f0d9a0;color:#3a2f12">
-      <strong style="display:block;font-size:18px;margin-bottom:6px">👨‍👩‍👧‍👦 Upload one photo of your whole family, any size</strong>
-      <p style="margin:0;line-height:1.6">Two people or twenty, it does not matter. Put everyone in <b>one clear photo</b> where all faces can be seen, upload it to ChatGPT or Gemini, then paste the prompt. The prompt makes the AI count everyone in your photo and keep exactly the same people: nobody added, nobody missing. For a very big family, use a photo taken a little closer so every face is large.</p>
+    <aside style="margin:12px 0 8px;padding:12px 16px;font-size:14.5px;border-radius:14px;background:#fff6e0;border:1px solid #f0d9a0;color:#3a2f12">
+      <strong style="display:block;font-size:15.5px;margin-bottom:4px">👨‍👩‍👧‍👦 Upload one photo of your whole family, any size</strong>
+      <p style="margin:0;line-height:1.55;font-size:14px">Two people or twenty, it does not matter. Put everyone in <b>one clear photo</b> where all faces can be seen, upload it to ChatGPT or Gemini, then paste the prompt. The prompt makes the AI count everyone in your photo and keep exactly the same people: nobody added, nobody missing. For a very big family, use a photo taken a little closer so every face is large.</p>
     </aside>
   )}
 
