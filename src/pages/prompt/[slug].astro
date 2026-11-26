@@ -23,7 +23,9 @@ const elsewhere = ALL.filter((o) => o.c !== p.c && o.collection.festival === c.f
 const related = [...sameColl, ...elsewhere].slice(0, 4);
 // Two prompts share a name (in different collections), so add the collection to keep every title unique.
 const sameName = ALL.filter((o) => o.t === p.t).length > 1;
-const title = `${sameName ? `${p.t} (${c.name})` : p.t} Prompt – Free for ChatGPT & Gemini`;
+const base = sameName ? `${p.t} (${c.name})` : p.t;
+// Keep titles under about 62 characters so Google does not cut them off in search results.
+const title = [` Prompt – Free for ChatGPT & Gemini`, ` Prompt for ChatGPT & Gemini`, ` Prompt for ChatGPT`, ` Prompt (Free)`].map((x) => base + x).find((x) => x.length <= 62) ?? `${base} Prompt`;
 // Scene text of this prompt with its first options filled in: this is what makes each page's text unique.
 const scene = p.p.replace(/\{(\w+)\}/g, (_: string, k: string) => p.v?.[k]?.[0] ?? '').replace(/\s+/g, ' ').trim();
 const desc = metaFor(p, 155);
