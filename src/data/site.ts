@@ -2,6 +2,8 @@
 // To add a collection: add an entry to COLLECTIONS, then add prompts that use its `id`.
 // A collection only appears on the site once it has at least one prompt.
 
+export const SITE_UPDATED = '27 Nov 2026'; // change this when new prompts or copy go live
+
 export const SITE = {
   name: 'PhotoEditingPrompt.com',
   domain: 'photoeditingprompt.com',
@@ -398,6 +400,7 @@ export const HOME_FAQ = [
   { q: 'What are the best editing prompts for photos?', a: 'The best editing prompts say exactly what to change (outfit, place, light, camera angle) and what must stay the same (your face). Every photo editing prompt on this site is written that way, as a plain-text prompt you can paste into ChatGPT or Gemini, and you can copy AI prompts from any card.' },
   { q: 'What is a photo prompt, and where do I find new prompts?', a: 'A photo prompt is the text you give an AI image tool to edit or create a picture. New photo editing prompts are added to this site every few days. Open the Trending page to see the newest first, or search by style, such as couple, men, women, family or birthday.' },
   { q: 'Where can I copy ChatGPT photo editing prompts as text?', a: 'Every prompt on this site is plain text. Tap Copy prompt on any card, then paste it into ChatGPT or Gemini. You can edit the words before you send them.' },
+  { q: 'What is the trending prompt right now?', a: 'The newest trending prompts are listed first on the Trending page: couple edits, 80s looks, festival looks and viral Instagram styles. Each is a free copy-and-paste prompt for ChatGPT or Gemini, and new ones are added every few days.' },
   { q: 'Are these prompts free?', a: 'Yes. Every prompt on this site is free to copy and use. You only need a ChatGPT or Gemini account, and both have free plans that can edit photos.' },
   { q: 'Will the edited photo still look like me?', a: 'Every prompt starts with a face-lock instruction that tells the AI to keep your face, skin tone and features unchanged. If the face still drifts, upload a clearer, front-facing photo.' },
   { q: 'Do these prompts work in both ChatGPT and Gemini?', a: 'Yes. They are written in plain language that both ChatGPT and Google Gemini understand.' },

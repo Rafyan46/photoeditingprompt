@@ -1,5 +1,5 @@
 ---
-import { T, type Collection, type Lang } from '../data/site';
+import { T, SITE_UPDATED, type Collection, type Lang } from '../data/site';
 import { inCollection, PAGES, colUrl, homeUrl, cName, cH1, cIntro } from '../lib/prompts';
 import PromptBlock from './PromptBlock.astro';
 import Steps from './Steps.astro';
@@ -24,7 +24,7 @@ const g = GUIDE[mainLock];
     {cName(c, lang)}
   </nav>
   <header style="padding:28px 0 8px">
-    <p class="eyebrow">{list.length} {t.prompts} · ChatGPT · Gemini</p>
+    <p class="eyebrow">{list.length} {t.prompts} · ChatGPT · Gemini{lang === 'en' && <> · Updated {SITE_UPDATED}</>}</p>
     <h1 class="page-title" style="font-size:clamp(32px,5vw,48px);margin-top:8px">{cH1(c, lang)}</h1>
     <p class="lead" style="margin-left:0;max-width:none">{cIntro(c, lang)}</p>
     {t.promptsEnglish && <p class="muted" style="margin-top:14px;font-size:15px">{t.promptsEnglish}</p>}
