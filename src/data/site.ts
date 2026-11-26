@@ -8,7 +8,7 @@ export const SITE = {
   name: 'PhotoEditingPrompt.com',
   domain: 'photoeditingprompt.com',
   url: 'https://photoeditingprompt.com',
-  email: 'hello@photoeditingprompt.com',
+  email: 'contact@photoeditingprompt.com',
   tagline: 'Copy-paste photo editing prompts for ChatGPT and Gemini',
 };
 
