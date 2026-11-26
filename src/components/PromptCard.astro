@@ -3,14 +3,18 @@ import { T, type Lang } from '../data/site';
 import { cName, type Prompt } from '../lib/prompts';
 import cast from '../data/cast.json';
 import { thumbSize } from '../lib/thumb-size';
-interface Props { p: Prompt; lang?: Lang; extra?: boolean; eager?: boolean; chunk?: number }
-const { p, lang = 'en', extra = false, eager = false, chunk = 0 } = Astro.props;
+import { existsSync } from 'node:fs';
+interface Props { p: Prompt; lang?: Lang; extra?: boolean; eager?: boolean; chunk?: number; showBefore?: boolean }
+const { p, lang = 'en', extra = false, eager = false, chunk = 0, showBefore = false } = Astro.props;
 const t = T[lang];
 const full = p.sample.chatgpt ?? p.sample.gemini;
 // Cards load a small thumbnail (made by scripts/make-thumbs.ts); the prompt page keeps the full picture.
 const img = full ? full.replace(/\.webp$/, '-thumb.webp') : undefined;
 // The photo on the card decides who it is for: the sample was made with the man, woman, couple, family or car cast.
 const size = await thumbSize(img);
+// Small 'before' photo in the corner (the photo this result was made from), only where its thumbnail exists.
+const bt = showBefore && p.sample.before ? p.sample.before.replace(/\.webp$/, '-thumb.webp') : undefined;
+const beforeThumb = bt && existsSync(`public${bt}`) ? bt : undefined;
 const g = (cast as Record<string, string>)[p.s];
 const byCast: Record<string, string> = { man: 'boy', woman: 'girl', couple: 'couple', family: 'family', car: 'car' };
 const aud = (img && byCast[g] ? byCast[g] : p.a === 'any' ? 'girl boy' : p.a) + (p.lock === 'car' || p.c === 'supercars' ? ' car' : '');
@@ -24,6 +28,7 @@ const keywords = `${p.t} ${p.collection.name} ${p.a} ${p.p} ${BOOST[p.c] ?? ''}`
       {img ? <img src={img} alt={`${p.t} – example result`} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} decoding="async" width={size?.w ?? 600} height={size?.h ?? 800} /> : <span aria-hidden="true">{p.collection.emoji}</span>}
     </a>
     <span class="tag">{cName(p.collection, lang)}</span>
+    {beforeThumb && <span class="beforebox"><img src={beforeThumb} alt={`Original photo before the ${p.t} edit`} loading="lazy" decoding="async" width="120" height="150" /><i>Before</i></span>}
     <button class="btn copy-over" type="button" data-copy-btn >{t.copy}</button>
   </div>
   <div class="body">

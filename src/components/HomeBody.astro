@@ -3,6 +3,7 @@ import { T, type Lang } from '../data/site';
 import { ALL, PAGES, colUrl, inCollection, cName } from '../lib/prompts';
 import PromptCard from './PromptCard.astro';
 import Steps from './Steps.astro';
+import { thumbSize } from '../lib/thumb-size';
 interface Props { lang?: Lang }
 const { lang = 'en' } = Astro.props;
 const t = T[lang];
@@ -25,6 +26,8 @@ for (let more = true; more;) {
   }
 }
 const noImg = ALL.filter((p) => !p.sample.chatgpt);
+// Trending strip: the viral looks, newest first, as one swipeable row above the gallery.
+const trend = await Promise.all(withImg.filter((p) => p.c === 'viral').slice(0, 10).map(async (p) => ({ p, img: p.sample.chatgpt!.replace(/\.webp$/, '-thumb.webp'), size: await thumbSize(p.sample.chatgpt!.replace(/\.webp$/, '-thumb.webp')) })));
 const chunks: (typeof ALL)[] = [];
 for (let i = 0; i < mixed.length; i += CHUNK) chunks.push(mixed.slice(i, i + CHUNK));
 if (noImg.length) chunks.push(noImg); // no photo yet: kept in the page for search only
@@ -60,6 +63,20 @@ const colImg = (id: string) => th(FALLBACK[id] ?? (inCollection(id).find((p) => 
   </nav>
 </section>
 
+{lang === 'en' && trend.length > 0 && (
+  <section class="wrap trend-strip" aria-label="Trending prompts">
+    <div class="trend-head"><h2>🔥 Trending now</h2><a class="link" href="/trending/">See all trending ›</a></div>
+    <div class="trend-row">
+      {trend.map(({ p, img, size }) => (
+        <a class="trend-item" href={p.url}>
+          <img src={img} alt={`${p.t} – trending AI photo prompt result`} loading="lazy" decoding="async" width={size?.w ?? 400} height={size?.h ?? 500} />
+          <span>{p.t}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+)}
+
 <section class="wrap" id="gallery">
   <h2 class="sr-only" data-gallery-title>{t.newest}</h2>
   {t.promptsEnglish && <p class="muted" style="margin:0 0 14px;text-align:center">{t.promptsEnglish}</p>}
@@ -73,7 +90,7 @@ const colImg = (id: string) => th(FALLBACK[id] ?? (inCollection(id).find((p) => 
   {lang === 'en' && <p class="muted wall-count">{ALL.length} free prompts · new ones added every few days</p>}
   {chunks.map((ch, ci) => (
     <div class="grid wall">
-      {ch.map((p, i) => <PromptCard p={p} lang={lang} extra={ci > 0} chunk={ci} eager={ci === 0 && i < 4} />)}
+      {ch.map((p, i) => <PromptCard p={p} lang={lang} extra={ci > 0} chunk={ci} eager={ci === 0 && i < 4} showBefore />)}
     </div>
   ))}
   <p class="muted hidden" data-empty style="text-align:center;padding:40px 0">{t.noResults}</p>
