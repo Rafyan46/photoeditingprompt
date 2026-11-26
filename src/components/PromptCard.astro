@@ -29,6 +29,10 @@ const keywords = `${p.t} ${p.collection.name} ${p.a} ${p.p} ${BOOST[p.c] ?? ''}`
     </a>
     <span class="tag">{cName(p.collection, lang)}</span>
     {beforeThumb && <span class="beforebox"><img src={beforeThumb} alt={`Original photo before the ${p.t} edit`} loading="lazy" decoding="async" width="120" height="150" /><i>Before</i></span>}
+    <div class="open-over">
+      <a class="btn" href="https://chatgpt.com/" target="_blank" rel="noopener nofollow" data-open-card="chatgpt" aria-label={`Open ${p.t} in ChatGPT`}>ChatGPT ↗</a>
+      <a class="btn" href="https://gemini.google.com/app" target="_blank" rel="noopener nofollow" data-open-card="gemini" aria-label={`Open ${p.t} in Gemini`}>Gemini ↗</a>
+    </div>
     <button class="btn copy-over" type="button" data-copy-btn >{t.copy}</button>
   </div>
   <div class="body">

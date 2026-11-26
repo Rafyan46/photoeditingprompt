@@ -288,8 +288,11 @@ const org = {
       var textsPromise = null;
       function promptText(slug) {
         if (!textsPromise) textsPromise = fetch('/prompt-text.json').then(function (r) { return r.json(); });
-        return textsPromise.then(function (all) { return all[slug] || ''; });
+        return textsPromise.then(function (all) { textsCache = all; return all[slug] || ''; });
       }
+      var textsCache = null;
+      // Start loading the prompt texts as soon as someone points at or touches a card, so the buttons can act at once.
+      document.addEventListener('pointerover', function (e) { if (!textsPromise && e.target.closest && e.target.closest('.card')) promptText(''); }, { passive: true });
       document.querySelectorAll('[data-copy-btn]').forEach(function (btn) {
         btn.addEventListener('click', function () {
           var block = btn.closest('[data-template]');
@@ -321,6 +324,25 @@ const org = {
           if (which === 'chatgpt') a.href = 'https://chatgpt.com/?prompt=' + encodeURIComponent(text) + '&q=' + encodeURIComponent(text);
           copyText(text).catch(function () {});
           toast(which === 'chatgpt' ? 'Prompt copied. Upload your photo in ChatGPT.' : 'Prompt copied. Paste it in Gemini and upload your photo.');
+        });
+      });
+
+      // ---- Cards: Open in ChatGPT / Gemini (copies the prompt first) ----
+      document.querySelectorAll('[data-open-card]').forEach(function (a) {
+        a.addEventListener('click', function (ev) {
+          var which = a.dataset.openCard;
+          var card = a.closest('[data-slug]');
+          var slug = card && card.dataset.slug;
+          var msg = which === 'chatgpt' ? 'Prompt copied. Upload your photo in ChatGPT.' : 'Prompt copied. Paste it in Gemini and upload your photo.';
+          function link(t) { return which === 'chatgpt' ? 'https://chatgpt.com/?prompt=' + encodeURIComponent(t) + '&q=' + encodeURIComponent(t) : 'https://gemini.google.com/app'; }
+          var text = textsCache && textsCache[slug];
+          if (text) { a.href = link(text); copyText(text).catch(function () {}); toast(msg); return; }
+          ev.preventDefault();
+          promptText(slug).then(function (t) {
+            if (!t) return;
+            copyText(t).catch(function () {}); toast(msg);
+            window.open(link(t), '_blank', 'noopener');
+          });
         });
       });
 

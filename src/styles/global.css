@@ -470,3 +470,11 @@ details.custom:not([open]) > summary .lbl::after { content: ' ▾'; }
 .card .beforebox img { display: block; width: 100%; height: auto; }
 .card .beforebox i { position: absolute; left: 0; right: 0; bottom: 0; text-align: center; font-style: normal; font-size: 8px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,.65); padding: 1px 0; }
 @media (min-width: 620px) { .card .beforebox { width: 56px; } }
+
+/* Open in ChatGPT / Gemini: on hover, above the Copy bar (desktop only; phones use the prompt page) */
+.card .open-over { position: absolute; left: 10px; right: 10px; bottom: 58px; z-index: 3; display: none; gap: 6px; }
+.card .open-over .btn { flex: 1; padding: 7px 6px; border-radius: 10px; font-size: 12.5px; box-shadow: 0 4px 14px rgba(0,0,0,.35); text-align: center; }
+@media (hover: hover) and (min-width: 620px) {
+  .card .open-over { display: flex; opacity: 0; transform: translateY(6px); transition: opacity .2s ease, transform .2s ease; }
+  .card:hover .open-over, .card:focus-within .open-over { opacity: 1; transform: none; }
+}
