@@ -432,3 +432,22 @@ details.custom:not([open]) > summary .lbl::after { content: ' ▾'; }
 
 /* Collections dropdown: full list, same names as the footer */
 .dd-wide { grid-template-columns: 1fr; min-width: 340px; max-width: 92vw; max-height: 70vh; overflow-y: auto; white-space: normal; }
+
+/* ---------- Homepage gallery: Pinterest-style columns, photos keep their own height ---------- */
+.wall-count { text-align: center; margin: 0 0 14px; font-size: 13px; }
+.grid.wall { display: block; column-count: 2; column-gap: 8px; }
+@media (min-width: 620px) { .grid.wall { column-count: 3; column-gap: 12px; } }
+@media (min-width: 900px) { .grid.wall { column-count: 4; } }
+@media (min-width: 1100px) { .grid.wall { column-count: 5; } }
+.grid.wall .card { break-inside: avoid; margin-bottom: 8px; display: block; }
+@media (min-width: 620px) { .grid.wall .card { margin-bottom: 12px; } }
+.grid.wall .card .art { aspect-ratio: auto; display: block; }
+.grid.wall .card .art img { height: auto; display: block; }
+.grid.wall .card h3 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.grid.wall:not(:has(.card:not(.hidden))) { display: none; }
+/* touch screens: clean photo, a small round copy button instead of the wide bar */
+@media (hover: none), (max-width: 619px) {
+  .card .copy-over { left: auto; right: 6px; bottom: 6px; width: 34px; height: 34px; padding: 0; border-radius: 50%; font-size: 0; display: grid; place-items: center; opacity: 1; transform: none; }
+  .card .copy-over::before { font-size: 16px; line-height: 1; }
+  .card .copy-over.done::before { content: "✓"; }
+}

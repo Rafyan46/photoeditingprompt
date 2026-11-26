@@ -7,11 +7,28 @@ interface Props { lang?: Lang }
 const { lang = 'en' } = Astro.props;
 const t = T[lang];
 import { HOME_FAQ } from '../data/site';
-const FIRST = 20; // 4 columns x 5 rows; the rest appear when someone searches, or on /trending/
+const CHUNK = 40; // the first 40 photos show at once; 'Load more' adds 40 at a time, and search finds every prompt
 const withImg = ALL.filter((p) => p.sample.chatgpt);
 // The visible grid shows only prompts that have a real result image. Prompts without a photo yet are still in the page (hidden),
 // so the search box can find them (for example "GTA 6" or "movie").
-const ordered = [...withImg, ...ALL.filter((p) => !p.sample.chatgpt)];
+// Mix the collections so the first screen shows variety, with the ones people search for most (couple, viral, 80s) showing up most.
+const WEIGHT: Record<string, number> = { couple: 3, viral: 2, eighties: 2, girls: 2, boys: 2 };
+const groups = new Map<string, typeof withImg>();
+for (const p of withImg) groups.set(p.c, [...(groups.get(p.c) ?? []), p]);
+const order = [...groups.keys()].sort((a, b) => (WEIGHT[b] ?? 1) - (WEIGHT[a] ?? 1));
+const mixed: typeof withImg = [];
+for (let more = true; more;) {
+  more = false;
+  for (const id of order) {
+    const g = groups.get(id)!;
+    for (let k = 0; k < (WEIGHT[id] ?? 1) && g.length; k++) { mixed.push(g.shift()!); more = true; }
+  }
+}
+const noImg = ALL.filter((p) => !p.sample.chatgpt);
+const chunks: (typeof ALL)[] = [];
+for (let i = 0; i < mixed.length; i += CHUNK) chunks.push(mixed.slice(i, i + CHUNK));
+if (noImg.length) chunks.push(noImg); // no photo yet: kept in the page for search only
+
 // showcase: one before/after per collection, up to 8
 const seen = new Set<string>();
 const showcase = withImg.filter((p) => p.sample.before && !seen.has(p.c) && seen.add(p.c)).slice(0, 8);
@@ -53,11 +70,15 @@ const colImg = (id: string) => th(FALLBACK[id] ?? (inCollection(id).find((p) => 
       ))}
     </div>
   )}
-  <div class="grid wall">
-    {ordered.map((p, i) => <PromptCard p={p} lang={lang} extra={i >= FIRST || !p.sample.chatgpt} eager={i < 4} />)}
-  </div>
+  {lang === 'en' && <p class="muted wall-count">{ALL.length} free prompts · new ones added every few days</p>}
+  {chunks.map((ch, ci) => (
+    <div class="grid wall">
+      {ch.map((p, i) => <PromptCard p={p} lang={lang} extra={ci > 0} chunk={ci} eager={ci === 0 && i < 4} />)}
+    </div>
+  ))}
   <p class="muted hidden" data-empty style="text-align:center;padding:40px 0">{t.noResults}</p>
   <p style="text-align:center;margin-top:28px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+    {chunks.length > 2 && <button class="btn" type="button" data-loadmore>Load more prompts</button>}
     <a class="btn ghost" href="/trending/">{t.all} {ALL.length} {t.prompts} ›</a>
     <a class="btn ghost" href="/festivals/">{t.festivals} ›</a>
   </p>

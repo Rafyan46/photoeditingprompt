@@ -406,6 +406,15 @@ const org = {
             run();
           });
         });
+        var loadMore = document.querySelector('[data-loadmore]');
+        var nextChunk = 1;
+        function pending() { return Array.prototype.some.call(cards, function (c) { return c.dataset.img === '1' && +c.dataset.chunk >= nextChunk; }); }
+        if (loadMore) loadMore.addEventListener('click', function () {
+          cards.forEach(function (c) { if (c.dataset.img === '1' && +c.dataset.chunk === nextChunk) { c.dataset.extra = '0'; } });
+          nextChunk++;
+          run();
+          if (!pending()) loadMore.classList.add('hidden');
+        });
         function run() {
           var q = input.value.trim().toLowerCase();
           var shown = 0;
@@ -418,6 +427,7 @@ const org = {
             if (hit) shown++;
           });
           if (empty) empty.classList.toggle('hidden', shown > 0);
+          if (loadMore) loadMore.classList.toggle('hidden', !!q || aud !== 'all' || !pending());
           var title = document.querySelector('[data-gallery-title]');
           if (title) title.classList.toggle('hidden', !!q);
         }
