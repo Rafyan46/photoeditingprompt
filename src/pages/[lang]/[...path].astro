@@ -12,6 +12,6 @@ const lang = Astro.params.lang as Lang;
 // Hindi and Marathi share the same heading pattern, so give each its own "for" wording to keep page titles unique.
 const FOR: Partial<Record<Lang, string>> = { hi: 'ChatGPT, Gemini के लिए', mr: 'ChatGPT, Gemini साठी' };
 ---
-<Base lang={lang} title={`${cH1(c, lang)} | ${FOR[lang] ?? 'ChatGPT, Gemini'}`} desc={metaDesc(cIntro(c, lang))} i18n={`${c.path}/`} schema={[itemList(cH1(c, lang), inCollection(c.id))]}>
+<Base lang={lang} title={`${cH1(c, lang)} | ${FOR[lang] ?? 'ChatGPT, Gemini'}`} desc={metaDesc(cIntro(c, lang))} i18n={`${c.path}/`} noindex noAlternates schema={[itemList(cH1(c, lang), inCollection(c.id))]}>
   <CollectionBody c={c} lang={lang} />
 </Base>

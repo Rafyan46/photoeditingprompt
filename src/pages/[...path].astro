@@ -16,6 +16,7 @@ crumbs.push({ name: c.name, url: `/${c.path}/` });
   desc={metaDesc(c.desc ?? c.intro, 155)}
   image={inCollection(c.id).find((p) => p.sample.chatgpt)?.sample.chatgpt}
   i18n={`${c.path}/`}
+  noAlternates
   schema={[breadcrumbs(crumbs), itemList(c.h1, inCollection(c.id)), faqPage(c)]}
 >
   <CollectionBody c={c} lang="en" />
