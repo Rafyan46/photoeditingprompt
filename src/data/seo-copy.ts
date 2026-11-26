@@ -50,7 +50,7 @@ export const SEO_COPY: Record<string, SeoCopy> = {
     related: ['cinematic', 'game-art', 'eighties', 'boys', 'girls', 'viral'],
   },
   couple: {
-    title: 'Couple AI Prompts 2026: Copy & Paste for ChatGPT & Gemini',
+    title: 'Couple AI Photo Prompts 2026: ChatGPT & Gemini (Copy & Paste)',
     desc: 'Free couple AI prompts for ChatGPT and Gemini: romantic, pre-wedding, beach sunset and anniversary photo edits that keep both faces. Copy and paste.',
     intro: 'Looking for a couple AI prompt that keeps both faces looking like you? These romantic couple photo editing prompts for ChatGPT and Gemini cover a golden hour field walk, sharing an umbrella in the rain, a palace-steps pre-wedding shoot, a beach sunset, an anniversary candlelight dinner, a scooter ride through the old city and a black and white studio portrait. Each one starts with an identity lock for two people, which tells the AI not to blend, swap or beautify either face and to keep your height difference. Upload one photo where both of you are clear, choose the outfits from the dropdowns, tap Copy prompt and paste. Husband and wife, boyfriend and girlfriend, and friends all work.',
     faqs: [
