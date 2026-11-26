@@ -487,6 +487,6 @@ details.custom:not([open]) > summary .lbl::after { content: ' ▾'; }
   .card .open-over .btn { flex: none; width: 34px; height: 34px; padding: 0; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(0,0,0,.4); }
   .card .open-over .btn span { display: none; }
   .card .open-over .ico { display: block; }
-  .card .open-over .gpt { background: #10a37f; color: #fff; }
-  .card .open-over .gem { background: linear-gradient(135deg, #4285f4, #9b72f2 60%, #d96570); color: #fff; }
+  .card .open-over .gpt, .card .open-over .gem { background: #fff; }
+  .card .open-over .ico { width: 20px; height: 20px; }
 }
