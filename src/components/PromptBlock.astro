@@ -1,16 +1,20 @@
 ---
 import { T, SITE, type Lang } from '../data/site';
 import { label, shortOpt, type Prompt } from '../lib/prompts';
+import { thumbSize } from '../lib/thumb-size';
 interface Props { p: Prompt; lang?: Lang; n?: number; linkTitle?: boolean; heading?: 'h2' | 'h3' }
 const { p, lang = 'en', n, linkTitle = true, heading: H = 'h2' } = Astro.props;
 const t = T[lang];
 const after = p.sample.chatgpt ?? p.sample.gemini;
 const afterTool = p.sample.chatgpt ? 'ChatGPT' : 'Gemini';
 const vars = Object.entries(p.v ?? {});
-const wide = p.sample.before === '/samples/cast-family-before.webp'; // family photos are landscape 4:3
+// Landscape samples (family and group photos) are shown 4:3, so nobody is cropped out of the picture.
+const size = await thumbSize(after) ?? await thumbSize(p.sample.before);
+const wide = !!size && size.w > size.h;
 const [iw, ih] = wide ? [1280, 960] : [1000, 1250];
 // On list pages (collections, festivals) use the small thumbnail and lazy-load; the single prompt page keeps the full-size picture.
-const pic = (u: string) => (linkTitle ? u.replace(/\.webp$/, '-thumb.webp') : u);
+// The compare slider is shown large, so it uses the full-size picture (the 10 KB thumbnails looked blurry when stretched to about 700 px).
+const pic = (u: string) => u;
 const lz = linkTitle ? 'lazy' : undefined;
 const pinUrl = after ? `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(new URL(p.url, SITE.url).href)}&media=${encodeURIComponent(new URL(after, SITE.url).href)}&description=${encodeURIComponent(p.t + ' – free ChatGPT & Gemini photo editing prompt')}` : '';
 ---
