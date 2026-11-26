@@ -478,3 +478,15 @@ details.custom:not([open]) > summary .lbl::after { content: ' ▾'; }
   .card .open-over { display: flex; opacity: 0; transform: translateY(6px); transition: opacity .2s ease, transform .2s ease; }
   .card:hover .open-over, .card:focus-within .open-over { opacity: 1; transform: none; }
 }
+
+/* Phones and touch screens: no Copy button. Two small round ChatGPT / Gemini buttons (each also copies the prompt). */
+.card .open-over .ico { display: none; }
+@media (hover: none), (max-width: 619px) {
+  .card .copy-over { display: none; }
+  .card .open-over { display: flex; opacity: 1; transform: none; left: auto; right: 6px; bottom: 6px; gap: 6px; }
+  .card .open-over .btn { flex: none; width: 34px; height: 34px; padding: 0; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 2px 8px rgba(0,0,0,.4); }
+  .card .open-over .btn span { display: none; }
+  .card .open-over .ico { display: block; }
+  .card .open-over .gpt { background: #10a37f; color: #fff; }
+  .card .open-over .gem { background: linear-gradient(135deg, #4285f4, #9b72f2 60%, #d96570); color: #fff; }
+}
