@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f81f7"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><rect width="64" height="64" rx="15" fill="url(#g)"/><rect x="12" y="16" width="40" height="32" rx="6" fill="none" stroke="#fff" stroke-width="4"/><circle cx="24" cy="27" r="4" fill="#fff"/><path d="M15 44l10-10 8 8 6-6 9 8z" fill="#fff"/><path d="M50 8l2.2 5.8L58 16l-5.8 2.2L50 24l-2.2-5.8L42 16l5.8-2.2z" fill="#fff" stroke="url(#g)" stroke-width="1.5"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="30" fill="#3B82F6"/>
+  <path d="M85 95 L102 67 L120 95 Z" fill="#BFDBFE" stroke="#BFDBFE" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M56 95 L85 54 L115 95 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="6" stroke-linejoin="round"/>
+  <polyline points="18,33 51,64 18,95" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M105 12 Q105 28 121 28 Q105 28 105 44 Q105 28 89 28 Q105 28 105 12 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round"/>
+</svg>
