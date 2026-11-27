@@ -44,7 +44,7 @@ const ICONS = ['game-art', 'movies', 'viral', 'girls', 'boys', 'couple', 'family
   .map((id) => PAGES.find((c) => c.id === id)).filter((c): c is NonNullable<typeof c> => !!c);
 const NEWTAG = new Set(['game-art', 'movies']);
 const th = (u?: string) => u?.replace(/\.webp$/, '-thumb.webp'); // small card-size copy made by scripts/make-thumbs.ts
-const colImg = (id: string) => th(FALLBACK[id] ?? (inCollection(id).find((p) => p.sample.chatgpt && !/collage|panel|bike|pump|motorbike|scooter|car|highway|poster/.test(p.s)) ?? inCollection(id).find((p) => p.sample.chatgpt))?.sample.chatgpt);
+const colImg = (id: string) => th(FALLBACK[id] ?? (inCollection(id).filter((p) => !NOT_ON_HOME.test(p.s)).find((p) => p.sample.chatgpt && !/collage|panel|bike|pump|motorbike|scooter|car|highway|poster/.test(p.s)) ?? inCollection(id).filter((p) => !NOT_ON_HOME.test(p.s)).find((p) => p.sample.chatgpt))?.sample.chatgpt);
 ---
 <section class="hero wrap">
   <h1 set:html={t.heroTitle.replace(/(ChatGPT|Gemini)/g, '<span class="hl">$1</span>')} />
