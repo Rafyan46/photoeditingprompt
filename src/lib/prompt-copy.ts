@@ -13,6 +13,8 @@ function secondPerson(s: string, group: boolean) {
   t = t.replace(/\b[Ww]e are\b/g, 'you both are').replace(/\b[Ww]e\b/g, 'you both');
   t = t.replace(/\bmyself\b/gi, 'yourself').replace(/\bme\b/gi, 'you').replace(/\bmy\b/gi, 'your');
   t = t.replace(/\bour\b/gi, 'your').replace(/\bourselves\b/gi, 'yourselves');
+  // "one of us", "the two of us": "of you", never "of you both"
+  t = t.replace(/\b(one|each|either|neither|both|all|two|three|four|five) of us\b/gi, '$1 of you');
   t = t.replace(/\bus\b/gi, group ? 'you both' : 'you');
   return t;
 }
@@ -63,11 +65,11 @@ const LOCK_LINE: Record<Prompt['lock'], string> = {
 };
 
 const PHOTO_LINE: Record<Prompt['lock'], string> = {
-  single: 'Upload one clear, front-facing photo of yourself.',
-  couple: 'Upload one clear photo with both of you facing the camera.',
+  single: 'Upload one clear, front-facing photo of yourself, ideally taken by someone else at eye level rather than a close selfie.',
+  couple: 'Upload one clear photo with both of you facing the camera, ideally taken by someone else at eye level rather than a close selfie.',
   family: 'Upload one clear photo with every face visible.',
-  era: 'Upload one clear, front-facing photo of yourself.',
-  eraCouple: 'Upload one clear photo with both of you facing the camera.',
+  era: 'Upload one clear, front-facing photo of yourself, ideally taken by someone else at eye level rather than a close selfie.',
+  eraCouple: 'Upload one clear photo with both of you facing the camera, ideally taken by someone else at eye level rather than a close selfie.',
   fix: 'Upload the photo you want repaired or changed.',
   car: 'Upload a clear photo of your car.',
 };

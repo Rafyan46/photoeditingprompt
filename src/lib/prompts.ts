@@ -11,25 +11,42 @@ import { COLLECTIONS, NAMES, PATTERN, type Collection, type Lang } from '../data
 type Lock = RawPrompt['lock'];
 type Blocks = { identity: string; sceneLabel: string; camera: string; finish: string; avoid: string };
 
+// Family prompts still use this camera block; single and couple prompts use the face rules below.
 const PERSON_CAMERA =
   'Follow the framing described in the scene. Full-frame camera look with natural perspective and no wide-angle distortion of the face. POSE RULE, which overrides any head or gaze instruction in the scene: keep my head straight and level exactly as in my photo, with the chin in a neutral position (not raised, not tucked), no head tilt, and no head turn of more than about 10 degrees, so my real face shape stays accurate. BODY RULE: natural human proportions, with a normal neck length and width; never stretch or elongate the neck, shoulders or face. Unless the scene needs otherwise, I look straight into the camera lens. The face must be large enough in the frame to be clearly recognisable, even in a full-body shot. Eyes in sharp focus, realistic depth of field, background detail falling off naturally. Light on the subject must come from the same direction, colour and softness as the light in the scene, with matching shadows and reflections.';
+
+// Image models copy a face best when it is big, facing the camera and at the same angle as the
+// uploaded photo. A turned head or a tiny face in a wide shot makes the model invent the face.
+// These rules come first, so a scene's framing or gaze can never shrink or turn the faces away.
+const FACE_RULE_SINGLE =
+  'FACE RULE, which comes before any head or framing instruction in the scene: my face is turned toward the camera, straight on or turned no more than about 15 degrees, never a side profile unless the scene itself asks for a profile. My head is level with a neutral chin (not raised, not tucked) and at most a slight natural tilt, so my real face shape stays accurate. My eyes may follow the gaze the scene describes; otherwise I look into the camera lens. My face must be large and clearly recognisable, at least about one-tenth of the image height even in a full-body shot, unless the scene itself says I am small in the frame; then my face must still be sharp, well lit and toward the camera.';
+const FACE_RULE_COUPLE =
+  'FACE RULE, which comes before any head, gaze or framing instruction in the scene: both faces are turned toward the camera, straight on or turned no more than about 15 degrees, never side profiles unless the scene itself asks for a profile. Heads level with neutral chins (not raised, not tucked) and at most a slight natural tilt, so each real face shape stays accurate. We both look into the camera lens unless the scene gives a different gaze. Closeness between us comes from our bodies leaning in and touching, not from turning our faces away from the camera. Both faces must be large and clearly recognisable, each at least about one-tenth of the image height even in a full-body shot; if a wide view would make the faces smaller, frame closer.';
+const BODY_RULE =
+  'BODY RULE: natural human proportions, with a normal neck length and width; never stretch or elongate the neck, shoulders or face.';
+const SINGLE_CAMERA =
+  `Follow the framing described in the scene. Full-frame camera look with natural perspective and no wide-angle distortion of the face. ${FACE_RULE_SINGLE} ${BODY_RULE} Eyes in sharp focus, realistic depth of field, background detail falling off naturally. Light on me must come from the same direction, colour and softness as the light in the scene, with matching shadows and reflections.`;
+const COUPLE_CAMERA =
+  `Follow the framing described in the scene. Full-frame camera look with natural perspective and no wide-angle distortion of either face. ${FACE_RULE_COUPLE} ${BODY_RULE} Eyes in sharp focus, realistic depth of field, background detail falling off naturally. Light on both of us must come from the same direction, colour and softness as the light in the scene, with matching shadows and reflections. Both faces equally sharp and equally well lit.`;
 const PERSON_FINISH =
   'Photorealistic photograph, not an illustration or 3D render (if the scene asks for a toy, figurine or drawn stickers, photograph those realistically). Real skin texture with visible pores, natural under-eye detail and fine hair strands. Fabric shows real weave, folds and weight. Correct hands with five fingers, natural body proportions, consistent white balance between subject and background. High resolution and clean detail, unless the scene asks for grain, flash or a film look. No over-sharpening.';
 const PERSON_AVOID =
   'a changed or generic face, smoothed or plastic skin, lightened skin tone, altered age or body shape, a stretched or elongated neck, extra or missing fingers, warped hands, duplicated people, floating objects, a cut-out look around the hair, text, logos, borders or watermarks unless the scene asks for them.';
+const FACE_AVOID =
+  'a changed or generic face, a slimmed, narrowed or lengthened face, a thinner or reshaped beard, smoothed or plastic skin, lightened skin tone, altered age or body shape, faces too small to recognise, side profiles the scene did not ask for, a stretched or elongated neck, extra or missing fingers, warped hands, duplicated people, floating objects, a cut-out look around the hair, text, logos, borders or watermarks unless the scene asks for them.';
 
 const BLOCKS: Record<Lock, Blocks> = {
   single: {
     identity:
-      'Use my uploaded photo as the only identity reference. Keep my exact face: face shape, eyes, eyebrows, nose, lips, jawline, skin tone, facial hair, moles and marks, and my real age. Keep my exact hair texture, length, parting and hairline, and my body proportions, as they are. Do not beautify, slim, lighten, smooth or age my face, and do not replace it with a similar-looking person. If I wear glasses in the photo, keep them.',
-    sceneLabel: 'SCENE, POSE AND STYLING', camera: PERSON_CAMERA, finish: PERSON_FINISH,
-    avoid: PERSON_AVOID + ' No extra people.',
+      'Use my uploaded photo as the only identity reference. Keep my exact face: face shape and width, cheek fullness, jawline, chin, eyes, eyebrows, nose, lips, skin tone, facial hair density and outline, moles and marks, a nose pin if I wear one, and my real age. Keep my exact hair texture, length, parting and hairline, and my body build, as they are. Do not slim, narrow, lengthen, beautify, lighten, smooth or age my face, and do not replace it with a similar-looking person. Keep my skin tone exactly as in the photo, not lighter and not shifted orange or grey by the light in the scene. If I wear glasses in the photo, keep them.',
+    sceneLabel: 'SCENE, POSE AND STYLING', camera: SINGLE_CAMERA, finish: PERSON_FINISH,
+    avoid: FACE_AVOID + ' No extra people.',
   },
   couple: {
     identity:
-      'Use the uploaded photo of the two of us as the only identity reference. Keep both exact faces: face shape, eyes, nose, lips, jawline, skin tone, facial hair and real age for each person. Keep both hairstyles, our height difference and our body proportions. Do not blend, swap, beautify or lighten our faces, and keep each person on the same side as in the photo unless the scene says otherwise.',
-    sceneLabel: 'SCENE, POSE AND STYLING', camera: PERSON_CAMERA + ' Both faces equally sharp and equally well lit.', finish: PERSON_FINISH,
-    avoid: PERSON_AVOID + ' No face blending between the two of us, no extra people.',
+      'Use the uploaded photo of the two of us as the only identity reference. Keep both faces exactly, each person separately: face shape and width, cheek fullness, jawline, chin, eyes, eyebrows, nose, lips, skin tone, facial hair density and outline, moles and marks, a nose pin if worn, and real age. Keep both hairstyles, our height difference and our body builds. Do not slim, narrow, lengthen, beautify, lighten, blend or swap our faces, and do not replace either of us with a similar-looking person. Keep each skin tone exactly as in the photo, not lighter and not shifted orange or grey by the light in the scene. Keep each person on the same side as in the photo unless the scene says otherwise.',
+    sceneLabel: 'SCENE, POSE AND STYLING', camera: COUPLE_CAMERA, finish: PERSON_FINISH,
+    avoid: FACE_AVOID + ' No face blending between the two of us, no extra people.',
   },
   family: {
     identity:
@@ -39,19 +56,19 @@ const BLOCKS: Record<Lock, Blocks> = {
   },
   era: {
     identity:
-      'Use my uploaded photo as the only identity reference. Keep my exact face: face shape, eyes, nose, lips, jawline, skin tone, moles and marks, and my real age. Only my hairstyle, clothing and accessories may change to suit the era. Do not beautify, lighten or replace my face with a period-looking stranger.',
+      'Use my uploaded photo as the only identity reference. Keep my exact face: face shape and width, cheek fullness, jawline, chin, eyes, nose, lips, skin tone, facial hair density, moles and marks, and my real age. Only my hairstyle, clothing and accessories may change to suit the era. Do not slim, narrow, beautify, lighten or replace my face with a period-looking stranger.',
     sceneLabel: 'ERA, SCENE AND STYLING',
-    camera: 'Follow the framing described in the scene. It must look as if it was taken with a camera and film stock of that time: period-correct lens softness, mild vignetting and natural film grain, with the light source typical of that era. Light on me must match the scene. POSE RULE, which overrides any head or gaze instruction in the scene: keep my head straight and level exactly as in the photo, with the chin neutral (not raised, not tucked), no head tilt, and no head turn of more than about 10 degrees, so my real face shape stays accurate. Unless the scene needs otherwise, I look straight into the camera lens. My face must be large enough to be clearly recognisable.',
+    camera: `Follow the framing described in the scene. It must look as if it was taken with a camera and film stock of that time: period-correct lens softness, mild vignetting and natural film grain, with the light source typical of that era. Light on me must match the scene. ${FACE_RULE_SINGLE}`,
     finish: 'It must pass as a real photograph or print from that time, scanned today: period-correct colour or black-and-white tones, grain, slight fading and paper texture where the scene asks for it. Real skin texture under the grain. Every object, vehicle, sign and fabric in the frame must belong to that era.',
-    avoid: 'modern objects, phones, modern cars, modern logos or fabrics, a clean digital look, HDR, smoothed or plastic skin, lightened skin tone, a changed face, extra or missing fingers, extra people, text or watermarks unless the scene asks for them.',
+    avoid: 'modern objects, phones, modern cars, modern logos or fabrics, a clean digital look, HDR, smoothed or plastic skin, lightened skin tone, a changed, slimmed or narrowed face, extra or missing fingers, extra people, text or watermarks unless the scene asks for them.',
   },
   eraCouple: {
     identity:
-      'Use the uploaded photo of the two of us as the only identity reference. Keep both exact faces: face shape, eyes, nose, lips, jawline, skin tone and real age for each person, and our height difference. Only our hairstyles, clothing and accessories may change to suit the era. Do not blend, swap, beautify or lighten our faces.',
+      'Use the uploaded photo of the two of us as the only identity reference. Keep both faces exactly, each person separately: face shape and width, cheek fullness, jawline, chin, eyes, nose, lips, skin tone, facial hair density and real age, and our height difference. Only our hairstyles, clothing and accessories may change to suit the era. Do not slim, narrow, blend, swap, beautify or lighten our faces.',
     sceneLabel: 'ERA, SCENE AND STYLING',
-    camera: 'Follow the framing described in the scene. It must look as if it was taken with a camera and film stock of that time: period-correct lens softness, mild vignetting and natural film grain. Both faces equally sharp, with light that matches the scene. POSE RULE, which overrides any head or gaze instruction in the scene: keep both heads straight and level exactly as in the photo, with the chin neutral (not raised, not tucked), no head tilt, and no head turn of more than about 10 degrees, so each real face shape stays accurate. Unless the scene needs otherwise, everyone looks straight into the camera lens. Each face must be large enough to be clearly recognisable.',
+    camera: `Follow the framing described in the scene. It must look as if it was taken with a camera and film stock of that time: period-correct lens softness, mild vignetting and natural film grain. Both faces equally sharp, with light that matches the scene. ${FACE_RULE_COUPLE}`,
     finish: 'It must pass as a real photograph or print from that time, scanned today: period-correct tones, grain, slight fading and paper texture where the scene asks for it. Real skin texture under the grain. Every object, vehicle, sign and fabric in the frame must belong to that era.',
-    avoid: 'modern objects, phones, modern cars, modern logos or fabrics, a clean digital look, HDR, smoothed skin, lightened skin tone, blended or swapped faces, extra or missing fingers, extra people, text or watermarks unless the scene asks for them.',
+    avoid: 'modern objects, phones, modern cars, modern logos or fabrics, a clean digital look, HDR, smoothed skin, lightened skin tone, slimmed, narrowed, blended or swapped faces, extra or missing fingers, extra people, text or watermarks unless the scene asks for them.',
   },
   fix: {
     identity:
@@ -74,12 +91,18 @@ const BLOCKS: Record<Lock, Blocks> = {
 // Handles any kind of input photo, and keeps the result faithful to the scene as written.
 const INPUT_PERSON =
   'Works with any photo. My photo may be a close-up, a selfie, a half-body or full-body shot, a side angle, a cropped group photo, in low light, a little blurry or low resolution, or have sunglasses, a mask, a hand or hair covering part of the face. Whatever it is, still create the complete scene described below. If the photo shows only the face or upper body, extend the body, clothes, pose and background naturally to match the scene and my real build. Never copy the photo\u2019s own background, clothes, filter or lighting unless the scene says so; re-light my face to match the new scene while keeping it the same face. If my face is turned or partly covered, use only the features that are visible, keep the same side of the face, and do not invent a different person. If the photo is low resolution, rebuild clean detail without changing who I am. Follow the scene exactly as written: every outfit, prop, pose, setting and framing it names must appear, and nothing it does not name should be added. Produce one single finished image.';
+// Most visitors upload phone selfies: close, often from below, with a wide lens that stretches
+// the nose and chin. These versions undo that before the face is copied.
+const INPUT_SINGLE =
+  'Works with any photo. My photo may be a selfie, a close-up, a half-body or full-body shot, a side angle, a cropped group photo, in low light, a little blurry or low resolution, or have sunglasses, a mask, a hand or hair covering part of the face. Whatever it is, still create the complete scene described below. If the photo is a selfie or was taken from a low or high angle, rebuild my face as it would look at eye level from about two metres away, with the same proportions and none of the selfie lens stretch on the nose, chin or jaw. If the photo shows only the face or upper body, extend the body, clothes and pose naturally to match the scene and my real build. Never copy the photo’s own background, clothes, filter or lighting unless the scene says so; re-light my face to match the new scene while keeping it the same face. If my face is turned or partly covered, use only the features that are visible, keep the same side of the face, and do not invent a different person. If the photo is low resolution, rebuild clean detail without changing who I am. Follow the scene as written: every outfit, prop, pose and setting it names must appear, and nothing it does not name should be added. Produce one single finished image.';
+const INPUT_COUPLE =
+  'Works with any photo of the two of us. It may be a selfie, a close-up, a half-body or full-body shot, a side angle, cropped from a group photo, in low light, a little blurry or low resolution, or have sunglasses, a mask, a hand or hair covering part of a face. Whatever it is, still create the complete scene described below. If the photo is a selfie or was taken from a low or high angle, rebuild both faces as they would look at eye level from about two metres away, with the same proportions and none of the selfie lens stretch on the nose, chin or jaw. If the photo shows only our faces or upper bodies, extend our bodies, clothes and pose naturally to match the scene and our real builds. Never copy the photo’s own background, clothes, filter or lighting unless the scene says so; re-light both faces to match the new scene while keeping them the same faces. If a face is turned or partly covered, use only the features that are visible and do not invent a different person. If the photo is low resolution, rebuild clean detail without changing who we are. Follow the scene as written: every outfit, prop, pose and setting it names must appear, and nothing it does not name should be added. Produce one single finished image.';
 const INPUT_FIX =
   'Works with any photo: portrait or landscape, colour or black and white, old, torn, faded, blurry, dark or low resolution. Judge what is wrong from the photo itself and apply only the edit named below, and nothing more. Produce one single finished image.';
 const INPUT_CAR =
   'Works with any car photo: front, side, rear or three-quarter angle, day or night, parked or on the road, even if the car is partly cropped or dirty. Keep the angle and background as they are, and apply only the modification named below. Produce one single finished image.';
 const INPUT: Record<Lock, string> = {
-  single: INPUT_PERSON, couple: INPUT_PERSON, family: INPUT_PERSON, era: INPUT_PERSON, eraCouple: INPUT_PERSON,
+  single: INPUT_SINGLE, couple: INPUT_COUPLE, family: INPUT_PERSON, era: INPUT_SINGLE, eraCouple: INPUT_COUPLE,
   fix: INPUT_FIX, car: INPUT_CAR,
 };
 
