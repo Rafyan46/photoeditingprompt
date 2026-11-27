@@ -50,7 +50,7 @@ export const SEO_COPY: Record<string, SeoCopy> = {
     related: ['cinematic', 'game-art', 'eighties', 'boys', 'girls', 'viral'],
   },
   couple: {
-    title: 'Couple AI Photo Prompts 2026: ChatGPT & Gemini (Copy & Paste)',
+    title: 'Couple AI Photo Prompts 2027: ChatGPT & Gemini (Copy & Paste)',
     desc: 'Free couple AI prompts for ChatGPT and Gemini: romantic, pre-wedding, beach sunset and anniversary photo edits that keep both faces. Copy and paste.',
     intro: 'Looking for a couple AI prompt that keeps both faces looking like you? These romantic couple photo editing prompts for ChatGPT and Gemini cover a golden hour field walk, sharing an umbrella in the rain, a palace-steps pre-wedding shoot, a beach sunset, an anniversary candlelight dinner, a scooter ride through the old city and a black and white studio portrait. Each one starts with an identity lock for two people, which tells the AI not to blend, swap or beautify either face and to keep your height difference. Upload one photo where both of you are clear, choose the outfits from the dropdowns, tap Copy prompt and paste. Husband and wife, boyfriend and girlfriend, and friends all work.',
     faqs: [
@@ -71,7 +71,7 @@ export const SEO_COPY: Record<string, SeoCopy> = {
     related: ['wedding', 'valentines', 'cinematic', 'birthday', 'family', 'aesthetic'],
   },
   eighties: {
-    title: '1980s Photo Prompts 2026: ChatGPT & Gemini Copy & Paste',
+    title: '1980s Photo Prompts 2027: ChatGPT & Gemini Copy & Paste',
     desc: 'Free 1980s photo editing prompts for ChatGPT and Gemini: studio backdrop, college campus, hill station snapshot, wedding flash photo. Copy, paste, keep your face.',
     intro: 'Wondering what you would look like in the 80s? The 80s trend turns a modern selfie into a photo that looks like it came out of a family album from the 1980s. These retro 1980s photo editing prompts for ChatGPT and Gemini, a vintage 80s look prompt for men, women and couples, cover a painted-backdrop studio portrait, an Indian cinema lead look, a college campus candid, a hill station holiday, a wedding reception flash photo, a gully cricket snapshot and a Diwali evening at home. Only the hairstyle, clothes and surroundings change to suit the decade; the face stays yours. The prompts ask for period film grain, a slight fade and the lens softness of old cameras. Pick the outfit from the dropdowns, tap Copy prompt, upload one clear photo and paste.',
     faqs: [
