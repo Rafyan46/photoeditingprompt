@@ -2,14 +2,21 @@
 import Base from '../../layouts/Base.astro';
 import PromptBlock from '../../components/PromptBlock.astro';
 import { PAGES, HUB, colUrl, inCollection } from '../../lib/prompts';
-import { breadcrumbs, itemList } from '../../lib/schema';
+import { breadcrumbs, itemList, faqPage } from '../../lib/schema';
+const faqs = [
+  { q: 'Is there a Raksha Bandhan prompt for brother and sister photos?', a: 'Yes. The Raksha Bandhan section below has rakhi-tying and laughing-siblings prompts for ChatGPT and Gemini. Upload one photo of both of you, and keep the line that locks both faces. Also searched as a rakshabandhan prompt or a Rakhi photo editing prompt.' },
+  { q: 'Where is the Ganesh Chaturthi prompt?', a: 'See the Ganesh Chaturthi section below: a home Ganpati welcome and a visarjan procession. Each is a free copy-and-paste Ganesh Chaturthi prompt for ChatGPT and Gemini that keeps your own face.' },
+  { q: 'Is there an Independence Day or 15 August photo edit prompt?', a: 'Yes. The Independence Day section has tricolour portraits for 15 August, and the Republic Day page has the flag portrait and flag hoisting salute. They draw the flag respectfully and keep your face.' },
+  { q: 'Which prompts make Diwali AI images?', a: 'The Diwali and Chhath section below has a diya and rangoli portrait and the Chhath river ghat at sunrise. Paste one with your photo into ChatGPT or Gemini to make Diwali AI images of yourself.' },
+  { q: 'When are new festival prompts added?', a: 'Three to four weeks before each festival, so you can copy them in time. The nearest festivals have their own page, and the rest grow into one as their date comes closer.' },
+];
 const own = PAGES.filter((c) => c.festival);
 const hubPrompts = HUB.flatMap((c) => inCollection(c.id));
 ---
 <Base
   title="Festival AI Photo Prompts for ChatGPT & Gemini"
-  desc="Free festival photo editing prompts for ChatGPT and Gemini: Christmas, Pongal, Holi, Eid, Onam, Navratri, Diwali and every major Indian festival."
-  schema={[breadcrumbs([{ name: 'Home', url: '/' }, { name: 'Festivals', url: '/festivals/' }]), itemList('Festival photo prompts', hubPrompts)]}
+  desc="Free festival photo editing prompts for ChatGPT and Gemini: Raksha Bandhan, Ganesh Chaturthi, Independence Day, Diwali, Pongal, Holi, Eid, Onam and more."
+  schema={[breadcrumbs([{ name: 'Home', url: '/' }, { name: 'Festivals', url: '/festivals/' }]), itemList('Festival photo prompts', hubPrompts), faqPage({ faqs } as any)]}
 >
   <div class="wrap">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a>{' › '}Festivals</nav>
@@ -52,5 +59,9 @@ const hubPrompts = HUB.flatMap((c) => inCollection(c.id));
         {inCollection(c.id).map((p) => <PromptBlock p={p} heading="h3" />)}
       </section>
     ))}
+    <section class="faq">
+      <h2 class="section-title">Questions and answers</h2>
+      {faqs.map((x) => (<details><summary>{x.q}</summary><p>{x.a}</p></details>))}
+    </section>
   </div>
 </Base>
