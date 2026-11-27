@@ -54,7 +54,7 @@ const g = GUIDE[p.lock];
       </p>
     </header>
 
-    <p class="about-prompt" style="margin:0 0 20px;line-height:1.7">{about}</p>
+    <details class="about-prompt" style="margin:0 0 20px"><summary style="cursor:pointer;color:var(--muted,#888);font-size:.95rem">About this prompt</summary><p style="margin:10px 0 0;line-height:1.7">{about}</p></details>
 
     <PromptBlock p={p} linkTitle={false} />
 
