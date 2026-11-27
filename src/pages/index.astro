@@ -10,7 +10,7 @@ const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEn
   title={`Photo Editing Prompts for ChatGPT & Gemini – ${Math.floor(ALL.length / 10) * 10}+ Free (2027)`}
   desc={`${Math.floor(ALL.length / 10) * 10}+ free photo editing prompts for ChatGPT and Gemini: copy, paste and keep your real face. Copy-paste AI photo prompts: couple, girls, boys, family, wedding, birthday, cinematic, 80s trend, festivals.`}
   i18n=""
-  schema={[itemList('Newest photo editing prompts', ALL.filter((p) => !/^(mothers-day|fathers-day|friendship-day)-|underwater-wallpaper|rakhi-photo-collage/.test(p.s)).slice(0, 20)), faqSchema]}
+  schema={[itemList('Newest photo editing prompts', ALL.filter((p) => !/^(mothers-day|fathers-day|friendship-day)-|underwater-wallpaper|rakhi-photo-collage|^stylish-/.test(p.s)).slice(0, 20)), faqSchema]}
 >
   <HomeBody lang="en" />
 </Base>

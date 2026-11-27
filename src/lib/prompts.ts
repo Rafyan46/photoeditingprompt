@@ -171,7 +171,9 @@ export function fill(template: string, vars: Record<string, string[]> = {}) {
 
 const byId = new Map(COLLECTIONS.map((c) => [c.id, c]));
 
-export const ALL: Prompt[] = PROMPTS.map((r) => {
+// Stylish Portraits prompts stay unpublished (draft) until their sample image exists.
+const isDraft = (slug: string) => slug.startsWith('stylish-') && !fs.existsSync(path.join(SAMPLE_DIR, `${slug}-chatgpt.webp`));
+export const ALL: Prompt[] = PROMPTS.filter((r) => !isDraft(r.s)).map((r) => {
   const collection = byId.get(r.c);
   if (!collection) throw new Error(`Prompt "${r.s}" uses unknown collection "${r.c}"`);
   const template = build(r.lock, r.p, r.c === 'collage' || /collage|panel/.test(r.s), r.c === 'game-art');

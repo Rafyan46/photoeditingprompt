@@ -243,6 +243,15 @@ const BASE_COLLECTIONS: Collection[] = [
     ],
   },
   {
+    id: 'stylish', path: 'stylish-portrait-prompts', emoji: '🕶️',
+    tint: 'linear-gradient(135deg,#d9d9e8,#f0d4d4)',
+    name: 'Stylish Portraits', nameTa: 'ஸ்டைலிஷ்',
+    h1: 'Stylish Portrait Prompts for ChatGPT & Gemini',
+    title: 'Stylish Portrait Prompts: Black and White, Sunglasses, Motion Blur',
+    desc: 'Free stylish portrait prompts for ChatGPT and Gemini: black and white sunglasses, red rim light, motion blur, misty forest, car window and New Year 2027 looks. Keeps your face.',
+    intro: 'These stylish portrait prompts are for the moody, fashion-style photos you see on Instagram: black and white studio shots, red rim light, long-exposure motion blur, a misty forest walk and a lakeside summer look. Each prompt names the light, the lens and the colour grade and keeps your own face, so you can paste it into ChatGPT or Gemini with one clear photo.',
+  },
+  {
     id: 'cinematic', path: 'cinematic-photo-prompts', emoji: '🎞️',
     tint: 'linear-gradient(135deg,#c9d6ff,#ffd9b8)',
     name: 'Cinematic', nameTa: 'சினிமாட்டிக்',
