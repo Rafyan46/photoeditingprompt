@@ -54,11 +54,10 @@ const g = GUIDE[p.lock];
       </p>
     </header>
 
-    <details class="about-prompt" style="margin:0 0 20px"><summary style="cursor:pointer;color:var(--muted,#888);font-size:.95rem">About this prompt</summary><p style="margin:10px 0 0;line-height:1.7">{about}</p></details>
-
     <PromptBlock p={p} linkTitle={false} />
 
-    <div class="prose">
+    <details class="prose more-info" style="margin:20px 0"><summary style="cursor:pointer;font-weight:600">More about this prompt: what you get, which photo to upload, fixes</summary>
+      <p style="line-height:1.7">{about}</p>
       <h2>What you get with {p.t}</h2>
       <p>{scene}</p>
       {options.length > 0 && (
@@ -73,7 +72,7 @@ const g = GUIDE[p.lock];
       <div class="fixes">
         {g.fixes.map((f) => (<div class="fix"><strong>{f.problem}</strong><p>{f.fix}</p></div>))}
       </div>
-    </div>
+    </details>
 
     <Steps />
 
