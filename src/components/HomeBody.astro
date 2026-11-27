@@ -9,7 +9,7 @@ const { lang = 'en' } = Astro.props;
 const t = T[lang];
 import { HOME_FAQ } from '../data/site';
 const CHUNK = 40; // the first 40 photos show at once; 'Load more' adds 40 at a time, and search finds every prompt
-const NOT_ON_HOME = /^(mothers-day|fathers-day|friendship-day)-|underwater-wallpaper|rakhi-photo-collage|^stylish-/;
+const NOT_ON_HOME = /^(mothers-day|fathers-day|friendship-day)-|underwater-wallpaper|rakhi-photo-collage|^stylish-|^guru-nanak-/;
 const HOME = ALL.filter((p) => !NOT_ON_HOME.test(p.s));
 const withImg = HOME.filter((p) => p.sample.chatgpt);
 // The visible grid shows only prompts that have a real result image. Prompts without a photo yet are still in the page (hidden),

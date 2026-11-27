@@ -1077,4 +1077,11 @@ export const PROMPTS: RawPrompt[] = [
   { s: 'chhath-puja-river-sunrise-arghya', t: 'Chhath Sunrise at the Ghat', c: 'diwali', a: 'any', lock: 'single',
     p: 'Show me standing in knee-deep river water at sunrise holding a bamboo soop basket of fruits and a diya, facing the camera with the rising sun behind me. I am wearing {outfit}. Golden light on the water, other devotees blurred far behind, calm and devotional.',
     v: { outfit: ['a yellow saree', 'a yellow dhoti-kurta', 'a red and yellow saree'] } },
+  // Guru Nanak Jayanti (Gurpurab), added 27 Nov 2026
+  { s: 'guru-nanak-jayanti-gurdwara-sunrise-portrait', t: 'Gurpurab Sunrise at the Gurdwara', c: 'gurpurab', a: 'any', lock: 'single',
+    p: 'Show me standing in a white marble gurdwara courtyard at sunrise on Guru Nanak Jayanti, hands folded gently in prayer and looking calmly at the camera. I am wearing {outfit}. A still sacred pool and soft mist glow gold behind me, with no signs or writing anywhere. Peaceful, respectful and warm, framed from the waist up on an 85mm lens.',
+    v: { outfit: ['a white salwar suit with the dupatta covering my head', 'a white kurta pyjama with an orange head cloth', 'a cream kurta with a saffron head cloth'] } },
+  { s: 'guru-nanak-jayanti-diyas-dusk-portrait', t: 'Gurpurab Diyas at Dusk', c: 'gurpurab', a: 'any', lock: 'single',
+    p: 'Show me kneeling beside rows of lit diyas and marigold garlands on a marble step at dusk on Gurpurab, lighting one more diya and smiling softly at the camera. I am wearing {outfit}. A deep blue evening sky and warm golden lamplight on my face, with no text or signs. Calm, festive and devotional, framed from the waist up.',
+    v: { outfit: ['a pastel salwar suit with a dupatta over my head', 'a white kurta pyjama with an orange head cloth', 'a cream kurta with a saffron head cloth'] } },
 ];

@@ -401,6 +401,8 @@ const BASE_COLLECTIONS: Collection[] = [
     tint: 'linear-gradient(135deg,#ffe8c9,#d6f0ff)', name: 'Friendship Day', h1: 'Friendship Day Photo Prompts', intro: 'Best-friend frames with friendship bands, cafes and rooftops.' },
   { id: 'diwali', path: 'festivals', festival: true, hub: true, when: 'About October–November 2027', emoji: '🪔',
     tint: 'linear-gradient(135deg,#ffe6b8,#ffd3c2)', name: 'Diwali and Chhath', h1: 'Diwali and Chhath Photo Prompts', intro: 'Diyas, rangoli, sparklers and the Chhath ghat at sunrise.' },
+  { id: 'gurpurab', path: 'festivals', festival: true, hub: true, when: 'About November 2027', emoji: '🙏',
+    tint: 'linear-gradient(135deg,#ffe9c2,#fff7dc)', name: 'Guru Nanak Jayanti (Gurpurab)', h1: 'Guru Nanak Jayanti Photo Prompts', intro: 'Gurdwara mornings, lit diyas and the golden light of Gurpurab.' },
 ];
 
 // Search copy (title, description, intro, FAQs, related links) for each category page lives in seo-copy.ts.
