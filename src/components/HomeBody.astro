@@ -9,7 +9,9 @@ const { lang = 'en' } = Astro.props;
 const t = T[lang];
 import { HOME_FAQ } from '../data/site';
 const CHUNK = 40; // the first 40 photos show at once; 'Load more' adds 40 at a time, and search finds every prompt
-const withImg = ALL.filter((p) => p.sample.chatgpt);
+const NOT_ON_HOME = /^(mothers-day|fathers-day|friendship-day)-|underwater-wallpaper|rakhi-photo-collage/;
+const HOME = ALL.filter((p) => !NOT_ON_HOME.test(p.s));
+const withImg = HOME.filter((p) => p.sample.chatgpt);
 // The visible grid shows only prompts that have a real result image. Prompts without a photo yet are still in the page (hidden),
 // so the search box can find them (for example "GTA 6" or "movie").
 // Mix the collections so the first screen shows variety, with the ones people search for most (couple, viral, 80s) showing up most.
@@ -25,7 +27,7 @@ for (let more = true; more;) {
     for (let k = 0; k < (WEIGHT[id] ?? 1) && g.length; k++) { mixed.push(g.shift()!); more = true; }
   }
 }
-const noImg = ALL.filter((p) => !p.sample.chatgpt);
+const noImg = HOME.filter((p) => !p.sample.chatgpt);
 // Trending strip: the viral looks, newest first, as one swipeable row above the gallery.
 const trend = await Promise.all(withImg.filter((p) => p.c === 'viral').slice(0, 10).map(async (p) => ({ p, img: p.sample.chatgpt!.replace(/\.webp$/, '-thumb.webp'), size: await thumbSize(p.sample.chatgpt!.replace(/\.webp$/, '-thumb.webp')) })));
 const chunks: (typeof ALL)[] = [];
