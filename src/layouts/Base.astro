@@ -131,6 +131,7 @@ const org = {
           <summary aria-label="Menu">☰</summary>
           <div class="mnav-panel">
             <a href="/trending/">{t.trending}</a>
+            <a href="/gemini-photo-editing-prompts/">Gemini prompts</a>
             <p class="mnav-h">{t.categories}</p>
             {categories.map((c) => <a href={colUrl(c, lang)}>{cName(c, lang)}</a>)}
             <p class="mnav-h">{t.collections}</p>
@@ -184,6 +185,7 @@ const org = {
             <h3>{SITE.name}</h3>
             <a href={home}>{t.home}</a>
             <a href="/trending/">{t.trending}</a>
+            <a href="/gemini-photo-editing-prompts/">Gemini prompts</a>
             <a href="/about/">{t.about}</a>
             <a href="/contact/">{t.contact}</a>
             <a href={`mailto:${SITE.email}`}>{SITE.email}</a>

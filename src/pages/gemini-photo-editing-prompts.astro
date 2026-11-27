@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro';
+import PromptCard from '../components/PromptCard.astro';
+import { ALL, PAGES, colUrl, inCollection } from '../lib/prompts';
+import { SITE_UPDATED } from '../data/site';
+import { breadcrumbs, itemList, faqPage } from '../lib/schema';
+
+const pick = (slugs: string[]) => slugs.map((s) => ALL.find((p) => p.s === s)).filter(Boolean) as typeof ALL;
+const featured = pick([
+  'couple-golden-hour-field-walk', 'couple-rain-umbrella-street', 'couple-pre-wedding-palace-steps',
+  'boy-formal-suit-studio-headshot', 'boy-rooftop-city-skyline-night', 'boy-street-style-neon-night',
+  'girl-saree-golden-hour-terrace', 'girl-cafe-aesthetic-book-portrait', 'girl-lehenga-palace-corridor',
+  'cinematic-neon-alley-night-portrait', 'birthday-candle-glow-portrait-girl', '1980s-studio-portrait-painted-backdrop',
+  'viral-teal-aura-smoke-portrait', 'aesthetic-golden-hour-field-dreamy',
+]);
+const cats = PAGES.filter((c) => !c.festival).slice(0, 14);
+
+const faqs = [
+  { q: 'What are the best photo editing prompts for Gemini?', a: 'The best Gemini photo editing prompts say what to change (outfit, place, light, camera angle) and what must stay the same (your face). Every prompt on this page is written that way, so you can paste it into Gemini with one clear photo and keep your own face in the result.' },
+  { q: 'How do I use a photo editing prompt in Google Gemini?', a: 'Open gemini.google.com or the Gemini app, tap the plus button and upload one clear, front-facing photo, paste the prompt, and send. If the first result is slightly off, send the same prompt again, because each run gives a different version.' },
+  { q: 'Where can I copy a Gemini AI photo prompt, free?', a: 'Tap Copy prompt on any card on this page, or tap Open in Gemini to jump straight to the app. Every prompt is free plain text, with no sign-up and no ad before the copy button.' },
+  { q: 'Are there Gemini photo prompts for boys and for girls?', a: 'Yes. The Boys and Girls categories have Gemini-ready prompts for suit portraits, bike shots, saree and lehenga looks, cafe and golden-hour frames. Each one keeps your real face. You can also use the Couple, Family and Birthday categories.' },
+  { q: 'What is the Google Gemini trending photo prompt right now?', a: 'The newest trending looks are on our Trending page, newest first: couple edits, 80s looks, cinematic portraits and festival looks. All of them work in Gemini as well as ChatGPT.' },
+  { q: 'Is there a Gemini couple photo prompt to copy and paste?', a: 'Yes. Use any prompt in the Couple category. Upload one clear photo of both of you, paste the prompt, and send. The prompt locks both faces and your height difference before it describes the scene.' },
+  { q: 'Do these prompts work in ChatGPT or Meta AI too?', a: 'They are plain text, so they work in ChatGPT as well as Gemini. Meta AI can edit photos from text in some regions, and you can try the same prompts there, though face accuracy varies between tools. Gemini and ChatGPT are the two we test with.' },
+  { q: 'Why does Gemini change my face, and how do I stop it?', a: 'Face drift usually comes from a blurry, dark or angled photo. Upload a sharp, evenly lit, front-facing photo and keep the identity lock line at the top of the prompt. If the face still drifts, run the prompt again.' },
+  { q: 'Is there a limit on how many photos I can edit in Gemini for free?', a: 'Google sets daily limits on image edits, and they change over time, so check the Gemini app for your current allowance. If you hit the limit, wait for it to reset or use the same prompt in ChatGPT.' },
+];
+---
+<Base
+  title="Photo Editing Prompts for Gemini: Free Copy & Paste (2026)"
+  desc="Free Google Gemini AI photo editing prompts: couple, boys, girls, birthday, cinematic and 80s looks. Copy, paste with your photo, and keep your real face."
+  schema={[breadcrumbs([{ name: 'Home', url: '/' }, { name: 'Gemini photo editing prompts', url: '/gemini-photo-editing-prompts/' }]), itemList('Gemini photo editing prompts', featured), faqPage({ faqs } as any)]}
+>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Gemini photo editing prompts</nav>
+    <header style="padding:28px 0 20px">
+      <p class="eyebrow">{ALL.length} prompts · all work in Gemini</p>
+      <h1 class="page-title" style="font-size:clamp(32px,5vw,48px);margin-top:8px">Photo Editing Prompts for Gemini</h1>
+      <p class="lead" style="margin-left:0">Free Google Gemini AI photo editing prompts you can copy and paste. Upload one clear photo of yourself to Gemini, paste a prompt, and get a new scene with your own face kept. Every prompt below has an Open in Gemini button. Updated {SITE_UPDATED}.</p>
+    </header>
+
+    <h2 class="section-title" style="margin-top:8px">How to use a prompt in Gemini</h2>
+    <ol class="muted" style="margin:0 0 28px;padding-left:20px;line-height:1.7">
+      <li>Tap <strong>Copy prompt</strong> on any card below (or on the prompt page).</li>
+      <li>Open Gemini and tap the plus button to upload one sharp, front-facing photo.</li>
+      <li>Paste the prompt and send. Run it again if the first result is slightly off.</li>
+    </ol>
+
+    <h2 class="section-title">Popular Gemini prompts</h2>
+    <div class="grid">
+      {featured.map((p) => <PromptCard p={p} />)}
+    </div>
+
+    <h2 class="section-title" style="margin-top:36px">Gemini prompts by category</h2>
+    <ul class="muted" style="columns:2;column-gap:32px;line-height:1.9;padding-left:18px">
+      {cats.map((c) => <li><a class="link" href={colUrl(c)}>{c.name} prompts</a> ({inCollection(c.id).length})</li>)}
+    </ul>
+    <p class="muted"><a class="link" href="/trending/">See the newest trending prompts ›</a></p>
+
+    <section class="faq">
+      <h2 class="section-title">Questions and answers</h2>
+      {faqs.map((f) => (<details><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    </section>
+  </div>
+</Base>
