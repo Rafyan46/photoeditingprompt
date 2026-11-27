@@ -384,6 +384,12 @@ const BASE_COLLECTIONS: Collection[] = [
     tint: 'linear-gradient(135deg,#ffd9e0,#ffe9c2)', name: 'Navratri, Durga Puja and Dussehra', h1: 'Navratri, Durga Puja and Dussehra Photo Prompts', intro: 'Garba nights, pandal visits and Vijayadashami.' },
   { id: 'karwa-chauth', path: 'festivals', festival: true, hub: true, when: 'About October 2027', emoji: '🌕',
     tint: 'linear-gradient(135deg,#ffd9d9,#ffe8c9)', name: 'Karwa Chauth', h1: 'Karwa Chauth Photo Prompts', intro: 'Moonrise, the sieve and the thali.' },
+  { id: 'mothers-day', path: 'festivals', festival: true, hub: true, when: 'About May 2027', emoji: '💐',
+    tint: 'linear-gradient(135deg,#ffe0ec,#fff0c9)', name: "Mother's Day", h1: "Mother's Day Photo Prompts", intro: 'Garden hugs and breakfast surprises with your mother.' },
+  { id: 'fathers-day', path: 'festivals', festival: true, hub: true, when: 'About June 2027', emoji: '👔',
+    tint: 'linear-gradient(135deg,#d9e6ff,#ffe9c9)', name: "Father's Day", h1: "Father's Day Photo Prompts", intro: 'Terrace chai and golden-hour walks with your father.' },
+  { id: 'friendship-day', path: 'festivals', festival: true, hub: true, when: 'August 2027', emoji: '🤝',
+    tint: 'linear-gradient(135deg,#ffe8c9,#d6f0ff)', name: 'Friendship Day', h1: 'Friendship Day Photo Prompts', intro: 'Best-friend frames with friendship bands, cafes and rooftops.' },
   { id: 'diwali', path: 'festivals', festival: true, hub: true, when: 'About October–November 2027', emoji: '🪔',
     tint: 'linear-gradient(135deg,#ffe6b8,#ffd3c2)', name: 'Diwali and Chhath', h1: 'Diwali and Chhath Photo Prompts', intro: 'Diyas, rangoli, sparklers and the Chhath ghat at sunrise.' },
 ];
@@ -411,4 +417,7 @@ export const HOME_FAQ = [
   { q: 'ChatGPT se photo edit karne ke liye prompt kaise use karein?', a: 'Pehle ChatGPT mein apni ek clear, front-facing photo upload karein, phir koi bhi prompt copy karke paste karein aur send karein. Prompt English mein hi rehta hai, aur AI aapka face same rakhta hai. Hindi aur Tamil pages bhi site par available hain.' },
   { q: 'What are the ChatGPT photo editing trends for 2027?', a: 'The big ones are the 80s look, couple and pre-wedding edits, cinematic film-still portraits, birthday photoshoots, aesthetic and stylish Instagram portraits, and festival looks. Open the Trending page for the newest viral photo prompts first.' },
   { q: 'Can I ask for an 8K photo editing prompt?', a: 'You can ask for sharp, high-detail results, and our prompts do. The real pixel size depends on the tool and your plan, and ChatGPT and Gemini do not truly output 8K. For the cleanest result, upload a sharp original photo.' },
+  { q: 'Which chat gpt prompt for photo editing works best?', a: 'Any chat gpt photo prompt here works: upload one clear photo, paste the prompt, and send. Popular picks are the chat gpt couple prompt, the chat gpt 80s prompt (also searched as 80\'s prompt or 1980s prompt), the chat gpt birthday prompt and the trending chat gpt prompt on our Trending page. People also search for a chat gpt prompt for image editing, a chat gpt edit prompt or a prompt chat gpt link, and they all lead to the same free copy-and-paste library.' },
+  { q: 'Are there romantic couple AI prompts for chat gpt and an 80\'s trend prompt?', a: 'Yes. The Couple collection has romantic couple AI prompts for chat gpt, from pre-wedding to rainy-day portraits, and the 80s collection is the 80\'s trend prompt page: retro film looks, 80s pic prompts and 1980\'s style edits you can copy and paste in one tap.' },
+  { q: 'Is there a rakhi photo collage maker, friendship prompt, or Mother\'s Day and Father\'s Day prompt?', a: 'Yes. The Festivals section has a Raksha Bandhan rakhi photo collage prompt, Friendship Day best-friend prompts, and Mother\'s Day and Father\'s Day prompts. Cinematic also has an underwater prompt for girls and boys.' },
 ];
