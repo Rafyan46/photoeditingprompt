@@ -7,6 +7,7 @@ import { ALL, inCollection, colUrl, metaDesc, label } from '../../lib/prompts';
 import { breadcrumbs, article } from '../../lib/schema';
 import { whatItDoes, metaFor } from '../../lib/prompt-copy';
 import { GUIDE } from '../../lib/guide';
+import { PAGE_NOTES } from '../../data/page-notes';
 export function getStaticPaths() {
   return ALL.map((p) => ({ params: { slug: p.s }, props: { p } }));
 }
@@ -33,6 +34,7 @@ const about = whatItDoes(p);
 const shareImage = p.sample.chatgpt ?? p.sample.gemini;
 const options = Object.keys(p.v ?? {});
 const g = GUIDE[p.lock];
+const note = PAGE_NOTES[p.s]; // hand-written notes that only this page has (top pages only)
 ---
 <Base
   title={title}
@@ -55,6 +57,22 @@ const g = GUIDE[p.lock];
     </header>
 
     <PromptBlock p={p} linkTitle={false} />
+
+    {note && (
+      <section class="prose page-notes">
+        <h2>Tips for the {p.t} prompt</h2>
+        <p><strong>What you get:</strong> {note.look}</p>
+        <p><strong>Best photo to upload:</strong> {note.photo}</p>
+        {note.picks && <p><strong>Dropdown picks:</strong> {note.picks}</p>}
+        {note.note && <p><strong>Good to know:</strong> {note.note}</p>}
+        {note.tested && <p class="tested"><strong>Our real test:</strong> {note.tested}</p>}
+        <div class="fixmsg">
+          <p><strong>{note.fix.problem}</strong> Send this in the same chat:</p>
+          <p class="msg">{note.fix.message}</p>
+          <button class="btn ghost" type="button" data-copy-text={note.fix.message}>Copy this message</button>
+        </div>
+      </section>
+    )}
 
     <details class="prose more-info" style="margin:20px 0"><summary style="cursor:pointer;font-weight:600">More about this prompt: what you get, which photo to upload, fixes</summary>
       <p style="line-height:1.7">{about}</p>
@@ -86,4 +104,12 @@ const g = GUIDE[p.lock];
       </section>
     )}
   </div>
+  <script is:inline>
+    document.querySelectorAll('[data-copy-text]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var done = function () { var t = b.textContent; b.textContent = 'Copied'; setTimeout(function () { b.textContent = t; }, 1500); };
+        if (navigator.clipboard) navigator.clipboard.writeText(b.dataset.copyText).then(done, function () {}); else done();
+      });
+    });
+  </script>
 </Base>

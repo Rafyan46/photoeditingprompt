@@ -132,7 +132,6 @@ a { color: inherit; text-decoration: none; }
 .card .body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .card h3 { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; }
 .card h3 a:hover { color: var(--accent); }
-.card .snippet { font-size: 14px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .card .row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto; }
 .badges { display: flex; gap: 6px; flex-wrap: wrap; }
 .badge { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: var(--bg-soft); color: var(--muted); }
@@ -303,7 +302,6 @@ details.custom:not([open]) > summary .lbl::after { content: ' ▾'; }
 .card h3 a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
 .card .fav, .card [data-copy-btn], .card .row .link { position: relative; z-index: 2; }
 .card { cursor: pointer; }
-.card .snippet { display: none; }
 @media (min-width: 960px) { .grid { grid-template-columns: repeat(4, 1fr); } }
 
 .card .row .link { display: none; }
@@ -481,6 +479,9 @@ details.custom:not([open]) > summary .lbl::after { content: ' ▾'; }
 
 /* Phones and touch screens: no Copy button. Two small round ChatGPT / Gemini buttons (each also copies the prompt). */
 .card .open-over .ico { display: none; }
+/* Card icons are CSS backgrounds, not <img> tags: the homepage has ~300 cards, so this saves ~600 image elements. */
+.ico-gpt { background: url(/icons/chatgpt.png) center / contain no-repeat; }
+.ico-gem { background: url(/icons/gemini.png) center / contain no-repeat; }
 @media (hover: none), (max-width: 619px) {
   .card .copy-over { display: none; }
   .card .open-over { display: flex; opacity: 1; transform: none; left: auto; right: 6px; bottom: 6px; gap: 6px; }
@@ -490,3 +491,11 @@ details.custom:not([open]) > summary .lbl::after { content: ' ▾'; }
   .card .open-over .gpt, .card .open-over .gem { background: #fff; }
   .card .open-over .ico { width: 20px; height: 20px; }
 }
+
+/* Hand-written tips on top prompt pages (src/data/page-notes.ts) */
+.page-notes { margin: 28px 0 8px; }
+.page-notes h2 { margin-top: 0; }
+.page-notes .tested { padding: 12px 14px; border-radius: 12px; background: var(--bg-soft); }
+.page-notes .fixmsg { padding: 14px 16px; border-radius: 14px; background: var(--bg-soft); }
+.page-notes .fixmsg p { margin-bottom: 10px; }
+.page-notes .fixmsg .msg { font-size: 15px; padding: 10px 12px; border-radius: 10px; border: 1px dashed var(--line, #c7c7cc); background: var(--bg, #fff); }

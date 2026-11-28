@@ -19,6 +19,7 @@ const g = (cast as Record<string, string>)[p.s];
 const byCast: Record<string, string> = { man: 'boy', woman: 'girl', couple: 'couple couples prompt couple prompt generator indian couple husband wife romantic love realistic couple wallpaper mirror', family: 'family', car: 'car' };
 const aud = (img && byCast[g] ? byCast[g] : p.a === 'any' ? 'girl boy' : p.a) + (p.lock === 'car' || p.c === 'supercars' ? ' car' : '');
 const BOOST: Record<string, string> = { 'game-art': 'gta 6 gta vice city game', movies: 'movie film bollywood tollywood kollywood hero star poster', supercars: 'car cars supercar', 'car-poses': 'ai car prompt car driving trending car thar suv', collage: 'trending collage prompt', couple: 'romantic couples ai couple photo husband wife gemini couple prompt trending', girls: 'women woman ladies prompt for women mirror selfie whatsapp dp aesthetic girl', boys: 'men man mens gemini prompt for men ai prompts for men prompt for men photo prompt for men chatgpt men photo', eighties: '80s trend retro vintage 1980s 1980 prompt 80s look prompt 80s vibe retro couple', aesthetic: 'cinematic photography aesthetic prompt stylish viral instagram mirror', cinematic: 'cinematic photo prompt cinematic image prompt film movie still double exposure black and white cinematic prompt', family: 'group friends', birthday: 'birthday party cake candles balloons happy birthday birthday prompt generator birthday poster banner ai birthday photo editing' };
+// The scene text lives only in data-card (for search); cards show no visible snippet, so none is rendered.
 const keywords = `${p.t} ${p.collection.name} ${p.a} ${p.p} ${BOOST[p.c] ?? ''}`.toLowerCase();
 ---
 <article class:list={['card', extra && 'hidden']} data-card={keywords} data-extra={extra ? '1' : '0'} data-chunk={chunk} data-aud={aud} data-img={img ? '1' : '0'} data-slug={p.s}>
@@ -30,13 +31,12 @@ const keywords = `${p.t} ${p.collection.name} ${p.a} ${p.p} ${BOOST[p.c] ?? ''}`
     <span class="tag">{cName(p.collection, lang)}</span>
     {beforeThumb && <span class="beforebox"><img src={beforeThumb} alt={`Original photo before the ${p.t} edit`} loading="lazy" decoding="async" width="120" height="150" /><i>Before</i></span>}
     <div class="open-over">
-      <a href="https://chatgpt.com/" target="_blank" rel="noopener nofollow" data-open-card="chatgpt" class="btn gpt" aria-label={`Open ${p.t} in ChatGPT`} title="Open in ChatGPT"><img class="ico" src="/icons/chatgpt.png" width="20" height="20" alt="" /><span>ChatGPT ↗</span></a>
-      <a href="https://gemini.google.com/app" target="_blank" rel="noopener nofollow" data-open-card="gemini" class="btn gem" aria-label={`Open ${p.t} in Gemini`} title="Open in Gemini"><img class="ico" src="/icons/gemini.png" width="20" height="20" alt="" /><span>Gemini ↗</span></a>
+      <a href="https://chatgpt.com/" target="_blank" rel="noopener nofollow" data-open-card="chatgpt" class="btn gpt" aria-label={`Open ${p.t} in ChatGPT`} title="Open in ChatGPT"><i class="ico ico-gpt" aria-hidden="true"></i><span>ChatGPT ↗</span></a>
+      <a href="https://gemini.google.com/app" target="_blank" rel="noopener nofollow" data-open-card="gemini" class="btn gem" aria-label={`Open ${p.t} in Gemini`} title="Open in Gemini"><i class="ico ico-gem" aria-hidden="true"></i><span>Gemini ↗</span></a>
     </div>
     <button class="btn copy-over" type="button" data-copy-btn >{t.copy}</button>
   </div>
   <div class="body">
     <h3><a href={p.url}>{p.t}</a></h3>
-    <p class="snippet">{p.p.replace(/\{(\w+)\}/g, (_, k) => p.v?.[k]?.[0] ?? '')}</p>
   </div>
 </article>

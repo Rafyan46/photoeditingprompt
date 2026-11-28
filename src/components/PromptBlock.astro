@@ -32,8 +32,8 @@ const pinUrl = after ? `https://www.pinterest.com/pin/create/button/?url=${encod
 
   {p.sample.before && after && (
     <div class:list={['ba', wide && 'wide']}>
-      <img src={pic(p.sample.before)} alt={`${p.t} – original photo before the AI edit`} width={iw} height={ih} decoding="async" loading={lz} />
-      <img class="after" src={pic(after)} alt={`${p.t} – AI photo editing result from ${afterTool}`} width={iw} height={ih} decoding="async" loading={lz} />
+      <img src={pic(p.sample.before)} alt={`${p.t} – original photo before the AI edit`} width={iw} height={ih} decoding="async" loading={lz} fetchpriority={linkTitle ? undefined : 'high'} />
+      <img class="after" src={pic(after)} alt={`${p.t} – AI photo editing result from ${afterTool}`} width={iw} height={ih} decoding="async" loading={lz} fetchpriority={linkTitle ? undefined : 'high'} />
       <span class="bar"><i class="knob" aria-hidden="true">◀ ▶</i></span>
       <span class="hint" aria-hidden="true">👆 Drag to compare</span>
       <span class="lab l">{t.before}</span>
